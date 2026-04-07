@@ -1,0 +1,105 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── المتغيرات الأساسية ── */
+:root {
+  --background: #f8f9fa;
+  --foreground: #343a40;
+  --primary: #1a6b3c;
+  --gold: #c9a84c;
+}
+
+.dark {
+  --background: #0f1f16;
+  --foreground: #f1f5f9;
+}
+
+/* ── الأنماط الأساسية ── */
+html {
+  scroll-behavior: smooth;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  min-height: 100vh;
+}
+
+/* ── منع التكبير على iOS عند التركيز ── */
+input, select, textarea {
+  font-size: 16px !important;
+}
+
+/* ── أنماط التمرير ── */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 4px;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: #4a5568;
+}
+
+/* ── إخفاء شريط التمرير الأفقي ── */
+.scrollbar-none {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+
+/* ── أنماط التركيز ── */
+:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* ── أنماط الطباعة ── */
+@media print {
+  header, footer, .no-print { display: none !important; }
+  body { background: white; color: black; }
+}
+
+/* ── Animation helpers ── */
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .animate-in {
+    animation: fadeIn 0.3s ease-in;
+  }
+}
+
+/* ── نمط الخلفية الهندسي للـ Hero ── */
+.hero-pattern {
+  background-image:
+    radial-gradient(circle at 20% 50%, rgba(201, 168, 76, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(26, 107, 60, 0.15) 0%, transparent 50%),
+    radial-gradient(circle at 50% 80%, rgba(201, 168, 76, 0.08) 0%, transparent 50%);
+}
+
+/* ── أنماط العداد التنازلي ── */
+.countdown-box {
+  @apply relative overflow-hidden rounded-2xl;
+  background: linear-gradient(135deg, #1a6b3c 0%, #0f1f16 100%);
+}
+
+.countdown-digit {
+  @apply text-white font-bold tabular-nums;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}

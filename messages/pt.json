@@ -1,0 +1,105 @@
+{
+  "metadata": {
+    "siteName": "Calculadora Saudita",
+    "siteDescription": "Seu centro completo de calculadoras financeiras, islâmicas e contagens regressivas na Arábia Saudita"
+  },
+  "nav": {
+    "home": "Início",
+    "countdowns": "Contagens Regressivas",
+    "calculators": "Calculadoras",
+    "calendar": "Calendário",
+    "blog": "Blog",
+    "about": "Sobre",
+    "contact": "Contato"
+  },
+  "hero": {
+    "title": "Seu Centro de Planejamento Financeiro e Islâmico",
+    "subtitle": "Calculadoras financeiras precisas, contagens regressivas de eventos islâmicos e nacionais",
+    "searchPlaceholder": "Buscar calculadora ou contagem regressiva...",
+    "exploreCalculators": "Explorar Calculadoras",
+    "salaryDates": "Datas de Salário"
+  },
+  "stats": {
+    "calculatorsCount": "60+ Calculadoras",
+    "eventsCount": "15+ Eventos Islâmicos",
+    "languages": "4 Idiomas",
+    "users": "Milhões de Usuários"
+  },
+  "sections": {
+    "featuredCountdowns": "Contagens Regressivas Mais Seguidas",
+    "allServices": "Todos os Serviços",
+    "mostUsed": "Mais Usados",
+    "fromBlog": "Do Blog",
+    "viewAllArticles": "Ver Todos os Artigos",
+    "faq": "Perguntas Frequentes",
+    "relatedTools": "Ferramentas Relacionadas"
+  },
+  "countdown": {
+    "days": "Dias",
+    "hours": "Horas",
+    "minutes": "Minutos",
+    "seconds": "Segundos",
+    "eventArrived": "O evento chegou!",
+    "moreDetails": "Mais Detalhes"
+  },
+  "categories": {
+    "islamicEvents": "Eventos Islâmicos",
+    "salaryDates": "Datas de Salário e Apoio",
+    "financialCalc": "Calculadoras Financeiras",
+    "zakatWorship": "Zakat e Adoração",
+    "education": "Educação",
+    "nationalEvents": "Eventos Nacionais",
+    "healthFamily": "Saúde e Família",
+    "dailyTools": "Ferramentas Diárias"
+  },
+  "events": {
+    "ramadan": "Ramadã",
+    "ramadanQuestion": "Quanto falta para o Ramadã?",
+    "ramadanDesc": "O mês de jejum, oração e Alcorão",
+    "eidFitr": "Eid Al-Fitr",
+    "eidFitrQuestion": "Quanto falta para o Eid Al-Fitr?",
+    "eidAdha": "Eid Al-Adha",
+    "eidAdhaQuestion": "Quanto falta para o Eid Al-Adha?",
+    "hajj": "Hajj",
+    "lailatulQadr": "Laylatul Qadr",
+    "nationalDay": "Dia Nacional",
+    "foundationDay": "Dia da Fundação",
+    "flagDay": "Dia da Bandeira",
+    "nextSalary": "Próximo Salário",
+    "nextSalaryQuestion": "Quanto falta para o salário?",
+    "citizenAccount": "Conta Cidadã",
+    "socialSecurity": "Segurança Social",
+    "pension": "Pensões",
+    "saned": "SANED",
+    "universityStipend": "Bolsa Universitária"
+  },
+  "common": {
+    "calculate": "Calcular",
+    "reset": "Redefinir",
+    "result": "Resultado",
+    "share": "Compartilhar",
+    "copyLink": "Copiar Link",
+    "copied": "Copiado!",
+    "sar": "Riyal Saudita",
+    "readMore": "Leia Mais",
+    "home": "Início",
+    "search": "Buscar",
+    "darkMode": "Modo Escuro",
+    "lightMode": "Modo Claro",
+    "close": "Fechar",
+    "menu": "Menu",
+    "adSpace": "Espaço Publicitário",
+    "tools": "Ferramentas",
+    "followUs": "Siga-nos"
+  },
+  "footer": {
+    "aboutSite": "Calculadora Saudita — Plataforma completa com mais de 60 calculadoras e contagens regressivas.",
+    "countdownsTitle": "Contagens Regressivas",
+    "calculatorsTitle": "Calculadoras",
+    "usefulLinks": "Links Úteis",
+    "privacyPolicy": "Política de Privacidade",
+    "terms": "Termos de Uso",
+    "sitemap": "Mapa do Site",
+    "copyright": "© 2026 Calculadora Saudita • Todos os Direitos Reservados"
+  }
+}

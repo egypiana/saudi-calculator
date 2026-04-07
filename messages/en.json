@@ -1,0 +1,105 @@
+{
+  "metadata": {
+    "siteName": "Saudi Calculator",
+    "siteDescription": "Your comprehensive hub for financial, Islamic calculators and countdowns in Saudi Arabia"
+  },
+  "nav": {
+    "home": "Home",
+    "countdowns": "Countdowns",
+    "calculators": "Calculators",
+    "calendar": "Calendar",
+    "blog": "Blog",
+    "about": "About",
+    "contact": "Contact"
+  },
+  "hero": {
+    "title": "Your Hub for Financial & Islamic Planning",
+    "subtitle": "Accurate financial calculators, Islamic & national event countdowns, and government salary schedules",
+    "searchPlaceholder": "Search for a calculator or countdown... e.g. Ramadan, Zakat, Salary",
+    "exploreCalculators": "Explore Calculators",
+    "salaryDates": "Salary Dates"
+  },
+  "stats": {
+    "calculatorsCount": "60+ Calculators",
+    "eventsCount": "15+ Islamic Events",
+    "languages": "4 Languages",
+    "users": "Millions of Users"
+  },
+  "sections": {
+    "featuredCountdowns": "Most Followed Countdowns",
+    "allServices": "All Services",
+    "mostUsed": "Most Used",
+    "fromBlog": "From the Blog",
+    "viewAllArticles": "View All Articles",
+    "faq": "Frequently Asked Questions",
+    "relatedTools": "Related Tools"
+  },
+  "countdown": {
+    "days": "Days",
+    "hours": "Hours",
+    "minutes": "Minutes",
+    "seconds": "Seconds",
+    "eventArrived": "The event has arrived!",
+    "moreDetails": "More Details"
+  },
+  "categories": {
+    "islamicEvents": "Islamic Events",
+    "salaryDates": "Salary & Support Dates",
+    "financialCalc": "Financial Calculators",
+    "zakatWorship": "Zakat & Worship",
+    "education": "Education",
+    "nationalEvents": "National Events",
+    "healthFamily": "Health & Family",
+    "dailyTools": "Daily Tools"
+  },
+  "events": {
+    "ramadan": "Ramadan",
+    "ramadanQuestion": "How long until Ramadan?",
+    "ramadanDesc": "The month of fasting, prayer, and Quran",
+    "eidFitr": "Eid Al-Fitr",
+    "eidFitrQuestion": "How long until Eid Al-Fitr?",
+    "eidAdha": "Eid Al-Adha",
+    "eidAdhaQuestion": "How long until Eid Al-Adha?",
+    "hajj": "Hajj",
+    "lailatulQadr": "Laylatul Qadr",
+    "nationalDay": "National Day",
+    "foundationDay": "Foundation Day",
+    "flagDay": "Flag Day",
+    "nextSalary": "Next Salary",
+    "nextSalaryQuestion": "How long until next salary?",
+    "citizenAccount": "Citizen Account",
+    "socialSecurity": "Social Security",
+    "pension": "Pension Salaries",
+    "saned": "SANED",
+    "universityStipend": "University Stipend"
+  },
+  "common": {
+    "calculate": "Calculate",
+    "reset": "Reset",
+    "result": "Result",
+    "share": "Share",
+    "copyLink": "Copy Link",
+    "copied": "Copied!",
+    "sar": "Saudi Riyal",
+    "readMore": "Read More",
+    "home": "Home",
+    "search": "Search",
+    "darkMode": "Dark Mode",
+    "lightMode": "Light Mode",
+    "close": "Close",
+    "menu": "Menu",
+    "adSpace": "Ad Space",
+    "tools": "Tools",
+    "followUs": "Follow Us"
+  },
+  "footer": {
+    "aboutSite": "Saudi Calculator — A comprehensive platform with 60+ calculators and countdowns serving the Saudi community.",
+    "countdownsTitle": "Countdowns",
+    "calculatorsTitle": "Calculators",
+    "usefulLinks": "Useful Links",
+    "privacyPolicy": "Privacy Policy",
+    "terms": "Terms of Use",
+    "sitemap": "Sitemap",
+    "copyright": "© 2026 Saudi Calculator • All Rights Reserved"
+  }
+}

@@ -1,0 +1,274 @@
+"use client";
+
+import { useState, useEffect } from "react";
+import Link from "next/link";
+import { useLocale, useTranslations } from "next-intl";
+import {
+  Calculator,
+  Menu,
+  X,
+  Search,
+  Moon,
+  Sun,
+  ChevronDown,
+} from "lucide-react";
+import { useTheme } from "@/components/providers/ThemeProvider";
+
+const locales = [
+  { code: "ar", label: "العربية" },
+  { code: "en", label: "EN" },
+  { code: "es", label: "ES" },
+  { code: "pt", label: "PT" },
+];
+
+export default function Header() {
+  const { theme, toggleTheme } = useTheme();
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [searchOpen, setSearchOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [currentPath, setCurrentPath] = useState("/");
+  const locale = useLocale();
+  const t = useTranslations("nav");
+  const tc = useTranslations("common");
+
+  const navLinks = [
+    { label: t("home"), href: `/${locale}` },
+    { label: t("countdowns"), href: `/${locale}/countdowns` },
+    { label: t("calculators"), href: `/${locale}/calculators` },
+    { label: t("blog"), href: `/${locale}/blog` },
+  ];
+
+  const trendingLinks = [
+    { label: locale === "ar" ? "عداد رمضان" : "Ramadan", href: `/${locale}/countdowns/ramadan` },
+    { label: locale === "ar" ? "حاسبة الزكاة" : "Zakat", href: `/${locale}/calculators/zakat` },
+    { label: locale === "ar" ? "الراتب" : "Salary", href: `/${locale}/countdowns/salaries-dates` },
+    { label: locale === "ar" ? "القيمة المضافة" : "VAT", href: `/${locale}/calculators/vat` },
+    { label: locale === "ar" ? "نهاية الخدمة" : "End of Service", href: `/${locale}/calculators/end-of-service` },
+    { label: locale === "ar" ? "اليوم الوطني" : "National Day", href: `/${locale}/countdowns/national-day` },
+  ];
+
+  useEffect(() => {
+    setCurrentPath(window.location.pathname);
+  }, []);
+
+  const isActive = (href: string) =>
+    href === `/${locale}` ? currentPath === `/${locale}` : currentPath.startsWith(href);
+
+  const switchLocale = (newLocale: string) => {
+    const pathWithoutLocale = currentPath.replace(/^\/(ar|en|es|pt)/, "");
+    window.location.href = `/${newLocale}${pathWithoutLocale || ""}`;
+  };
+
+  return (
+    <>
+      {/* الهيدر الرئيسي */}
+      <header className="bg-primary-600 sticky top-0 z-50 shadow-lg">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="h-16 flex items-center justify-between">
+            {/* اللوجو */}
+            <Link
+              href={`/${locale}`}
+              className="flex items-center gap-2 hover:opacity-90 transition-opacity"
+            >
+              <div className="bg-white/20 rounded-xl p-2 flex-shrink-0">
+                <Calculator className="h-6 w-6 text-white" />
+              </div>
+              <div className="hidden sm:flex flex-col leading-tight">
+                <span className="text-white font-bold text-lg whitespace-nowrap">
+                  {locale === "ar" ? "حاسبة السعودية" : "Saudi Calculator"}
+                </span>
+              </div>
+            </Link>
+
+            {/* قائمة التنقل — ديسكتوب */}
+            <nav className="hidden lg:flex items-center gap-1">
+              {navLinks.map((link) => (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className={`px-3 py-1.5 rounded-full text-sm font-bold transition-all duration-200 whitespace-nowrap ${
+                    isActive(link.href)
+                      ? "bg-white text-primary-600"
+                      : "text-white hover:bg-white/20"
+                  }`}
+                >
+                  {link.label}
+                </Link>
+              ))}
+            </nav>
+
+            {/* الأزرار */}
+            <div className="flex items-center gap-1">
+              {/* اختيار اللغة */}
+              <div className="relative group">
+                <button className="flex items-center gap-1 px-2 py-1.5 text-white hover:bg-white/20 rounded-lg transition-colors text-sm font-bold">
+                  {locale.toUpperCase()}
+                  <ChevronDown className="h-3 w-3" />
+                </button>
+                <div className="absolute end-0 top-full mt-1 bg-white dark:bg-dark-surface rounded-lg shadow-xl py-1 min-w-[120px] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50">
+                  {locales.map((l) => (
+                    <button
+                      key={l.code}
+                      onClick={() => switchLocale(l.code)}
+                      className={`w-full text-start px-4 py-2 text-sm hover:bg-primary-50 dark:hover:bg-white/10 transition-colors ${
+                        locale === l.code
+                          ? "text-primary-600 font-bold"
+                          : "text-gray-700 dark:text-gray-300"
+                      }`}
+                    >
+                      {l.label}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              {/* البحث */}
+              <button
+                onClick={() => setSearchOpen(!searchOpen)}
+                className="p-2 text-white hover:bg-white/20 rounded-lg transition-colors"
+                aria-label={tc("search")}
+              >
+                <Search className="h-5 w-5" />
+              </button>
+
+              {/* الوضع الليلي */}
+              <button
+                onClick={toggleTheme}
+                className="p-2 text-white hover:bg-white/20 rounded-lg transition-colors"
+                aria-label={theme === "dark" ? tc("lightMode") : tc("darkMode")}
+              >
+                {theme === "dark" ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
+              </button>
+
+              {/* قائمة الموبايل */}
+              <button
+                onClick={() => setMobileMenuOpen(true)}
+                className="lg:hidden p-2 text-white hover:bg-white/20 rounded-lg transition-colors"
+                aria-label={tc("menu")}
+              >
+                <Menu className="h-5 w-5" />
+              </button>
+            </div>
+          </div>
+
+          {/* شريط البحث */}
+          {searchOpen && (
+            <div className="pb-3 animate-slide-in">
+              <form
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  if (searchQuery.trim()) {
+                    window.location.href = `/${locale}/search?q=${encodeURIComponent(searchQuery)}`;
+                  }
+                }}
+                className="flex gap-2"
+              >
+                <input
+                  type="search"
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  placeholder={locale === "ar" ? "ابحث عن حاسبة أو عداد..." : "Search calculators..."}
+                  className="flex-1 px-4 py-2 rounded-lg text-gray-800 bg-white focus:outline-none focus:ring-2 focus:ring-gold"
+                  autoFocus
+                />
+                <button
+                  type="submit"
+                  className="px-4 py-2 bg-gold hover:bg-gold-600 text-white font-bold rounded-lg transition-colors"
+                >
+                  {tc("search")}
+                </button>
+              </form>
+            </div>
+          )}
+        </div>
+      </header>
+
+      {/* شريط الروابط السريعة */}
+      <div className="hidden md:flex bg-primary-800 h-10 items-center sticky top-16 z-40">
+        <div className="max-w-7xl mx-auto px-4 w-full flex items-center justify-center gap-1">
+          {trendingLinks.map((link, i) => (
+            <span key={link.href} className="flex items-center">
+              <Link
+                href={link.href}
+                className="text-white/90 font-medium text-sm hover:text-gold transition-colors px-2 py-1"
+              >
+                {link.label}
+              </Link>
+              {i < trendingLinks.length - 1 && (
+                <span className="text-white/30 text-xs select-none">|</span>
+              )}
+            </span>
+          ))}
+        </div>
+      </div>
+
+      {/* قائمة الموبايل */}
+      {mobileMenuOpen && (
+        <>
+          <div
+            className="fixed inset-0 bg-black/60 z-40 backdrop-blur-sm"
+            onClick={() => setMobileMenuOpen(false)}
+          />
+          <div className="fixed top-0 end-0 h-full w-80 max-w-[90vw] bg-primary-600 z-50 shadow-2xl flex flex-col overflow-hidden animate-slide-in-right">
+            {/* رأس القائمة */}
+            <div className="flex items-center justify-between px-5 py-4 border-b border-white/15 flex-shrink-0">
+              <div className="flex items-center gap-2.5">
+                <div className="bg-white/20 rounded-lg p-1.5">
+                  <Calculator className="h-5 w-5 text-white" />
+                </div>
+                <span className="text-white font-bold text-base">
+                  {locale === "ar" ? "حاسبة السعودية" : "Saudi Calculator"}
+                </span>
+              </div>
+              <button
+                onClick={() => setMobileMenuOpen(false)}
+                className="p-2 text-white/70 hover:text-white hover:bg-white/15 rounded-lg transition-colors"
+                aria-label={tc("close")}
+              >
+                <X className="h-5 w-5" />
+              </button>
+            </div>
+
+            {/* محتوى القائمة */}
+            <div className="flex-1 overflow-y-auto px-4 py-4 space-y-5">
+              <nav className="flex flex-col gap-1">
+                {navLinks.map((link) => (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    onClick={() => setMobileMenuOpen(false)}
+                    className={`flex items-center px-4 py-3 rounded-xl font-bold transition-all text-sm ${
+                      isActive(link.href)
+                        ? "bg-white text-primary-600"
+                        : "text-white hover:bg-white/15"
+                    }`}
+                  >
+                    {link.label}
+                  </Link>
+                ))}
+              </nav>
+
+              <div>
+                <p className="text-white/50 text-xs font-semibold px-1 mb-2">
+                  {locale === "ar" ? "الأكثر بحثاً" : "Trending"}
+                </p>
+                <div className="flex flex-wrap gap-2">
+                  {trendingLinks.map((link) => (
+                    <Link
+                      key={link.href}
+                      href={link.href}
+                      onClick={() => setMobileMenuOpen(false)}
+                      className="text-white text-xs bg-white/10 hover:bg-white/20 px-3 py-1.5 rounded-full transition-colors font-medium"
+                    >
+                      {link.label}
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </>
+      )}
+    </>
+  );
+}

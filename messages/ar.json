@@ -1,0 +1,105 @@
+{
+  "metadata": {
+    "siteName": "حاسبة السعودية",
+    "siteDescription": "مركزك الشامل للحاسبات المالية والإسلامية والعدادات التنازلية في المملكة العربية السعودية"
+  },
+  "nav": {
+    "home": "الرئيسية",
+    "countdowns": "العدادات",
+    "calculators": "الحاسبات",
+    "calendar": "التقويم",
+    "blog": "المدونة",
+    "about": "من نحن",
+    "contact": "اتصل بنا"
+  },
+  "hero": {
+    "title": "مركزك الشامل للتخطيط المالي والإسلامي",
+    "subtitle": "حاسبات مالية دقيقة، عدادات المناسبات الإسلامية والوطنية، ومواعيد الرواتب الحكومية",
+    "searchPlaceholder": "ابحث عن حاسبة أو عداد... مثال: رمضان، زكاة، راتب",
+    "exploreCalculators": "استكشف الحاسبات",
+    "salaryDates": "مواعيد الرواتب"
+  },
+  "stats": {
+    "calculatorsCount": "60+ حاسبة وعداد",
+    "eventsCount": "15+ مناسبة إسلامية",
+    "languages": "4 لغات",
+    "users": "ملايين المستخدمين"
+  },
+  "sections": {
+    "featuredCountdowns": "العدادات الأكثر متابعة",
+    "allServices": "جميع الخدمات",
+    "mostUsed": "الأكثر استخداماً",
+    "fromBlog": "من المدونة",
+    "viewAllArticles": "عرض جميع المقالات",
+    "faq": "الأسئلة الشائعة",
+    "relatedTools": "أدوات ذات صلة"
+  },
+  "countdown": {
+    "days": "يوم",
+    "hours": "ساعة",
+    "minutes": "دقيقة",
+    "seconds": "ثانية",
+    "eventArrived": "حلّت المناسبة!",
+    "moreDetails": "تفاصيل أكثر"
+  },
+  "categories": {
+    "islamicEvents": "المناسبات الإسلامية",
+    "salaryDates": "مواعيد الرواتب والدعم",
+    "financialCalc": "الحاسبات المالية",
+    "zakatWorship": "الزكاة والعبادات",
+    "education": "التعليم والدراسة",
+    "nationalEvents": "المناسبات الوطنية",
+    "healthFamily": "الصحة والأسرة",
+    "dailyTools": "أدوات يومية"
+  },
+  "events": {
+    "ramadan": "رمضان",
+    "ramadanQuestion": "كم باقي على رمضان؟",
+    "ramadanDesc": "شهر الصيام والقيام والقرآن",
+    "eidFitr": "عيد الفطر",
+    "eidFitrQuestion": "كم باقي على عيد الفطر؟",
+    "eidAdha": "عيد الأضحى",
+    "eidAdhaQuestion": "كم باقي على عيد الأضحى؟",
+    "hajj": "الحج",
+    "lailatulQadr": "ليلة القدر",
+    "nationalDay": "اليوم الوطني",
+    "foundationDay": "يوم التأسيس",
+    "flagDay": "يوم العلم",
+    "nextSalary": "الراتب القادم",
+    "nextSalaryQuestion": "كم باقي على الراتب؟",
+    "citizenAccount": "حساب المواطن",
+    "socialSecurity": "الضمان الاجتماعي",
+    "pension": "رواتب المتقاعدين",
+    "saned": "ساند",
+    "universityStipend": "مكافأة الجامعة"
+  },
+  "common": {
+    "calculate": "احسب",
+    "reset": "إعادة تعيين",
+    "result": "النتيجة",
+    "share": "مشاركة",
+    "copyLink": "نسخ الرابط",
+    "copied": "تم النسخ!",
+    "sar": "ريال سعودي",
+    "readMore": "اقرأ المزيد",
+    "home": "الرئيسية",
+    "search": "بحث",
+    "darkMode": "الوضع الليلي",
+    "lightMode": "الوضع النهاري",
+    "close": "إغلاق",
+    "menu": "القائمة",
+    "adSpace": "مساحة إعلانية",
+    "tools": "أدوات",
+    "followUs": "تابعنا"
+  },
+  "footer": {
+    "aboutSite": "حاسبة السعودية — منصة شاملة تضم أكثر من 60 حاسبة وعداد تنازلي لخدمة المجتمع السعودي.",
+    "countdownsTitle": "العدادات",
+    "calculatorsTitle": "الحاسبات",
+    "usefulLinks": "روابط مفيدة",
+    "privacyPolicy": "سياسة الخصوصية",
+    "terms": "شروط الاستخدام",
+    "sitemap": "خريطة الموقع",
+    "copyright": "© 2026 حاسبة السعودية • جميع الحقوق محفوظة"
+  }
+}
