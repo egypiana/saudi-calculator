@@ -4,7 +4,6 @@ import BudgetCalculator from "./BudgetCalculator";
 import FAQSection from "@/components/shared/FAQSection";
 import AdSlot from "@/components/ads/AdSlot";
 import Breadcrumb from "@/components/layout/Breadcrumb";
-import Link from "next/link";
 
 export async function generateMetadata({ params: { locale } }: { params: { locale: string } }): Promise<Metadata> {
   const isAr = locale === "ar";
@@ -46,13 +45,6 @@ function PageContent({ locale }: { locale: string }) {
         { question: "Does this calculator save my data?", answer: "No, the calculator runs entirely in your browser and sends no data to our servers. You can use the 'Share' button to save your data via an encoded link." },
         { question: "What is the 50-30-20 rule?", answer: "It divides income: 50% for needs, 30% for wants, 20% for savings. It's a good starting point, though housing in Saudi Arabia may require adjustment." },
       ];
-
-  const relatedTools = [
-    { labelAr: "حاسبة الراتب", labelEn: "Salary Calculator", href: "/calculators/salary" },
-    { labelAr: "حاسبة نهاية الخدمة", labelEn: "End of Service", href: "/calculators/end-of-service" },
-    { labelAr: "حاسبة التمويل العقاري", labelEn: "Mortgage Calculator", href: "/calculators/mortgage" },
-    { labelAr: "حاسبة الزكاة", labelEn: "Zakat Calculator", href: "/calculators/zakat" },
-  ];
 
   const structuredData = {
     "@context": "https://schema.org",
@@ -113,93 +105,105 @@ function PageContent({ locale }: { locale: string }) {
         </div>
 
         {/* Calculator */}
-        <BudgetCalculator />
+        <BudgetCalculator locale={locale} />
 
         <AdSlot id="budget-mid" size="leaderboard" />
 
         {/* Educational Content */}
-        <div className="mt-8 bg-white dark:bg-dark-surface rounded-2xl border border-gray-200 dark:border-gray-700 p-6 sm:p-8">
-          <h2 className="text-xl font-bold text-gray-800 dark:text-white mb-4">
-            {isAr ? "ما هي حاسبة الميزانية؟" : "What is a Budget Calculator?"}
-          </h2>
-          <div className="prose dark:prose-invert max-w-none text-gray-600 dark:text-gray-300 space-y-3">
-            <p>{isAr
-              ? "حاسبة الميزانية الشهرية هي أداة مالية تساعدك على توزيع دخلك الشهري بشكل منظم ومتوازن. تعتمد الحاسبة على معايير الأسرة السعودية والتوصيات المالية المعتمدة لضمان أفضل توزيع لمصروفاتك."
-              : "A monthly budget calculator is a financial tool that helps you distribute your monthly income in an organized and balanced way. The calculator is based on Saudi family standards and approved financial recommendations."
-            }</p>
-            <p>{isAr
-              ? "تُساعدك الحاسبة على: معرفة أين تذهب أموالك بدقة، تحديد الفئات التي تُنفق فيها أكثر من اللازم، تحديد هدف ادخار واقعي، والمقارنة مع متوسط الأسرة السعودية."
-              : "The calculator helps you: know exactly where your money goes, identify categories where you overspend, set a realistic savings goal, and compare with the Saudi family average."
-            }</p>
-          </div>
-
-          <h2 className="text-xl font-bold text-gray-800 dark:text-white mb-4 mt-8">
-            {isAr ? "كيفية استخدام الحاسبة" : "How to Use the Calculator"}
-          </h2>
-          <div className="space-y-3">
-            {(isAr
-              ? [
-                  "أدخل دخلك الشهري (الراتب الصافي بعد الخصومات)",
-                  "حرّك الـ sliders لتحديد مبلغ كل فئة من المصروفات",
-                  "راقب مؤشر الصحة المالية وبطاقات الملخص",
-                  "اقرأ التوصيات الذكية وطبّقها لتحسين ميزانيتك",
-                  "استخدم \"توزيع تلقائي ذكي\" لاقتراح أمثل توزيع",
-                ]
-              : [
-                  "Enter your monthly income (net salary after deductions)",
-                  "Move the sliders to set the amount for each expense category",
-                  "Monitor the financial health score and summary cards",
-                  "Read and apply the smart recommendations",
-                  "Use 'Smart Auto-Distribute' for an optimal distribution",
-                ]
-            ).map((step, i) => (
-              <div key={i} className="flex items-start gap-3">
-                <span className="flex-shrink-0 w-7 h-7 rounded-full bg-primary-100 dark:bg-primary-900/20 text-primary-700 dark:text-primary-300 text-sm font-bold flex items-center justify-center">
-                  {i + 1}
-                </span>
-                <p className="text-gray-600 dark:text-gray-300 text-sm pt-1">{step}</p>
+        <div className="mt-8 grid grid-cols-1 lg:grid-cols-[3fr_1fr] gap-6">
+          <div className="space-y-6">
+            {/* What is budget calculator */}
+            <div className="bg-white dark:bg-dark-surface rounded-2xl border border-gray-200 dark:border-gray-700 p-6 sm:p-8">
+              <h2 className="text-xl font-bold text-gray-800 dark:text-white mb-4">
+                {isAr ? "ما هي حاسبة الميزانية؟" : "What is a Budget Calculator?"}
+              </h2>
+              <div className="prose dark:prose-invert max-w-none text-gray-600 dark:text-gray-300 space-y-3">
+                <p>{isAr
+                  ? "حاسبة الميزانية الشهرية هي أداة مالية تساعدك على توزيع دخلك الشهري بشكل منظم ومتوازن. تعتمد الحاسبة على معايير الأسرة السعودية والتوصيات المالية المعتمدة لضمان أفضل توزيع لمصروفاتك."
+                  : "A monthly budget calculator is a financial tool that helps you distribute your monthly income in an organized and balanced way. The calculator is based on Saudi family standards and approved financial recommendations."
+                }</p>
+                <p>{isAr
+                  ? "تُساعدك الحاسبة على: معرفة أين تذهب أموالك بدقة، تحديد الفئات التي تُنفق فيها أكثر من اللازم، تحديد هدف ادخار واقعي، والمقارنة مع متوسط الأسرة السعودية."
+                  : "The calculator helps you: know exactly where your money goes, identify categories where you overspend, set a realistic savings goal, and compare with the Saudi family average."
+                }</p>
               </div>
-            ))}
+            </div>
+
+            {/* How to use */}
+            <div className="bg-white dark:bg-dark-surface rounded-2xl border border-gray-200 dark:border-gray-700 p-6 sm:p-8">
+              <h2 className="text-xl font-bold text-gray-800 dark:text-white mb-4">
+                {isAr ? "كيفية استخدام الحاسبة" : "How to Use the Calculator"}
+              </h2>
+              <div className="space-y-3">
+                {(isAr
+                  ? [
+                      "أدخل دخلك الشهري (الراتب الصافي بعد الخصومات)",
+                      "حرّك الـ sliders أو استخدم أزرار +/- لتحديد مبلغ كل فئة",
+                      "راقب مؤشر الصحة المالية وبطاقات الملخص",
+                      "اقرأ التوصيات الذكية وطبّقها لتحسين ميزانيتك",
+                      "استخدم \"توزيع ذكي\" لاقتراح أمثل توزيع",
+                    ]
+                  : [
+                      "Enter your monthly income (net salary after deductions)",
+                      "Use sliders or +/- buttons to set the amount for each category",
+                      "Monitor the financial health score and summary cards",
+                      "Read and apply the smart recommendations",
+                      "Use 'Smart Distribute' for an optimal distribution",
+                    ]
+                ).map((step, i) => (
+                  <div key={i} className="flex items-start gap-3">
+                    <span className="flex-shrink-0 w-7 h-7 rounded-full bg-primary-100 dark:bg-primary-900/20 text-primary-700 dark:text-primary-300 text-sm font-bold flex items-center justify-center">
+                      {i + 1}
+                    </span>
+                    <p className="text-gray-600 dark:text-gray-300 text-sm pt-1">{step}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Financial Rules Cards */}
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+              <div className="p-5 rounded-2xl bg-white dark:bg-dark-surface border-2 border-green-200 dark:border-green-800 relative overflow-hidden">
+                <div className="absolute top-0 left-0 w-1.5 h-full bg-green-500 rounded-r-full" />
+                <h3 className="font-bold text-green-700 dark:text-green-300 mb-2 text-sm">
+                  {isAr ? "قاعدة 50-30-20" : "50-30-20 Rule"}
+                </h3>
+                <p className="text-xs text-gray-600 dark:text-gray-400 leading-relaxed">
+                  {isAr
+                    ? "50% للضروريات (سكن، طعام، نقل) — 30% للرغبات (ترفيه، ملابس) — 20% للادخار والاستثمار"
+                    : "50% needs (housing, food, transport) — 30% wants (entertainment, clothing) — 20% savings & investment"
+                  }
+                </p>
+              </div>
+              <div className="p-5 rounded-2xl bg-white dark:bg-dark-surface border-2 border-amber-200 dark:border-amber-800 relative overflow-hidden">
+                <div className="absolute top-0 left-0 w-1.5 h-full bg-amber-500 rounded-r-full" />
+                <h3 className="font-bold text-amber-700 dark:text-amber-300 mb-2 text-sm">
+                  {isAr ? "قاعدة 30% للسكن" : "30% Housing Rule"}
+                </h3>
+                <p className="text-xs text-gray-600 dark:text-gray-400 leading-relaxed">
+                  {isAr
+                    ? "لا يجب أن يتجاوز إيجارك 30% من دخلك الشهري لضمان استدامة ميزانيتك."
+                    : "Your rent should not exceed 30% of your monthly income to ensure budget sustainability."
+                  }
+                </p>
+              </div>
+              <div className="p-5 rounded-2xl bg-white dark:bg-dark-surface border-2 border-cyan-200 dark:border-cyan-800 relative overflow-hidden">
+                <div className="absolute top-0 left-0 w-1.5 h-full bg-cyan-500 rounded-r-full" />
+                <h3 className="font-bold text-cyan-700 dark:text-cyan-300 mb-2 text-sm">
+                  {isAr ? "صندوق الطوارئ" : "Emergency Fund"}
+                </h3>
+                <p className="text-xs text-gray-600 dark:text-gray-400 leading-relaxed">
+                  {isAr
+                    ? "اجمع ما يعادل 3-6 أشهر من مصروفاتك كاحتياطي للحالات الطارئة."
+                    : "Save 3-6 months of expenses as an emergency reserve for unexpected situations."
+                  }
+                </p>
+              </div>
+            </div>
           </div>
 
-          <h2 className="text-xl font-bold text-gray-800 dark:text-white mb-4 mt-8">
-            {isAr ? "أبرز القواعد المالية" : "Key Financial Rules"}
-          </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-            <div className="p-4 rounded-xl bg-primary-50 dark:bg-primary-900/10 border border-primary-200 dark:border-primary-800">
-              <h3 className="font-bold text-primary-700 dark:text-primary-300 mb-2 text-sm">
-                {isAr ? "قاعدة 50-30-20" : "50-30-20 Rule"}
-              </h3>
-              <p className="text-xs text-gray-600 dark:text-gray-400">
-                {isAr
-                  ? "50% للضروريات (سكن، طعام، نقل) — 30% للرغبات (ترفيه، ملابس) — 20% للادخار والاستثمار"
-                  : "50% needs (housing, food, transport) — 30% wants (entertainment, clothing) — 20% savings & investment"
-                }
-              </p>
-            </div>
-            <div className="p-4 rounded-xl bg-amber-50 dark:bg-amber-900/10 border border-amber-200 dark:border-amber-800">
-              <h3 className="font-bold text-amber-700 dark:text-amber-300 mb-2 text-sm">
-                {isAr ? "قاعدة 30% للسكن" : "30% Housing Rule"}
-              </h3>
-              <p className="text-xs text-gray-600 dark:text-gray-400">
-                {isAr
-                  ? "لا يجب أن يتجاوز إيجارك 30% من دخلك الشهري لضمان استدامة ميزانيتك."
-                  : "Your rent should not exceed 30% of your monthly income to ensure budget sustainability."
-                }
-              </p>
-            </div>
-            <div className="p-4 rounded-xl bg-cyan-50 dark:bg-cyan-900/10 border border-cyan-200 dark:border-cyan-800">
-              <h3 className="font-bold text-cyan-700 dark:text-cyan-300 mb-2 text-sm">
-                {isAr ? "صندوق الطوارئ" : "Emergency Fund"}
-              </h3>
-              <p className="text-xs text-gray-600 dark:text-gray-400">
-                {isAr
-                  ? "اجمع ما يعادل 3-6 أشهر من مصروفاتك كاحتياطي للحالات الطارئة."
-                  : "Save 3-6 months of expenses as an emergency reserve for unexpected situations."
-                }
-              </p>
-            </div>
-          </div>
+          {/* Empty sidebar space for alignment */}
+          <div className="hidden lg:block" />
         </div>
 
         <AdSlot id="budget-rect" size="rectangle" />
@@ -207,21 +211,6 @@ function PageContent({ locale }: { locale: string }) {
         {/* FAQ */}
         <div className="mt-8">
           <FAQSection faqs={faqs} />
-        </div>
-
-        {/* Related Tools */}
-        <div className="mt-8 bg-white dark:bg-dark-surface rounded-2xl border border-gray-200 dark:border-gray-700 p-6">
-          <h3 className="font-bold text-gray-800 dark:text-white mb-4">
-            {isAr ? "أدوات ذات صلة" : "Related Tools"}
-          </h3>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
-            {relatedTools.map((item) => (
-              <Link key={item.href} href={`/${locale}${item.href}`}
-                className="block px-4 py-3 rounded-xl bg-gray-50 dark:bg-dark-bg hover:bg-primary-50 dark:hover:bg-primary-900/10 text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 font-medium text-sm transition-colors text-center">
-                {isAr ? item.labelAr : item.labelEn}
-              </Link>
-            ))}
-          </div>
         </div>
       </div>
     </main>
