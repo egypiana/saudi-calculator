@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { RAMADAN_DATES, formatArabicDate } from "@/lib/data/ramadanDates";
 
 function getDaysUntil(dateStr: string): number {
@@ -24,13 +25,14 @@ export default function AllRamadanYears() {
           const daysUntil = getDaysUntil(ramadan.startDate);
 
           return (
-            <div
+            <Link
               key={ramadan.year}
-              className={`bg-white dark:bg-dark-surface rounded-xl border p-4 transition-colors ${
+              href={`/ar/countdowns/ramadan/${ramadan.year}`}
+              className={`block bg-white dark:bg-dark-surface rounded-xl border p-4 transition-all hover:shadow-md hover:-translate-y-0.5 ${
                 isClose && !isPast
                   ? "border-green-200 dark:border-green-800/40 bg-green-50/30 dark:bg-green-900/10"
                   : "border-gray-200 dark:border-gray-700"
-              } ${isPast ? "opacity-60" : ""}`}
+              } ${isPast ? "opacity-60 hover:opacity-100" : ""}`}
             >
               <div className="flex items-center justify-between mb-2">
                 <span className="text-lg font-bold text-gray-800 dark:text-white">
@@ -57,16 +59,19 @@ export default function AllRamadanYears() {
               {isPast && (
                 <p className="text-xs text-gray-400 dark:text-gray-500">انتهى</p>
               )}
-            </div>
+            </Link>
           );
         })}
       </div>
 
       {/* Show All Button */}
       <div className="mt-6 text-center">
-        <div className="inline-flex items-center gap-2 px-6 py-3 bg-white dark:bg-dark-surface border border-gray-200 dark:border-gray-700 rounded-xl text-sm font-medium text-primary-600 dark:text-primary-400 cursor-pointer hover:bg-gray-50 dark:hover:bg-white/5 transition-colors">
+        <Link
+          href="/ar/countdowns/ramadan/years"
+          className="inline-flex items-center gap-2 px-6 py-3 bg-white dark:bg-dark-surface border border-gray-200 dark:border-gray-700 rounded-xl text-sm font-medium text-primary-600 dark:text-primary-400 cursor-pointer hover:bg-gray-50 dark:hover:bg-white/5 transition-colors"
+        >
           عرض جميع السنوات حتى 2050 &larr;
-        </div>
+        </Link>
       </div>
     </section>
   );
