@@ -36,6 +36,7 @@ const categories: { titleAr: string; titleEn: string; items: CalcItem[] }[] = [
       { icon: "💰", titleAr: "حاسبة الراتب", titleEn: "Salary Calculator", descAr: "صافي الراتب بعد التأمينات", descEn: "Net salary after GOSI", href: "/calculators/salary", color: "from-green-500 to-green-700" },
       { icon: "🏢", titleAr: "حاسبة نهاية الخدمة", titleEn: "End of Service", descAr: "مكافأة نهاية الخدمة", descEn: "End of service reward", href: "/calculators/end-of-service", color: "from-teal-500 to-teal-700" },
       { icon: "🏠", titleAr: "حاسبة التمويل العقاري", titleEn: "Mortgage Calculator", descAr: "القسط الشهري للتمويل", descEn: "Monthly mortgage payment", href: "/calculators/mortgage", color: "from-indigo-500 to-indigo-700" },
+      { icon: "📊", titleAr: "حاسبة الميزانية", titleEn: "Budget Calculator", descAr: "خطط لميزانيتك الشهرية", descEn: "Plan your monthly budget", href: "/calculators/budget", color: "from-cyan-500 to-cyan-700" },
     ],
   },
   {
