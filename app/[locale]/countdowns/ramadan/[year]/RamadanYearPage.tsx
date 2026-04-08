@@ -6,6 +6,7 @@ import Breadcrumb from "@/components/layout/Breadcrumb";
 import ShareButtons from "@/components/shared/ShareButtons";
 import AdSlot from "@/components/ads/AdSlot";
 import { RAMADAN_DATA, AVAILABLE_YEARS, formatDateAr, getTimeUntilRamadan, type RamadanYearData } from "@/lib/data/ramadanData";
+import RamadanSidebar from "../components/RamadanSidebar";
 
 function toArabicDigits(num: number): string {
   return num.toString().replace(/\d/g, (d) => "٠١٢٣٤٥٦٧٨٩"[parseInt(d)]);
@@ -29,7 +30,7 @@ export default function RamadanYearPage({ year, locale }: Props) {
       {/* Hero */}
       <YearHero data={data} />
 
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8" dir="rtl">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8" dir="rtl">
         <Breadcrumb items={[
           { labelAr: "العدادات", labelEn: "Countdowns", href: "/countdowns" },
           { labelAr: "رمضان", labelEn: "Ramadan", href: "/countdowns/ramadan" },
@@ -37,94 +38,102 @@ export default function RamadanYearPage({ year, locale }: Props) {
           { labelAr: `رمضان ${year}`, labelEn: `Ramadan ${year}` },
         ]} />
 
-        <div className="mt-6 space-y-8">
-          <ShareButtons title={`كم باقي على رمضان ${year}؟`} />
-
-          <AdSlot id={`ramadan-${year}-top`} size="leaderboard" />
-
-          {/* Year Info Block */}
-          <YearInfoBlock data={data} />
-
+        <div className="mt-6 grid grid-cols-1 lg:grid-cols-[3fr_1fr] gap-6">
           {/* Main Content */}
-          <section className="bg-white dark:bg-dark-surface rounded-2xl border border-gray-200 dark:border-gray-700 p-6">
-            <h2 className="text-xl font-bold text-gray-800 dark:text-white mb-4">
-              معلومات رمضان {toArabicDigits(year)}
-            </h2>
-            <div className="prose prose-sm dark:prose-invert max-w-none text-gray-700 dark:text-gray-300 leading-relaxed whitespace-pre-line">
-              {data.content.mainContent}
-            </div>
-          </section>
+          <div className="space-y-8">
+            <ShareButtons title={`كم باقي على رمضان ${year}؟`} />
 
-          {/* Unique Fact */}
-          <div className="bg-amber-50 dark:bg-amber-900/10 border border-amber-200 dark:border-amber-800/30 rounded-2xl p-5">
-            <div className="flex gap-3">
-              <span className="text-2xl">💡</span>
-              <div>
-                <h3 className="font-bold text-amber-800 dark:text-amber-300 mb-1">هل تعلم؟</h3>
-                <p className="text-sm text-amber-700 dark:text-amber-300/80">{data.content.uniqueFact}</p>
+            <AdSlot id={`ramadan-${year}-top`} size="leaderboard" />
+
+            {/* Year Info Block */}
+            <YearInfoBlock data={data} />
+
+            {/* Main Content */}
+            <section className="bg-white dark:bg-dark-surface rounded-2xl border border-gray-200 dark:border-gray-700 p-6">
+              <h2 className="text-xl font-bold text-gray-800 dark:text-white mb-4">
+                معلومات رمضان {toArabicDigits(year)}
+              </h2>
+              <div className="prose prose-sm dark:prose-invert max-w-none text-gray-700 dark:text-gray-300 leading-relaxed whitespace-pre-line">
+                {data.content.mainContent}
               </div>
-            </div>
-          </div>
+            </section>
 
-          {/* Preparation Tip */}
-          <div className="bg-green-50 dark:bg-green-900/10 border border-green-200 dark:border-green-800/30 rounded-2xl p-5">
-            <div className="flex gap-3">
-              <span className="text-2xl">🎯</span>
-              <div>
-                <h3 className="font-bold text-green-800 dark:text-green-300 mb-1">نصيحة للاستعداد</h3>
-                <p className="text-sm text-green-700 dark:text-green-300/80">{data.content.preparationTip}</p>
-              </div>
-            </div>
-          </div>
-
-          {/* Eid Message */}
-          <div className="bg-primary-50 dark:bg-primary-900/10 border border-primary-200 dark:border-primary-800/30 rounded-2xl p-5 text-center">
-            <span className="text-3xl mb-2 block">🎉</span>
-            <p className="font-bold text-primary-800 dark:text-primary-300">{data.content.eidMessage}</p>
-          </div>
-
-          <AdSlot id={`ramadan-${year}-mid`} size="rectangle" />
-
-          {/* FAQ */}
-          <YearFAQ data={data} year={year} />
-
-          {/* Year Navigation */}
-          <div className="flex items-center justify-between gap-4">
-            {prevYear ? (
-              <Link
-                href={`/${locale}/countdowns/ramadan/${prevYear}`}
-                className="flex-1 flex items-center gap-2 bg-white dark:bg-dark-surface border border-gray-200 dark:border-gray-700 rounded-xl px-4 py-3 hover:bg-gray-50 dark:hover:bg-white/5 transition-colors"
-              >
-                <span className="text-lg">→</span>
+            {/* Unique Fact */}
+            <div className="bg-amber-50 dark:bg-amber-900/10 border border-amber-200 dark:border-amber-800/30 rounded-2xl p-5">
+              <div className="flex gap-3">
+                <span className="text-2xl">💡</span>
                 <div>
-                  <div className="text-xs text-gray-400">السابق</div>
-                  <div className="font-bold text-gray-800 dark:text-white">رمضان {toArabicDigits(prevYear)}</div>
+                  <h3 className="font-bold text-amber-800 dark:text-amber-300 mb-1">هل تعلم؟</h3>
+                  <p className="text-sm text-amber-700 dark:text-amber-300/80">{data.content.uniqueFact}</p>
                 </div>
-              </Link>
-            ) : <div className="flex-1" />}
+              </div>
+            </div>
 
-            <Link
-              href={`/${locale}/countdowns/ramadan/years`}
-              className="px-4 py-3 bg-green-600 text-white rounded-xl text-sm font-medium hover:bg-green-700 transition-colors text-center"
-            >
-              جميع السنوات
-            </Link>
+            {/* Preparation Tip */}
+            <div className="bg-green-50 dark:bg-green-900/10 border border-green-200 dark:border-green-800/30 rounded-2xl p-5">
+              <div className="flex gap-3">
+                <span className="text-2xl">🎯</span>
+                <div>
+                  <h3 className="font-bold text-green-800 dark:text-green-300 mb-1">نصيحة للاستعداد</h3>
+                  <p className="text-sm text-green-700 dark:text-green-300/80">{data.content.preparationTip}</p>
+                </div>
+              </div>
+            </div>
 
-            {nextYear ? (
+            {/* Eid Message */}
+            <div className="bg-primary-50 dark:bg-primary-900/10 border border-primary-200 dark:border-primary-800/30 rounded-2xl p-5 text-center">
+              <span className="text-3xl mb-2 block">🎉</span>
+              <p className="font-bold text-primary-800 dark:text-primary-300">{data.content.eidMessage}</p>
+            </div>
+
+            <AdSlot id={`ramadan-${year}-mid`} size="rectangle" />
+
+            {/* FAQ */}
+            <YearFAQ data={data} year={year} />
+
+            {/* Year Navigation */}
+            <div className="flex items-center justify-between gap-4">
+              {prevYear ? (
+                <Link
+                  href={`/${locale}/countdowns/ramadan/${prevYear}`}
+                  className="flex-1 flex items-center gap-2 bg-white dark:bg-dark-surface border border-gray-200 dark:border-gray-700 rounded-xl px-4 py-3 hover:bg-gray-50 dark:hover:bg-white/5 transition-colors"
+                >
+                  <span className="text-lg">→</span>
+                  <div>
+                    <div className="text-xs text-gray-400">السابق</div>
+                    <div className="font-bold text-gray-800 dark:text-white">رمضان {toArabicDigits(prevYear)}</div>
+                  </div>
+                </Link>
+              ) : <div className="flex-1" />}
+
               <Link
-                href={`/${locale}/countdowns/ramadan/${nextYear}`}
-                className="flex-1 flex items-center justify-end gap-2 bg-white dark:bg-dark-surface border border-gray-200 dark:border-gray-700 rounded-xl px-4 py-3 hover:bg-gray-50 dark:hover:bg-white/5 transition-colors"
+                href={`/${locale}/countdowns/ramadan/years`}
+                className="px-4 py-3 bg-green-600 text-white rounded-xl text-sm font-medium hover:bg-green-700 transition-colors text-center"
               >
-                <div className="text-left">
-                  <div className="text-xs text-gray-400">التالي</div>
-                  <div className="font-bold text-gray-800 dark:text-white">رمضان {toArabicDigits(nextYear)}</div>
-                </div>
-                <span className="text-lg">←</span>
+                جميع السنوات
               </Link>
-            ) : <div className="flex-1" />}
+
+              {nextYear ? (
+                <Link
+                  href={`/${locale}/countdowns/ramadan/${nextYear}`}
+                  className="flex-1 flex items-center justify-end gap-2 bg-white dark:bg-dark-surface border border-gray-200 dark:border-gray-700 rounded-xl px-4 py-3 hover:bg-gray-50 dark:hover:bg-white/5 transition-colors"
+                >
+                  <div className="text-left">
+                    <div className="text-xs text-gray-400">التالي</div>
+                    <div className="font-bold text-gray-800 dark:text-white">رمضان {toArabicDigits(nextYear)}</div>
+                  </div>
+                  <span className="text-lg">←</span>
+                </Link>
+              ) : <div className="flex-1" />}
+            </div>
+
+            <AdSlot id={`ramadan-${year}-bottom`} size="leaderboard" />
           </div>
 
-          <AdSlot id={`ramadan-${year}-bottom`} size="leaderboard" />
+          {/* Sidebar - hidden on mobile */}
+          <div className="hidden lg:block">
+            <RamadanSidebar locale={locale} />
+          </div>
         </div>
       </div>
     </main>

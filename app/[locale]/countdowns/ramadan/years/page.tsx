@@ -2,6 +2,7 @@ import { unstable_setRequestLocale } from "next-intl/server";
 import type { Metadata } from "next";
 import Breadcrumb from "@/components/layout/Breadcrumb";
 import RamadanYearsClient from "./RamadanYearsClient";
+import RamadanSidebar from "../components/RamadanSidebar";
 
 export async function generateMetadata({
   params: { locale },
@@ -33,7 +34,7 @@ export default function Page({
 
   return (
     <main className="min-h-screen bg-gray-50 dark:bg-dark-bg">
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8" dir="rtl">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8" dir="rtl">
         <Breadcrumb items={[
           { labelAr: "العدادات", labelEn: "Countdowns", href: "/countdowns" },
           { labelAr: "رمضان", labelEn: "Ramadan", href: "/countdowns/ramadan" },
@@ -51,7 +52,14 @@ export default function Page({
           </p>
         </div>
 
-        <RamadanYearsClient locale={locale} />
+        <div className="grid grid-cols-1 lg:grid-cols-[3fr_1fr] gap-6">
+          <RamadanYearsClient locale={locale} />
+
+          {/* Sidebar - hidden on mobile */}
+          <div className="hidden lg:block">
+            <RamadanSidebar locale={locale} />
+          </div>
+        </div>
       </div>
     </main>
   );

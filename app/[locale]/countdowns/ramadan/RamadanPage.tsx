@@ -9,6 +9,7 @@ import AllRamadanYears from "./components/AllRamadanYears";
 import RamadanContent from "./components/RamadanContent";
 import RamadanPreparation from "./components/RamadanPreparation";
 import RamadanFAQ from "./components/RamadanFAQ";
+import RamadanSidebar from "./components/RamadanSidebar";
 import { getNextRamadan } from "@/lib/data/ramadanDates";
 
 interface RamadanPageProps {
@@ -59,37 +60,45 @@ export default function RamadanPage({ locale }: RamadanPageProps) {
         dayOfWeek={dayOfWeek}
       />
 
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8" dir="rtl">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8" dir="rtl">
         <Breadcrumb items={[
           { labelAr: "العدادات", labelEn: "Countdowns", href: "/countdowns" },
           { labelAr: "عداد رمضان", labelEn: "Ramadan Countdown" },
         ]} />
 
-        <div className="mt-6 space-y-8">
-          <ShareButtons
-            title={isAr ? `كم باقي على رمضان ${year}؟` : `Ramadan ${year} Countdown`}
-          />
+        <div className="mt-6 grid grid-cols-1 lg:grid-cols-[3fr_1fr] gap-6">
+          {/* Main Content */}
+          <div className="space-y-8">
+            <ShareButtons
+              title={isAr ? `كم باقي على رمضان ${year}؟` : `Ramadan ${year} Countdown`}
+            />
 
-          <AdSlot id="ramadan-top" size="leaderboard" />
+            <AdSlot id="ramadan-top" size="leaderboard" />
 
-          {/* Upcoming Dates */}
-          <UpcomingRamadanDates />
+            {/* Upcoming Dates */}
+            <UpcomingRamadanDates />
 
-          {/* All Years Grid */}
-          <AllRamadanYears />
+            {/* All Years Grid */}
+            <AllRamadanYears />
 
-          <AdSlot id="ramadan-mid" size="rectangle" />
+            <AdSlot id="ramadan-mid" size="rectangle" />
 
-          {/* Educational Content */}
-          <RamadanContent year={year} />
+            {/* Educational Content */}
+            <RamadanContent year={year} />
 
-          {/* Preparation Steps */}
-          <RamadanPreparation />
+            {/* Preparation Steps */}
+            <RamadanPreparation />
 
-          <AdSlot id="ramadan-bottom" size="leaderboard" />
+            <AdSlot id="ramadan-bottom" size="leaderboard" />
 
-          {/* FAQ */}
-          <RamadanFAQ />
+            {/* FAQ */}
+            <RamadanFAQ />
+          </div>
+
+          {/* Sidebar - hidden on mobile */}
+          <div className="hidden lg:block">
+            <RamadanSidebar locale={locale} />
+          </div>
         </div>
       </div>
     </main>
