@@ -9,6 +9,13 @@ interface IncomeSliderProps {
   onSavingsGoalChange: (value: number) => void;
 }
 
+function getTrackStyle(value: number, min: number, max: number, filledColor: string, trackColor: string) {
+  const percent = ((value - min) / (max - min)) * 100;
+  return {
+    background: `linear-gradient(to left, ${filledColor} ${percent}%, ${trackColor} ${percent}%)`,
+  };
+}
+
 export default function IncomeSlider({ income, onChange, savingsGoalPercent, onSavingsGoalChange }: IncomeSliderProps) {
   const savingsTarget = Math.round(income * savingsGoalPercent / 100);
 
@@ -42,8 +49,8 @@ export default function IncomeSlider({ income, onChange, savingsGoalPercent, onS
             step={500}
             value={income}
             onChange={(e) => onChange(+e.target.value)}
-            className="w-full h-2.5 rounded-lg appearance-none cursor-pointer accent-primary-600"
-            style={{ accentColor: "#1a6b3c" }}
+            className="budget-slider w-full h-2.5 rounded-full appearance-none cursor-pointer"
+            style={getTrackStyle(income, 1000, 100000, "#1a6b3c", "#e5e7eb")}
           />
           <div className="flex justify-between text-xs text-gray-400 dark:text-gray-500 mt-1.5">
             <span>١٬٠٠٠</span>
@@ -74,8 +81,8 @@ export default function IncomeSlider({ income, onChange, savingsGoalPercent, onS
             step={1}
             value={savingsGoalPercent}
             onChange={(e) => onSavingsGoalChange(+e.target.value)}
-            className="w-full h-2.5 rounded-lg appearance-none cursor-pointer"
-            style={{ accentColor: "#0891b2" }}
+            className="budget-slider budget-slider-cyan w-full h-2.5 rounded-full appearance-none cursor-pointer"
+            style={getTrackStyle(savingsGoalPercent, 5, 50, "#0891b2", "#e5e7eb")}
           />
           <div className="flex justify-between text-xs text-gray-400 dark:text-gray-500 mt-1.5">
             <span>٥%</span>
