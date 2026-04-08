@@ -160,3 +160,43 @@ input, select, textarea {
 .dark .budget-slider-cyan::-webkit-slider-thumb {
   border-color: #22d3ee;
 }
+
+/* ── أنماط النجوم المتحركة (Ramadan Hero) ── */
+.star {
+  position: absolute;
+  background: white;
+  border-radius: 50%;
+  animation: twinkle var(--duration, 3s) infinite ease-in-out;
+  animation-delay: var(--delay, 0s);
+}
+
+@keyframes twinkle {
+  0%, 100% { opacity: 0.2; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.3); }
+}
+
+/* ── Flip animation للأرقام ── */
+@keyframes flip-number {
+  0% { transform: rotateX(0deg); opacity: 1; }
+  50% { transform: rotateX(-90deg); opacity: 0; }
+  100% { transform: rotateX(0deg); opacity: 1; }
+}
+
+.animate-flip {
+  animation: flip-number 0.3s ease-in-out;
+}
+
+/* ── Countdown Unit (Glassmorphism) ── */
+.countdown-glass {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 16px;
+}
+
+.countdown-glass-light {
+  background: rgba(26, 107, 60, 0.06);
+  border: 1px solid rgba(26, 107, 60, 0.15);
+  border-radius: 16px;
+}

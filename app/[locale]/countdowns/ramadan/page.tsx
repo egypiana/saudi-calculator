@@ -1,6 +1,6 @@
 import { unstable_setRequestLocale } from "next-intl/server";
 import type { Metadata } from "next";
-import RamadanCountdown from "./RamadanCountdown";
+import RamadanPage from "./RamadanPage";
 
 export async function generateMetadata({
   params: { locale },
@@ -10,17 +10,15 @@ export async function generateMetadata({
   const isAr = locale === "ar";
   return {
     title: isAr
-      ? "كم باقي على رمضان 2026؟ | عداد تنازلي دقيق"
-      : "Ramadan 2026 Countdown | Accurate Timer",
+      ? "العد التنازلي لرمضان 2027 | كم باقي على رمضان؟"
+      : "Ramadan 2027 Countdown | How Long Until Ramadan?",
     description: isAr
-      ? "احسب كم باقي على شهر رمضان المبارك 2026 / 1447 هـ بدقة. عداد تنازلي حي يُحدَّث كل ثانية."
-      : "Calculate exactly how long until Ramadan 2026 / 1447 AH. Live countdown timer updated every second.",
+      ? "عداد تنازلي دقيق لشهر رمضان المبارك 2027 / 1448 هـ. اعرف كم يوم وساعة ودقيقة تبقى على رمضان، مع مواعيد رمضان من 2027 إلى 2050."
+      : "Accurate countdown timer for Ramadan 2027 / 1448 AH. Know exactly how many days, hours, and minutes until Ramadan, with dates from 2027 to 2050.",
     keywords: isAr
-      ? ["كم باقي على رمضان", "عداد رمضان", "رمضان 2026", "متى رمضان 1447"]
-      : ["ramadan countdown", "ramadan 2026", "when is ramadan"],
-    alternates: {
-      canonical: `/${locale}/countdowns/ramadan`,
-    },
+      ? ["كم باقي على رمضان", "عداد رمضان 2027", "متى رمضان 2027", "موعد رمضان", "رمضان 2027 السعودية", "العد التنازلي لرمضان"]
+      : ["ramadan countdown", "ramadan 2027", "when is ramadan 2027", "ramadan countdown timer"],
+    alternates: { canonical: `/${locale}/countdowns/ramadan` },
   };
 }
 
@@ -30,5 +28,5 @@ export default function Page({
   params: { locale: string };
 }) {
   unstable_setRequestLocale(locale);
-  return <RamadanCountdown />;
+  return <RamadanPage locale={locale} />;
 }
