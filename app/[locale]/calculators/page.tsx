@@ -57,6 +57,7 @@ const categories: { titleAr: string; titleEn: string; items: CalcItem[] }[] = [
     items: [
       { icon: "📜", titleAr: "حاسبة المواريث", titleEn: "Inheritance Calculator", descAr: "تقسيم التركة الشرعي", descEn: "Islamic inheritance shares", href: "/calculators/inheritance", color: "from-amber-500 to-amber-700" },
       { icon: "🎓", titleAr: "حاسبة المعدل التراكمي", titleEn: "GPA Calculator", descAr: "المعدل بنظام 5 نقاط", descEn: "GPA on 5.0 scale", href: "/calculators/gpa", color: "from-violet-500 to-violet-700" },
+      { icon: "🕐", titleAr: "حاسبة الوقت", titleEn: "Time Calculator", descAr: "فرق الوقت وساعات العمل والتحويل", descEn: "Time difference, work hours & converter", href: "/calculators/time", color: "from-sky-500 to-blue-700" },
     ],
   },
 ];
