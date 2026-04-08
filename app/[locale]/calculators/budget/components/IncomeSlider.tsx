@@ -30,7 +30,7 @@ export default function IncomeSlider({ income, onChange, savingsGoalPercent, onS
             </div>
             <div>
               <h2 className="font-bold text-gray-800 dark:text-white text-sm">الدخل الشهري</h2>
-              <p className="text-xs text-gray-400">حرّك المؤشر أو أدخل المبلغ</p>
+              <p className="text-xs text-gray-500 dark:text-gray-400">حرّك المؤشر أو أدخل المبلغ</p>
             </div>
           </div>
           <div className="flex items-baseline gap-2 mb-3">
@@ -40,7 +40,7 @@ export default function IncomeSlider({ income, onChange, savingsGoalPercent, onS
               onChange={(e) => onChange(Math.max(1000, Math.min(100000, +e.target.value)))}
               className="text-3xl font-bold text-primary-600 dark:text-primary-400 bg-transparent border-none outline-none w-40 text-center"
             />
-            <span className="text-lg text-gray-400">ريال</span>
+            <span className="text-lg text-gray-600 dark:text-gray-400">ريال</span>
           </div>
           <input
             type="range"
@@ -52,7 +52,7 @@ export default function IncomeSlider({ income, onChange, savingsGoalPercent, onS
             className="budget-slider w-full h-2.5 rounded-full appearance-none cursor-pointer"
             style={getTrackStyle(income, 1000, 100000, "#1a6b3c", "#e5e7eb")}
           />
-          <div className="flex justify-between text-xs text-gray-400 dark:text-gray-500 mt-1.5">
+          <div className="flex justify-between text-xs text-gray-600 dark:text-gray-500 mt-1.5 font-medium">
             <span>١٬٠٠٠</span>
             <span>٥٠٬٠٠٠</span>
             <span>١٠٠٬٠٠٠</span>
@@ -67,12 +67,12 @@ export default function IncomeSlider({ income, onChange, savingsGoalPercent, onS
             </div>
             <div>
               <h2 className="font-bold text-gray-800 dark:text-white text-sm">هدف الادخار</h2>
-              <p className="text-xs text-gray-400">النسبة المستهدفة من الدخل</p>
+              <p className="text-xs text-gray-500 dark:text-gray-400">النسبة المستهدفة من الدخل</p>
             </div>
           </div>
           <div className="flex items-baseline gap-2 mb-3">
             <span className="text-3xl font-bold text-cyan-600 dark:text-cyan-400">{savingsGoalPercent}%</span>
-            <span className="text-sm text-gray-400">= {savingsTarget.toLocaleString("ar-SA")} ريال</span>
+            <span className="text-sm text-gray-600 dark:text-gray-400">= {savingsTarget.toLocaleString("ar-SA")} ريال</span>
           </div>
           <input
             type="range"
@@ -84,7 +84,7 @@ export default function IncomeSlider({ income, onChange, savingsGoalPercent, onS
             className="budget-slider budget-slider-cyan w-full h-2.5 rounded-full appearance-none cursor-pointer"
             style={getTrackStyle(savingsGoalPercent, 5, 50, "#0891b2", "#e5e7eb")}
           />
-          <div className="flex justify-between text-xs text-gray-400 dark:text-gray-500 mt-1.5">
+          <div className="flex justify-between text-xs text-gray-600 dark:text-gray-500 mt-1.5 font-medium">
             <span>٥%</span>
             <span>٢٠% مثالي</span>
             <span>٥٠%</span>
