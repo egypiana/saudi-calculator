@@ -4,8 +4,10 @@ import fuelConsumption from "./fuel-consumption";
 import mortgageCalculation from "./mortgage-calculation";
 import inheritanceCalculation from "./inheritance-calculation";
 import endOfService from "./end-of-service";
+import budgetRule from "./budget-rule";
 
 export const ALL_ARTICLES: BlogArticle[] = [
+  budgetRule,
   fuelConsumption,
   mortgageCalculation,
   inheritanceCalculation,
