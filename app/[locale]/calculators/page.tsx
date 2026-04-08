@@ -38,6 +38,7 @@ const categories: { titleAr: string; titleEn: string; items: CalcItem[] }[] = [
       { icon: "🏠", titleAr: "حاسبة التمويل العقاري", titleEn: "Mortgage Calculator", descAr: "القسط الشهري للتمويل", descEn: "Monthly mortgage payment", href: "/calculators/mortgage", color: "from-indigo-500 to-indigo-700" },
       { icon: "🏦", titleAr: "حاسبة الادخار", titleEn: "Savings Calculator", descAr: "تخطيط الادخار والفائدة المركبة", descEn: "Savings planning with compound interest", href: "/calculators/savings", color: "from-indigo-500 to-indigo-700" },
       { icon: "🛡️", titleAr: "حاسبة التقاعد", titleEn: "Retirement Calculator", descAr: "المعاش التقاعدي وتحليل الجاهزية", descEn: "Pension calculation & readiness analysis", href: "/calculators/retirement", color: "from-teal-500 to-teal-700" },
+      { icon: "💹", titleAr: "حاسبة نسبة الربح", titleEn: "Profit Margin Calculator", descAr: "هامش الربح و Markup ومقارنة المنتجات", descEn: "Margin, Markup & product comparison", href: "/calculators/profit-margin", color: "from-green-500 to-emerald-700" },
       { icon: "📊", titleAr: "حاسبة الميزانية", titleEn: "Budget Calculator", descAr: "خطط لميزانيتك الشهرية", descEn: "Plan your monthly budget", href: "/calculators/budget", color: "from-cyan-500 to-cyan-700" },
     ],
   },
