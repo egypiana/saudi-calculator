@@ -86,7 +86,7 @@ const islamicEvents = [
     subtitle: "اليوم العاشر من شهر محرم",
     icon: "📿",
     color: "#047857",
-    href: "/countdowns/national-day",
+    href: "/countdowns/ashura",
     targetDate: "2027-07-16",
   },
   {
@@ -95,7 +95,7 @@ const islamicEvents = [
     subtitle: "ذكرى مولد النبي محمد ﷺ",
     icon: "🕌",
     color: "#0d9488",
-    href: "/countdowns/national-day",
+    href: "/countdowns/mawlid",
     targetDate: "2027-09-20",
   },
 ];
