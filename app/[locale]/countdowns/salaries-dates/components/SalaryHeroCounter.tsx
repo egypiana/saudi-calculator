@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useMemo } from "react";
 import { useLocale } from "next-intl";
 import {
   PAYMENT_TYPES,
@@ -123,7 +123,7 @@ export default function SalaryHeroCounter() {
   const [mounted, setMounted] = useState(false);
 
   const activePayment = PAYMENT_TYPES.find((p) => p.id === activeTab)!;
-  const tabData = getTabData(activeTab);
+  const tabData = useMemo(() => getTabData(activeTab), [activeTab]);
 
   const updateCountdown = useCallback(() => {
     if (!tabData) return;
