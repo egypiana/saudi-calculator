@@ -1,7 +1,8 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useLocale, useTranslations } from "next-intl";
 import {
   Menu,
@@ -26,38 +27,35 @@ export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
-  const [currentPath, setCurrentPath] = useState("/");
+  const pathname = usePathname();
   const locale = useLocale();
   const t = useTranslations("nav");
   const tc = useTranslations("common");
 
   const navLinks = [
-    { label: t("home"), href: lp(locale, "/") },
-    { label: t("countdowns"), href: lp(locale, "/countdowns") },
-    { label: t("calculators"), href: lp(locale, "/calculators") },
-    { label: t("blog"), href: lp(locale, "/blog") },
+    { label: t("home"), href: lp(locale, "/"), icon: "🏠" },
+    { label: t("countdowns"), href: lp(locale, "/countdowns"), icon: "⏰" },
+    { label: t("calculators"), href: lp(locale, "/calculators"), icon: "🧮" },
+    { label: t("blog"), href: lp(locale, "/blog"), icon: "📝" },
   ];
 
   const trendingLinks = [
-    { label: locale === "ar" ? "عداد رمضان" : "Ramadan", href: lp(locale, "/countdowns/ramadan") },
-    { label: locale === "ar" ? "حاسبة الزكاة" : "Zakat", href: lp(locale, "/calculators/zakat") },
-    { label: locale === "ar" ? "الراتب" : "Salary", href: lp(locale, "/countdowns/salaries-dates") },
-    { label: locale === "ar" ? "القيمة المضافة" : "VAT", href: lp(locale, "/calculators/vat") },
-    { label: locale === "ar" ? "نهاية الخدمة" : "End of Service", href: lp(locale, "/calculators/end-of-service") },
-    { label: locale === "ar" ? "اليوم الوطني" : "National Day", href: lp(locale, "/countdowns/national-day") },
+    { label: locale === "ar" ? "عداد رمضان" : "Ramadan", href: lp(locale, "/countdowns/ramadan"), icon: "🌙" },
+    { label: locale === "ar" ? "حاسبة الزكاة" : "Zakat", href: lp(locale, "/calculators/zakat"), icon: "💰" },
+    { label: locale === "ar" ? "الراتب" : "Salary", href: lp(locale, "/countdowns/salaries-dates"), icon: "💵" },
+    { label: locale === "ar" ? "القيمة المضافة" : "VAT", href: lp(locale, "/calculators/vat"), icon: "🏷️" },
+    { label: locale === "ar" ? "نهاية الخدمة" : "End of Service", href: lp(locale, "/calculators/end-of-service"), icon: "📋" },
+    { label: locale === "ar" ? "اليوم الوطني" : "National Day", href: lp(locale, "/countdowns/national-day"), icon: "🇸🇦" },
   ];
-
-  useEffect(() => {
-    setCurrentPath(window.location.pathname);
-  }, []);
 
   const isActive = (href: string) => {
     const homePath = lp(locale, "/");
-    return href === homePath ? currentPath === homePath || currentPath === "/" : currentPath.startsWith(href);
+    if (href === homePath) return pathname === homePath || pathname === "/";
+    return pathname.startsWith(href);
   };
 
   const switchLocale = (newLocale: string) => {
-    const pathWithoutLocale = currentPath.replace(/^\/(ar|en|es|pt)/, "");
+    const pathWithoutLocale = pathname.replace(/^\/(ar|en|es|pt)/, "");
     window.location.href = lp(newLocale, pathWithoutLocale || "/");
   };
 
@@ -198,17 +196,21 @@ export default function Header() {
 
       {/* شريط الروابط السريعة */}
       <div className="hidden md:flex bg-primary-800 h-10 items-center sticky top-16 z-40">
-        <div className="max-w-7xl mx-auto px-4 w-full flex items-center justify-center gap-1">
+        <div className="max-w-7xl mx-auto px-4 w-full flex items-center justify-center gap-0.5">
           {trendingLinks.map((link, i) => (
             <span key={link.href} className="flex items-center">
               <Link
                 href={link.href}
-                className="text-white/90 font-medium text-sm hover:text-gold transition-colors px-2 py-1"
+                className={`font-medium text-sm transition-colors px-2.5 py-1 rounded-md ${
+                  isActive(link.href)
+                    ? "text-gold font-bold"
+                    : "text-white/90 hover:text-gold hover:bg-white/5"
+                }`}
               >
                 {link.label}
               </Link>
               {i < trendingLinks.length - 1 && (
-                <span className="text-white/30 text-xs select-none">|</span>
+                <span className="text-white/20 text-xs select-none">|</span>
               )}
             </span>
           ))}
@@ -261,12 +263,13 @@ export default function Header() {
                     key={link.href}
                     href={link.href}
                     onClick={() => setMobileMenuOpen(false)}
-                    className={`flex items-center px-4 py-3 rounded-xl font-bold transition-all text-sm ${
+                    className={`flex items-center gap-3 px-4 py-3 rounded-xl font-bold transition-all text-sm ${
                       isActive(link.href)
                         ? "bg-white text-primary-600"
                         : "text-white hover:bg-white/15"
                     }`}
                   >
+                    <span className="text-base">{link.icon}</span>
                     {link.label}
                   </Link>
                 ))}
@@ -276,14 +279,19 @@ export default function Header() {
                 <p className="text-white/50 text-xs font-semibold px-1 mb-2">
                   {locale === "ar" ? "الأكثر بحثاً" : "Trending"}
                 </p>
-                <div className="flex flex-wrap gap-2">
+                <div className="flex flex-col gap-1">
                   {trendingLinks.map((link) => (
                     <Link
                       key={link.href}
                       href={link.href}
                       onClick={() => setMobileMenuOpen(false)}
-                      className="text-white text-xs bg-white/10 hover:bg-white/20 px-3 py-1.5 rounded-full transition-colors font-medium"
+                      className={`flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm transition-colors font-medium ${
+                        isActive(link.href)
+                          ? "bg-gold/20 text-gold"
+                          : "text-white/80 hover:bg-white/10"
+                      }`}
                     >
+                      <span className="text-base">{link.icon}</span>
                       {link.label}
                     </Link>
                   ))}
