@@ -58,9 +58,9 @@ const islamicEvents = [
     title: "يوم عرفة",
     subtitle: "خير يوم طلعت عليه الشمس",
     icon: "⛰️",
-    color: "#0891b2",
-    href: "/countdowns/eid-adha",
-    targetDate: "2027-05-16",
+    color: "#d97706",
+    href: "/countdowns/arafah",
+    targetDate: "2027-05-15",
   },
   {
     id: "hijri-new-year",
