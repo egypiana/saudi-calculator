@@ -5,8 +5,16 @@ import mortgageCalculation from "./mortgage-calculation";
 import inheritanceCalculation from "./inheritance-calculation";
 import endOfService from "./end-of-service";
 import budgetRule from "./budget-rule";
+import hajjBudget from "./hajj-budget";
+import udhiyahRulings from "./udhiyah-rulings";
+import hajjTipsBeginners from "./hajj-tips-beginners";
+import hajjHealthPreparation from "./hajj-health-preparation";
 
 export const ALL_ARTICLES: BlogArticle[] = [
+  hajjHealthPreparation,
+  hajjTipsBeginners,
+  udhiyahRulings,
+  hajjBudget,
   budgetRule,
   fuelConsumption,
   mortgageCalculation,

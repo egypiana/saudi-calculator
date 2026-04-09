@@ -15,7 +15,7 @@ export interface BlogArticle {
   content: string; // HTML content in Arabic
 }
 
-export type BlogCategory = "مالي" | "شرعي" | "أدوات" | "صحي" | "ديني";
+export type BlogCategory = "مالي" | "شرعي" | "أدوات" | "صحي" | "ديني" | "إسلامي" | "إرشادي";
 
 export interface BlogCategoryInfo {
   id: BlogCategory;
@@ -78,6 +78,26 @@ export const BLOG_CATEGORIES: BlogCategoryInfo[] = [
     color: "text-amber-700 dark:text-amber-400",
     bgColor: "bg-amber-100 dark:bg-amber-900/30",
     descriptionAr: "مقالات عن العبادات والمناسبات الدينية ورمضان والحج",
+  },
+  {
+    id: "إسلامي",
+    slug: "islami",
+    labelAr: "إسلامي وفقهي",
+    labelEn: "Islamic Jurisprudence",
+    icon: "🕋",
+    color: "text-teal-700 dark:text-teal-400",
+    bgColor: "bg-teal-100 dark:bg-teal-900/30",
+    descriptionAr: "مقالات عن الأحكام الفقهية والعبادات والمناسك وفق الكتاب والسنة",
+  },
+  {
+    id: "إرشادي",
+    slug: "guide",
+    labelAr: "إرشادي وتوجيهي",
+    labelEn: "Guides & Tips",
+    icon: "🧭",
+    color: "text-indigo-700 dark:text-indigo-400",
+    bgColor: "bg-indigo-100 dark:bg-indigo-900/30",
+    descriptionAr: "أدلة إرشادية ونصائح عملية لمساعدتك في التخطيط والاستعداد للمناسبات والأحداث المهمة",
   },
 ];
 
