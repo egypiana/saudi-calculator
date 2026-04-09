@@ -9,8 +9,18 @@ import hajjBudget from "./hajj-budget";
 import udhiyahRulings from "./udhiyah-rulings";
 import hajjTipsBeginners from "./hajj-tips-beginners";
 import hajjHealthPreparation from "./hajj-health-preparation";
+import ramadanCountdown2026 from "./ramadan-countdown-2026";
+import ramadanStartDate2026 from "./ramadan-start-date-2026";
+import ramadanDates20252050 from "./ramadan-dates-2025-2050";
+import ramadanMoonSighting from "./ramadan-moon-sighting";
+import ramadanSeasons from "./ramadan-seasons";
 
 export const ALL_ARTICLES: BlogArticle[] = [
+  ramadanCountdown2026,
+  ramadanStartDate2026,
+  ramadanDates20252050,
+  ramadanMoonSighting,
+  ramadanSeasons,
   hajjHealthPreparation,
   hajjTipsBeginners,
   udhiyahRulings,
