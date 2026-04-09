@@ -68,8 +68,8 @@ const islamicEvents = [
     subtitle: "بداية العام الهجري الجديد",
     icon: "🗓️",
     color: "#4f46e5",
-    href: "/countdowns/national-day",
-    targetDate: "2027-07-07",
+    href: "/countdowns/hijri-new-year",
+    targetDate: "2027-06-05",
   },
   {
     id: "new-year",
