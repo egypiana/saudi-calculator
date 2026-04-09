@@ -4,24 +4,24 @@ import BudgetCalculator from "./BudgetCalculator";
 import FAQSection from "@/components/shared/FAQSection";
 import AdSlot from "@/components/ads/AdSlot";
 import Breadcrumb from "@/components/layout/Breadcrumb";
+import { generatePageSEO } from "@/lib/utils/metadata";
 
 export async function generateMetadata({ params: { locale } }: { params: { locale: string } }): Promise<Metadata> {
   const isAr = locale === "ar";
+  const title = isAr
+    ? "حاسبة الميزانية والنفقات السعودية 2026 | خطط لمالك بذكاء"
+    : "Saudi Budget Calculator 2026 | Plan Your Finances Smartly";
+  const description = isAr
+    ? "حاسبة الميزانية الشهرية للأسرة السعودية — أدخل دخلك ووزّع مصروفاتك على السكن والطعام والنقل والادخار. احصل على توصيات ذكية لتحسين ميزانيتك."
+    : "Monthly budget calculator for Saudi families — enter your income and distribute expenses across housing, food, transport, and savings. Get smart recommendations.";
+  const keywords = isAr
+    ? ["حاسبة الميزانية", "ميزانية الأسرة السعودية", "توزيع الراتب", "تخطيط مالي", "مصروفات شهرية", "حاسبة النفقات", "ادخار الراتب"]
+    : ["budget calculator", "Saudi family budget", "salary distribution", "financial planning", "monthly expenses"];
   return {
-    title: isAr
-      ? "حاسبة الميزانية والنفقات السعودية 2026 | خطط لمالك بذكاء"
-      : "Saudi Budget Calculator 2026 | Plan Your Finances Smartly",
-    description: isAr
-      ? "حاسبة الميزانية الشهرية للأسرة السعودية — أدخل دخلك ووزّع مصروفاتك على السكن والطعام والنقل والادخار. احصل على توصيات ذكية لتحسين ميزانيتك."
-      : "Monthly budget calculator for Saudi families — enter your income and distribute expenses across housing, food, transport, and savings. Get smart recommendations.",
-    keywords: isAr
-      ? ["حاسبة الميزانية", "ميزانية الأسرة السعودية", "توزيع الراتب", "تخطيط مالي", "مصروفات شهرية", "حاسبة النفقات", "ادخار الراتب"]
-      : ["budget calculator", "Saudi family budget", "salary distribution", "financial planning", "monthly expenses"],
-    openGraph: {
-      title: isAr ? "حاسبة الميزانية والنفقات السعودية" : "Saudi Budget Calculator",
-      description: isAr ? "وزّع راتبك بذكاء وابدأ الادخار اليوم" : "Distribute your salary smartly and start saving today",
-    },
-    alternates: { canonical: locale === "ar" ? "/calculators/budget" : `/${locale}/calculators/budget` },
+    title,
+    description,
+    keywords,
+    ...generatePageSEO(locale, "/calculators/budget", { title, description, keywords }),
   };
 }
 

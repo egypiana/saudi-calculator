@@ -1,5 +1,6 @@
 import { unstable_setRequestLocale } from "next-intl/server";
 import type { Metadata } from "next";
+import { generatePageSEO } from "@/lib/utils/metadata";
 import Breadcrumb from "@/components/layout/Breadcrumb";
 import MawlidYearsClient from "./MawlidYearsClient";
 import MawlidSidebar from "../components/MawlidSidebar";
@@ -10,17 +11,20 @@ export async function generateMetadata({
   params: { locale: string };
 }): Promise<Metadata> {
   const isAr = locale === "ar";
+  const title = isAr
+    ? "جميع مواعيد المولد النبوي من 2025 إلى 2050 | كل السنوات"
+    : "Mawlid an-Nabi Dates 2025\u20132050 | All Years";
+  const description = isAr
+    ? "جدول شامل لمواعيد المولد النبوي الشريف من 2025 إلى 2050 مع تاريخ ١٢ ربيع الأول والفصل المناخي لكل سنة. خطط مسبقاً للمولد النبوي القادم."
+    : "Complete Mawlid an-Nabi dates from 2025 to 2050 with 12th Rabi al-Awwal dates. Plan ahead for the Prophet's Birthday.";
+  const keywords = isAr
+    ? ["مواعيد المولد النبوي", "المولد النبوي 2025 2050", "جدول المولد النبوي", "تقويم المولد النبوي", "متى المولد النبوي"]
+    : ["mawlid dates", "prophet birthday schedule", "mawlid calendar", "when is mawlid"];
   return {
-    title: isAr
-      ? "جميع مواعيد المولد النبوي من 2025 إلى 2050 | كل السنوات"
-      : "Mawlid an-Nabi Dates 2025\u20132050 | All Years",
-    description: isAr
-      ? "جدول شامل لمواعيد المولد النبوي الشريف من 2025 إلى 2050 مع تاريخ ١٢ ربيع الأول والفصل المناخي لكل سنة. خطط مسبقاً للمولد النبوي القادم."
-      : "Complete Mawlid an-Nabi dates from 2025 to 2050 with 12th Rabi al-Awwal dates. Plan ahead for the Prophet's Birthday.",
-    keywords: isAr
-      ? ["مواعيد المولد النبوي", "المولد النبوي 2025 2050", "جدول المولد النبوي", "تقويم المولد النبوي", "متى المولد النبوي"]
-      : ["mawlid dates", "prophet birthday schedule", "mawlid calendar", "when is mawlid"],
-    alternates: { canonical: locale === "ar" ? "/countdowns/mawlid/years" : `/${locale}/countdowns/mawlid/years` },
+    title,
+    description,
+    keywords,
+    ...generatePageSEO(locale, "/countdowns/mawlid/years", { title, description, keywords }),
   };
 }
 

@@ -1,5 +1,6 @@
 import { unstable_setRequestLocale } from "next-intl/server";
 import type { Metadata } from "next";
+import { generatePageSEO } from "@/lib/utils/metadata";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import Breadcrumb from "@/components/layout/Breadcrumb";
@@ -28,14 +29,16 @@ export async function generateMetadata({
   if (!cat) return { title: "قسم غير موجود" };
 
   const isAr = locale === "ar";
+  const title = isAr
+    ? `${cat.labelAr} — مقالات المدونة`
+    : `${cat.labelEn} — Blog Articles`;
+  const description = isAr
+    ? cat.descriptionAr
+    : `Articles about ${cat.labelEn.toLowerCase()} topics.`;
   return {
-    title: isAr
-      ? `${cat.labelAr} — مقالات المدونة`
-      : `${cat.labelEn} — Blog Articles`,
-    description: isAr
-      ? cat.descriptionAr
-      : `Articles about ${cat.labelEn.toLowerCase()} topics.`,
-    alternates: { canonical: locale === "ar" ? "/blog/category/${category}" : `/${locale}/blog/category/${category}` },
+    title,
+    description,
+    ...generatePageSEO(locale, `/blog/category/${category}`, { title, description }),
   };
 }
 

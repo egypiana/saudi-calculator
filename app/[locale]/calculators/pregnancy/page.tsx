@@ -6,15 +6,18 @@ import AdSlot from "@/components/ads/AdSlot";
 import Breadcrumb from "@/components/layout/Breadcrumb";
 import Link from "next/link";
 import { lp } from "@/lib/utils/locale";
+import { generatePageSEO } from "@/lib/utils/metadata";
 
 export async function generateMetadata({ params: { locale } }: { params: { locale: string } }): Promise<Metadata> {
   const isAr = locale === "ar";
+  const title = isAr ? "حاسبة الحمل والولادة — موعد الولادة المتوقع" : "Pregnancy Calculator — Expected Due Date";
+  const description = isAr
+    ? "احسبي موعد الولادة المتوقع بناءً على تاريخ آخر دورة شهرية. اعرفي أسبوع الحمل الحالي."
+    : "Calculate your expected due date based on your last menstrual period. Know your current pregnancy week.";
   return {
-    title: isAr ? "حاسبة الحمل والولادة — موعد الولادة المتوقع" : "Pregnancy Calculator — Expected Due Date",
-    description: isAr
-      ? "احسبي موعد الولادة المتوقع بناءً على تاريخ آخر دورة شهرية. اعرفي أسبوع الحمل الحالي."
-      : "Calculate your expected due date based on your last menstrual period. Know your current pregnancy week.",
-    alternates: { canonical: locale === "ar" ? "/calculators/pregnancy" : `/${locale}/calculators/pregnancy` },
+    title,
+    description,
+    ...generatePageSEO(locale, "/calculators/pregnancy", { title, description }),
   };
 }
 

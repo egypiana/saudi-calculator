@@ -1,5 +1,6 @@
 import { unstable_setRequestLocale } from "next-intl/server";
 import type { Metadata } from "next";
+import { generatePageSEO } from "@/lib/utils/metadata";
 import { ARAFA_DAY_DATA, ARAFA_DAY_YEARS } from "@/lib/data/arafaDayData";
 import ArafahYearPage from "./ArafahYearPage";
 
@@ -19,11 +20,13 @@ export async function generateMetadata({
     return { title: "يوم عرفة — غير موجود" };
   }
 
+  const title = data.content.metaTitle;
+  const description = data.content.metaDescription;
   return {
-    title: data.content.metaTitle,
-    description: data.content.metaDescription,
+    title,
+    description,
     keywords: data.content.keywords,
-    alternates: { canonical: locale === "ar" ? `/countdowns/arafah/${year}` : `/${locale}/countdowns/arafah/${year}` },
+    ...generatePageSEO(locale, `/countdowns/arafah/${year}`, { title, description, keywords: data.content.keywords }),
   };
 }
 

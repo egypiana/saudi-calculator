@@ -2,6 +2,7 @@ import { unstable_setRequestLocale } from "next-intl/server";
 import type { Metadata } from "next";
 import CountdownsPage from "./CountdownsPage";
 import Breadcrumb from "@/components/layout/Breadcrumb";
+import { generatePageSEO } from "@/lib/utils/metadata";
 
 export async function generateMetadata({
   params: { locale },
@@ -9,17 +10,20 @@ export async function generateMetadata({
   params: { locale: string };
 }): Promise<Metadata> {
   const isAr = locale === "ar";
+  const title = isAr
+    ? "العدادات التنازلية السعودية 2026 | رمضان، الرواتب، المناسبات"
+    : "Saudi Countdowns 2026 | Ramadan, Salaries, Events";
+  const description = isAr
+    ? "جميع العدادات التنازلية للمناسبات الإسلامية والرواتب السعودية في مكان واحد. عداد رمضان، عيد الفطر، حساب المواطن، الراتب وأكثر."
+    : "All countdown timers for Islamic events and Saudi salaries in one place. Ramadan, Eid Al-Fitr, Citizen Account, salary dates and more.";
+  const keywords = isAr
+    ? ["عداد رمضان", "موعد الراتب", "عيد الفطر", "حساب المواطن", "العد التنازلي السعودي"]
+    : ["ramadan countdown", "salary date", "eid al-fitr", "citizen account", "saudi countdown"];
   return {
-    title: isAr
-      ? "العدادات التنازلية السعودية 2026 | رمضان، الرواتب، المناسبات"
-      : "Saudi Countdowns 2026 | Ramadan, Salaries, Events",
-    description: isAr
-      ? "جميع العدادات التنازلية للمناسبات الإسلامية والرواتب السعودية في مكان واحد. عداد رمضان، عيد الفطر، حساب المواطن، الراتب وأكثر."
-      : "All countdown timers for Islamic events and Saudi salaries in one place. Ramadan, Eid Al-Fitr, Citizen Account, salary dates and more.",
-    keywords: isAr
-      ? ["عداد رمضان", "موعد الراتب", "عيد الفطر", "حساب المواطن", "العد التنازلي السعودي"]
-      : ["ramadan countdown", "salary date", "eid al-fitr", "citizen account", "saudi countdown"],
-    alternates: { canonical: locale === "ar" ? "/countdowns" : `/${locale}/countdowns` },
+    title,
+    description,
+    keywords,
+    ...generatePageSEO(locale, "/countdowns", { title, description, keywords }),
   };
 }
 

@@ -1,5 +1,6 @@
 import { unstable_setRequestLocale } from "next-intl/server";
 import type { Metadata } from "next";
+import { generatePageSEO } from "@/lib/utils/metadata";
 import Breadcrumb from "@/components/layout/Breadcrumb";
 import HajjYearsClient from "./HajjYearsClient";
 import HajjSidebar from "../components/HajjSidebar";
@@ -10,17 +11,20 @@ export async function generateMetadata({
   params: { locale: string };
 }): Promise<Metadata> {
   const isAr = locale === "ar";
+  const title = isAr
+    ? "جميع مواسم الحج 2025-2050 | مواعيد الحج السنوية"
+    : "Hajj Dates 2025–2050 | All Years";
+  const description = isAr
+    ? "تصفح مواعيد موسم الحج من 2025 إلى 2050 مع عدادات تنازلية لكل عام. اعرف متى الحج في أي سنة بالتاريخ الهجري والميلادي."
+    : "Browse Hajj dates from 2025 to 2050 with countdown timers for each year.";
+  const keywords = isAr
+    ? ["جميع مواسم الحج", "مواعيد الحج", "الحج 2025 2050"]
+    : ["hajj dates", "hajj schedule", "when is hajj"];
   return {
-    title: isAr
-      ? "جميع مواسم الحج 2025-2050 | مواعيد الحج السنوية"
-      : "Hajj Dates 2025–2050 | All Years",
-    description: isAr
-      ? "تصفح مواعيد موسم الحج من 2025 إلى 2050 مع عدادات تنازلية لكل عام. اعرف متى الحج في أي سنة بالتاريخ الهجري والميلادي."
-      : "Browse Hajj dates from 2025 to 2050 with countdown timers for each year.",
-    keywords: isAr
-      ? ["جميع مواسم الحج", "مواعيد الحج", "الحج 2025 2050"]
-      : ["hajj dates", "hajj schedule", "when is hajj"],
-    alternates: { canonical: locale === "ar" ? "/countdowns/hajj/years" : `/${locale}/countdowns/hajj/years` },
+    title,
+    description,
+    keywords,
+    ...generatePageSEO(locale, "/countdowns/hajj/years", { title, description, keywords }),
   };
 }
 

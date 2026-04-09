@@ -1,13 +1,16 @@
 import { unstable_setRequestLocale } from "next-intl/server";
 import type { Metadata } from "next";
 import SalaryCountdownPage from "@/components/countdown/SalaryCountdownPage";
+import { generatePageSEO } from "@/lib/utils/metadata";
 
 export async function generateMetadata({ params: { locale } }: { params: { locale: string } }): Promise<Metadata> {
   const isAr = locale === "ar";
+  const title = isAr ? "كم باقي على الضمان الاجتماعي؟" : "Social Security Payment Countdown";
+  const description = isAr ? "عداد تنازلي لموعد صرف الضمان الاجتماعي المطور." : "Countdown to Social Security payment.";
   return {
-    title: isAr ? "كم باقي على الضمان الاجتماعي؟" : "Social Security Payment Countdown",
-    description: isAr ? "عداد تنازلي لموعد صرف الضمان الاجتماعي المطور." : "Countdown to Social Security payment.",
-    alternates: { canonical: locale === "ar" ? "/countdowns/social-security" : `/${locale}/countdowns/social-security` },
+    title,
+    description,
+    ...generatePageSEO(locale, "/countdowns/social-security", { title, description }),
   };
 }
 

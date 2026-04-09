@@ -6,15 +6,18 @@ import AdSlot from "@/components/ads/AdSlot";
 import Breadcrumb from "@/components/layout/Breadcrumb";
 import Link from "next/link";
 import { lp } from "@/lib/utils/locale";
+import { generatePageSEO } from "@/lib/utils/metadata";
 
 export async function generateMetadata({ params: { locale } }: { params: { locale: string } }): Promise<Metadata> {
   const isAr = locale === "ar";
+  const title = isAr ? "حاسبة مؤشر كتلة الجسم (BMI)" : "BMI Calculator — Body Mass Index";
+  const description = isAr
+    ? "احسب مؤشر كتلة الجسم BMI لمعرفة إذا كان وزنك طبيعي أو زائد. حاسبة سريعة ودقيقة."
+    : "Calculate your Body Mass Index (BMI) to check if your weight is healthy. Fast and accurate calculator.";
   return {
-    title: isAr ? "حاسبة مؤشر كتلة الجسم (BMI)" : "BMI Calculator — Body Mass Index",
-    description: isAr
-      ? "احسب مؤشر كتلة الجسم BMI لمعرفة إذا كان وزنك طبيعي أو زائد. حاسبة سريعة ودقيقة."
-      : "Calculate your Body Mass Index (BMI) to check if your weight is healthy. Fast and accurate calculator.",
-    alternates: { canonical: locale === "ar" ? "/calculators/bmi" : `/${locale}/calculators/bmi` },
+    title,
+    description,
+    ...generatePageSEO(locale, "/calculators/bmi", { title, description }),
   };
 }
 

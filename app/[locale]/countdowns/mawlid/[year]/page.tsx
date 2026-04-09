@@ -1,5 +1,6 @@
 import { unstable_setRequestLocale } from "next-intl/server";
 import type { Metadata } from "next";
+import { generatePageSEO } from "@/lib/utils/metadata";
 import { MAWLID_DATA, MAWLID_YEARS } from "@/lib/data/mawlidData";
 import MawlidYearPage from "./MawlidYearPage";
 
@@ -19,11 +20,13 @@ export async function generateMetadata({
     return { title: "المولد النبوي — غير موجود" };
   }
 
+  const title = data.content.metaTitle;
+  const description = data.content.metaDescription;
   return {
-    title: data.content.metaTitle,
-    description: data.content.metaDescription,
+    title,
+    description,
     keywords: data.content.keywords,
-    alternates: { canonical: locale === "ar" ? `/countdowns/mawlid/${year}` : `/${locale}/countdowns/mawlid/${year}` },
+    ...generatePageSEO(locale, `/countdowns/mawlid/${year}`, { title, description, keywords: data.content.keywords }),
   };
 }
 

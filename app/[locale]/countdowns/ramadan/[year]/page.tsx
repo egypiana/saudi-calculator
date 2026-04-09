@@ -1,5 +1,6 @@
 import { unstable_setRequestLocale } from "next-intl/server";
 import type { Metadata } from "next";
+import { generatePageSEO } from "@/lib/utils/metadata";
 import { RAMADAN_DATA, AVAILABLE_YEARS } from "@/lib/data/ramadanData";
 import RamadanYearPage from "./RamadanYearPage";
 
@@ -19,11 +20,13 @@ export async function generateMetadata({
     return { title: "رمضان — غير موجود" };
   }
 
+  const title = data.content.metaTitle;
+  const description = data.content.metaDescription;
   return {
-    title: data.content.metaTitle,
-    description: data.content.metaDescription,
+    title,
+    description,
     keywords: data.content.keywords,
-    alternates: { canonical: locale === "ar" ? "/countdowns/ramadan/${year}" : `/${locale}/countdowns/ramadan/${year}` },
+    ...generatePageSEO(locale, `/countdowns/ramadan/${year}`, { title, description, keywords: data.content.keywords }),
   };
 }
 

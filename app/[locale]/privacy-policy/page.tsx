@@ -1,15 +1,18 @@
 import { unstable_setRequestLocale } from "next-intl/server";
 import type { Metadata } from "next";
 import Breadcrumb from "@/components/layout/Breadcrumb";
+import { generatePageSEO } from "@/lib/utils/metadata";
 
 export async function generateMetadata({ params: { locale } }: { params: { locale: string } }): Promise<Metadata> {
   const isAr = locale === "ar";
+  const title = isAr ? "سياسة الخصوصية — حاسبة VIP" : "Privacy Policy — Calculator VIP";
+  const description = isAr
+    ? "سياسة الخصوصية لموقع حاسبة VIP — تعرف على كيفية حماية بياناتك وخصوصيتك."
+    : "Privacy Policy for Calculator VIP — Learn how we protect your data and privacy.";
   return {
-    title: isAr ? "سياسة الخصوصية — حاسبة VIP" : "Privacy Policy — Calculator VIP",
-    description: isAr
-      ? "سياسة الخصوصية لموقع حاسبة VIP — تعرف على كيفية حماية بياناتك وخصوصيتك."
-      : "Privacy Policy for Calculator VIP — Learn how we protect your data and privacy.",
-    alternates: { canonical: locale === "ar" ? "/privacy-policy" : `/${locale}/privacy-policy` },
+    title,
+    description,
+    ...generatePageSEO(locale, "/privacy-policy", { title, description }),
   };
 }
 

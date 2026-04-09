@@ -1,5 +1,6 @@
 import { unstable_setRequestLocale } from "next-intl/server";
 import type { Metadata } from "next";
+import { generatePageSEO } from "@/lib/utils/metadata";
 import Breadcrumb from "@/components/layout/Breadcrumb";
 import HijriNewYearYearsClient from "./HijriNewYearYearsClient";
 import HijriNewYearSidebar from "../components/HijriNewYearSidebar";
@@ -10,17 +11,20 @@ export async function generateMetadata({
   params: { locale: string };
 }): Promise<Metadata> {
   const isAr = locale === "ar";
+  const title = isAr
+    ? "جميع مواعيد رأس السنة الهجرية من 1447 إلى 1473 | كل السنوات"
+    : "Hijri New Year Dates 1447\u20131473 | All Years";
+  const description = isAr
+    ? "جدول شامل لمواعيد رأس السنة الهجرية من 1447 إلى 1473 مع تواريخ عاشوراء والفصل المناخي لكل سنة. خطط مسبقاً لرأس السنة الهجرية القادمة."
+    : "Complete Hijri New Year dates from 1447 to 1473 AH with Ashura dates. Plan ahead for the next Islamic New Year.";
+  const keywords = isAr
+    ? ["مواعيد رأس السنة الهجرية", "رأس السنة الهجرية 1447 1473", "جدول رأس السنة الهجرية", "تقويم هجري", "١ محرم"]
+    : ["hijri new year dates", "islamic new year schedule", "1 muharram calendar", "when is hijri new year"];
   return {
-    title: isAr
-      ? "جميع مواعيد رأس السنة الهجرية من 1447 إلى 1473 | كل السنوات"
-      : "Hijri New Year Dates 1447\u20131473 | All Years",
-    description: isAr
-      ? "جدول شامل لمواعيد رأس السنة الهجرية من 1447 إلى 1473 مع تواريخ عاشوراء والفصل المناخي لكل سنة. خطط مسبقاً لرأس السنة الهجرية القادمة."
-      : "Complete Hijri New Year dates from 1447 to 1473 AH with Ashura dates. Plan ahead for the next Islamic New Year.",
-    keywords: isAr
-      ? ["مواعيد رأس السنة الهجرية", "رأس السنة الهجرية 1447 1473", "جدول رأس السنة الهجرية", "تقويم هجري", "١ محرم"]
-      : ["hijri new year dates", "islamic new year schedule", "1 muharram calendar", "when is hijri new year"],
-    alternates: { canonical: locale === "ar" ? "/countdowns/hijri-new-year/years" : `/${locale}/countdowns/hijri-new-year/years` },
+    title,
+    description,
+    keywords,
+    ...generatePageSEO(locale, "/countdowns/hijri-new-year/years", { title, description, keywords }),
   };
 }
 

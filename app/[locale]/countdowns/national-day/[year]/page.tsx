@@ -1,5 +1,6 @@
 import { unstable_setRequestLocale } from "next-intl/server";
 import type { Metadata } from "next";
+import { generatePageSEO } from "@/lib/utils/metadata";
 import { NATIONAL_DAY_DATA, NATIONAL_DAY_YEARS, formatDateAr } from "@/lib/data/nationalDayData";
 import NationalDayYearPage from "./NationalDayYearPage";
 
@@ -30,7 +31,17 @@ export async function generateMetadata({
     keywords: isAr
       ? [`اليوم الوطني ${yearNum}`, `اليوم الوطني ${data.nationalDayNumber}`, `كم باقي على اليوم الوطني ${yearNum}`]
       : [`national day ${yearNum}`, `saudi national day ${data.nationalDayNumber}`],
-    alternates: { canonical: locale === "ar" ? "/countdowns/national-day/${year}" : `/${locale}/countdowns/national-day/${year}` },
+    ...generatePageSEO(locale, `/countdowns/national-day/${year}`, {
+      title: isAr
+        ? `اليوم الوطني السعودي ${toAr(data.nationalDayNumber)} — ${toAr(yearNum)} | كم باقي؟`
+        : `Saudi National Day ${data.nationalDayNumber} — ${yearNum} Countdown`,
+      description: isAr
+        ? `تابع العد التنازلي لليوم الوطني السعودي ${toAr(data.nationalDayNumber)} الموافق ${formatDateAr(data.date)}. عداد تنازلي دقيق ومعلومات كاملة.`
+        : `Countdown to Saudi National Day ${data.nationalDayNumber}, ${data.date}.`,
+      keywords: isAr
+        ? [`اليوم الوطني ${yearNum}`, `اليوم الوطني ${data.nationalDayNumber}`, `كم باقي على اليوم الوطني ${yearNum}`]
+        : [`national day ${yearNum}`, `saudi national day ${data.nationalDayNumber}`],
+    }),
   };
 }
 

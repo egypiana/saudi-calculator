@@ -1,5 +1,6 @@
 import { unstable_setRequestLocale } from "next-intl/server";
 import type { Metadata } from "next";
+import { generatePageSEO } from "@/lib/utils/metadata";
 import { HAJJ_DATA, HAJJ_YEARS } from "@/lib/data/hajjData";
 import HajjYearPage from "./HajjYearPage";
 
@@ -15,11 +16,13 @@ export async function generateMetadata({
   const yearNum = parseInt(year);
   const data = HAJJ_DATA[yearNum];
   if (!data) return { title: "موسم الحج — غير موجود" };
+  const title = data.content.metaTitle;
+  const description = data.content.metaDescription;
   return {
-    title: data.content.metaTitle,
-    description: data.content.metaDescription,
+    title,
+    description,
     keywords: data.content.keywords,
-    alternates: { canonical: locale === "ar" ? "/countdowns/hajj/${year}" : `/${locale}/countdowns/hajj/${year}` },
+    ...generatePageSEO(locale, `/countdowns/hajj/${year}`, { title, description, keywords: data.content.keywords }),
   };
 }
 

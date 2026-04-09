@@ -1,5 +1,6 @@
 import { unstable_setRequestLocale } from "next-intl/server";
 import type { Metadata } from "next";
+import { generatePageSEO } from "@/lib/utils/metadata";
 import { EID_ADHA_DATA, EID_ADHA_YEARS } from "@/lib/data/eidAdhaData";
 import EidAdhaYearPage from "./EidAdhaYearPage";
 
@@ -15,11 +16,13 @@ export async function generateMetadata({
   const yearNum = parseInt(year);
   const data = EID_ADHA_DATA[yearNum];
   if (!data) return { title: "عيد الأضحى — غير موجود" };
+  const title = data.content.metaTitle;
+  const description = data.content.metaDescription;
   return {
-    title: data.content.metaTitle,
-    description: data.content.metaDescription,
+    title,
+    description,
     keywords: data.content.keywords,
-    alternates: { canonical: locale === "ar" ? "/countdowns/eid-adha/${year}" : `/${locale}/countdowns/eid-adha/${year}` },
+    ...generatePageSEO(locale, `/countdowns/eid-adha/${year}`, { title, description, keywords: data.content.keywords }),
   };
 }
 

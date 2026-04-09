@@ -1,5 +1,6 @@
 import { unstable_setRequestLocale } from "next-intl/server";
 import type { Metadata } from "next";
+import { generatePageSEO } from "@/lib/utils/metadata";
 import { LAILATUL_QADR_DATA, LAILATUL_QADR_YEARS } from "@/lib/data/lailatulQadrData";
 import LailatulQadrYearPage from "./LailatulQadrYearPage";
 
@@ -19,11 +20,13 @@ export async function generateMetadata({
     return { title: "ليلة القدر — غير موجود" };
   }
 
+  const title = data.content.metaTitle;
+  const description = data.content.metaDescription;
   return {
-    title: data.content.metaTitle,
-    description: data.content.metaDescription,
+    title,
+    description,
     keywords: data.content.keywords,
-    alternates: { canonical: locale === "ar" ? `/countdowns/laylatul-qadr/${year}` : `/${locale}/countdowns/laylatul-qadr/${year}` },
+    ...generatePageSEO(locale, `/countdowns/laylatul-qadr/${year}`, { title, description, keywords: data.content.keywords }),
   };
 }
 

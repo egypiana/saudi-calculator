@@ -6,15 +6,18 @@ import AdSlot from "@/components/ads/AdSlot";
 import Breadcrumb from "@/components/layout/Breadcrumb";
 import Link from "next/link";
 import { lp } from "@/lib/utils/locale";
+import { generatePageSEO } from "@/lib/utils/metadata";
 
 export async function generateMetadata({ params: { locale } }: { params: { locale: string } }): Promise<Metadata> {
   const isAr = locale === "ar";
+  const title = isAr ? "حاسبة العمر — احسب عمرك بالتفصيل" : "Age Calculator — Calculate Your Exact Age";
+  const description = isAr
+    ? "احسب عمرك بالسنوات والأشهر والأيام. اعرف كم يوم عشت ومتى عيد ميلادك القادم."
+    : "Calculate your age in years, months, and days. Know how many days you've lived and when your next birthday is.";
   return {
-    title: isAr ? "حاسبة العمر — احسب عمرك بالتفصيل" : "Age Calculator — Calculate Your Exact Age",
-    description: isAr
-      ? "احسب عمرك بالسنوات والأشهر والأيام. اعرف كم يوم عشت ومتى عيد ميلادك القادم."
-      : "Calculate your age in years, months, and days. Know how many days you've lived and when your next birthday is.",
-    alternates: { canonical: locale === "ar" ? "/calculators/age" : `/${locale}/calculators/age` },
+    title,
+    description,
+    ...generatePageSEO(locale, "/calculators/age", { title, description }),
   };
 }
 

@@ -2,13 +2,16 @@ import { unstable_setRequestLocale } from "next-intl/server";
 import type { Metadata } from "next";
 import CountdownPageTemplate from "@/components/countdown/CountdownPageTemplate";
 import { getNextNationalEventDate } from "@/lib/events/national-events";
+import { generatePageSEO } from "@/lib/utils/metadata";
 
 export async function generateMetadata({ params: { locale } }: { params: { locale: string } }): Promise<Metadata> {
   const isAr = locale === "ar";
+  const title = isAr ? "كم باقي على يوم العلم السعودي 2026؟" : "Saudi Flag Day Countdown";
+  const description = isAr ? "عداد تنازلي ليوم العلم 11 مارس." : "Countdown to Saudi Flag Day, March 11.";
   return {
-    title: isAr ? "كم باقي على يوم العلم السعودي 2026؟" : "Saudi Flag Day Countdown",
-    description: isAr ? "عداد تنازلي ليوم العلم 11 مارس." : "Countdown to Saudi Flag Day, March 11.",
-    alternates: { canonical: locale === "ar" ? "/countdowns/flag-day" : `/${locale}/countdowns/flag-day` },
+    title,
+    description,
+    ...generatePageSEO(locale, "/countdowns/flag-day", { title, description }),
   };
 }
 

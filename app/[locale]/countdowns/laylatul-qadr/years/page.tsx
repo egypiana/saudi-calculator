@@ -1,5 +1,6 @@
 import { unstable_setRequestLocale } from "next-intl/server";
 import type { Metadata } from "next";
+import { generatePageSEO } from "@/lib/utils/metadata";
 import Breadcrumb from "@/components/layout/Breadcrumb";
 import LailatulQadrYearsClient from "./LailatulQadrYearsClient";
 import LailatulQadrSidebar from "../components/LailatulQadrSidebar";
@@ -10,17 +11,20 @@ export async function generateMetadata({
   params: { locale: string };
 }): Promise<Metadata> {
   const isAr = locale === "ar";
+  const title = isAr
+    ? "جميع مواعيد ليلة القدر من 2025 إلى 2050 | كل السنوات"
+    : "Laylatul Qadr Dates 2025–2050 | All Years";
+  const description = isAr
+    ? "جدول شامل لمواعيد ليلة القدر من 2025 إلى 2050 مع تواريخ الليالي الوترية (21، 23، 25، 27، 29) من العشر الأواخر من رمضان لكل سنة. خطط مسبقاً لليلة القدر القادمة."
+    : "Complete Laylatul Qadr dates from 2025 to 2050 with odd nights (21, 23, 25, 27, 29) of the last ten days of Ramadan. Plan ahead for the Night of Power.";
+  const keywords = isAr
+    ? ["مواعيد ليلة القدر", "ليلة القدر 2025 2050", "جدول ليلة القدر", "تقويم ليلة القدر", "متى ليلة القدر"]
+    : ["laylatul qadr dates", "night of power schedule", "laylatul qadr calendar", "when is laylatul qadr"];
   return {
-    title: isAr
-      ? "جميع مواعيد ليلة القدر من 2025 إلى 2050 | كل السنوات"
-      : "Laylatul Qadr Dates 2025–2050 | All Years",
-    description: isAr
-      ? "جدول شامل لمواعيد ليلة القدر من 2025 إلى 2050 مع تواريخ الليالي الوترية (21، 23، 25، 27، 29) من العشر الأواخر من رمضان لكل سنة. خطط مسبقاً لليلة القدر القادمة."
-      : "Complete Laylatul Qadr dates from 2025 to 2050 with odd nights (21, 23, 25, 27, 29) of the last ten days of Ramadan. Plan ahead for the Night of Power.",
-    keywords: isAr
-      ? ["مواعيد ليلة القدر", "ليلة القدر 2025 2050", "جدول ليلة القدر", "تقويم ليلة القدر", "متى ليلة القدر"]
-      : ["laylatul qadr dates", "night of power schedule", "laylatul qadr calendar", "when is laylatul qadr"],
-    alternates: { canonical: locale === "ar" ? "/countdowns/laylatul-qadr/years" : `/${locale}/countdowns/laylatul-qadr/years` },
+    title,
+    description,
+    keywords,
+    ...generatePageSEO(locale, "/countdowns/laylatul-qadr/years", { title, description, keywords }),
   };
 }
 

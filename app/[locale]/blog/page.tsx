@@ -1,5 +1,6 @@
 import { unstable_setRequestLocale } from "next-intl/server";
 import type { Metadata } from "next";
+import { generatePageSEO } from "@/lib/utils/metadata";
 import Link from "next/link";
 import Breadcrumb from "@/components/layout/Breadcrumb";
 import AdSlot from "@/components/ads/AdSlot";
@@ -15,17 +16,20 @@ export async function generateMetadata({
   params: { locale: string };
 }): Promise<Metadata> {
   const isAr = locale === "ar";
+  const title = isAr
+    ? "المدونة — مقالات مالية وشرعية وأدوات حسابية"
+    : "Blog — Financial, Islamic, and Calculator Guides";
+  const description = isAr
+    ? "مقالات شاملة عن الحسابات المالية والشرعية في السعودية — الميراث، نهاية الخدمة، التمويل العقاري، استهلاك الوقود، والمزيد."
+    : "Comprehensive articles about financial and Islamic calculations in Saudi Arabia.";
+  const keywords = isAr
+    ? ["مدونة حاسبات", "مقالات مالية", "حساب الميراث", "نهاية الخدمة", "التمويل العقاري"]
+    : ["calculator blog", "financial articles", "islamic inheritance"];
   return {
-    title: isAr
-      ? "المدونة — مقالات مالية وشرعية وأدوات حسابية"
-      : "Blog — Financial, Islamic, and Calculator Guides",
-    description: isAr
-      ? "مقالات شاملة عن الحسابات المالية والشرعية في السعودية — الميراث، نهاية الخدمة، التمويل العقاري، استهلاك الوقود، والمزيد."
-      : "Comprehensive articles about financial and Islamic calculations in Saudi Arabia.",
-    keywords: isAr
-      ? ["مدونة حاسبات", "مقالات مالية", "حساب الميراث", "نهاية الخدمة", "التمويل العقاري"]
-      : ["calculator blog", "financial articles", "islamic inheritance"],
-    alternates: { canonical: locale === "ar" ? "/blog" : `/${locale}/blog` },
+    title,
+    description,
+    keywords,
+    ...generatePageSEO(locale, "/blog", { title, description, keywords }),
   };
 }
 

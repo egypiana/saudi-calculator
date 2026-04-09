@@ -1,5 +1,6 @@
 import { unstable_setRequestLocale } from "next-intl/server";
 import type { Metadata } from "next";
+import { generatePageSEO } from "@/lib/utils/metadata";
 import Breadcrumb from "@/components/layout/Breadcrumb";
 import EidAdhaYearsClient from "./EidAdhaYearsClient";
 import EidAdhaSidebar from "../components/EidAdhaSidebar";
@@ -10,17 +11,20 @@ export async function generateMetadata({
   params: { locale: string };
 }): Promise<Metadata> {
   const isAr = locale === "ar";
+  const title = isAr
+    ? "جميع سنوات عيد الأضحى 2025-2050 | مواعيد العيد السنوية"
+    : "Eid Al-Adha Dates 2025–2050 | All Years";
+  const description = isAr
+    ? "تصفح مواعيد عيد الأضحى من 2025 إلى 2050 مع عدادات تنازلية لكل عام. اعرف متى عيد الأضحى في أي سنة بالتاريخ الهجري والميلادي."
+    : "Browse Eid Al-Adha dates from 2025 to 2050 with countdown timers for each year.";
+  const keywords = isAr
+    ? ["جميع سنوات عيد الأضحى", "مواعيد عيد الأضحى", "عيد الأضحى 2025 2050"]
+    : ["eid al-adha dates", "eid al-adha schedule", "when is eid al-adha"];
   return {
-    title: isAr
-      ? "جميع سنوات عيد الأضحى 2025-2050 | مواعيد العيد السنوية"
-      : "Eid Al-Adha Dates 2025–2050 | All Years",
-    description: isAr
-      ? "تصفح مواعيد عيد الأضحى من 2025 إلى 2050 مع عدادات تنازلية لكل عام. اعرف متى عيد الأضحى في أي سنة بالتاريخ الهجري والميلادي."
-      : "Browse Eid Al-Adha dates from 2025 to 2050 with countdown timers for each year.",
-    keywords: isAr
-      ? ["جميع سنوات عيد الأضحى", "مواعيد عيد الأضحى", "عيد الأضحى 2025 2050"]
-      : ["eid al-adha dates", "eid al-adha schedule", "when is eid al-adha"],
-    alternates: { canonical: locale === "ar" ? "/countdowns/eid-adha/years" : `/${locale}/countdowns/eid-adha/years` },
+    title,
+    description,
+    keywords,
+    ...generatePageSEO(locale, "/countdowns/eid-adha/years", { title, description, keywords }),
   };
 }
 

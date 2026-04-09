@@ -3,15 +3,18 @@ import type { Metadata } from "next";
 import Breadcrumb from "@/components/layout/Breadcrumb";
 import { lp } from "@/lib/utils/locale";
 import Link from "next/link";
+import { generatePageSEO } from "@/lib/utils/metadata";
 
 export async function generateMetadata({ params: { locale } }: { params: { locale: string } }): Promise<Metadata> {
   const isAr = locale === "ar";
+  const title = isAr ? "من نحن — حاسبة VIP" : "About Us — Calculator VIP";
+  const description = isAr
+    ? "تعرف على حاسبة VIP — منصة سعودية متكاملة تقدم أدوات حسابية وعدادات تنازلية مجانية ودقيقة للمملكة العربية السعودية."
+    : "Learn about Calculator VIP — a comprehensive Saudi-focused platform offering free, accurate calculators and countdowns for Saudi Arabia.";
   return {
-    title: isAr ? "من نحن — حاسبة VIP" : "About Us — Calculator VIP",
-    description: isAr
-      ? "تعرف على حاسبة VIP — منصة سعودية متكاملة تقدم أدوات حسابية وعدادات تنازلية مجانية ودقيقة للمملكة العربية السعودية."
-      : "Learn about Calculator VIP — a comprehensive Saudi-focused platform offering free, accurate calculators and countdowns for Saudi Arabia.",
-    alternates: { canonical: locale === "ar" ? "/about" : `/${locale}/about` },
+    title,
+    description,
+    ...generatePageSEO(locale, "/about", { title, description }),
   };
 }
 

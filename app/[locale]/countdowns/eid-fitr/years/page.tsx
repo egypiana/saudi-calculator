@@ -1,5 +1,6 @@
 import { unstable_setRequestLocale } from "next-intl/server";
 import type { Metadata } from "next";
+import { generatePageSEO } from "@/lib/utils/metadata";
 import Breadcrumb from "@/components/layout/Breadcrumb";
 import EidYearsClient from "./EidYearsClient";
 import EidSidebar from "../components/EidSidebar";
@@ -10,17 +11,20 @@ export async function generateMetadata({
   params: { locale: string };
 }): Promise<Metadata> {
   const isAr = locale === "ar";
+  const title = isAr
+    ? "جميع سنوات عيد الفطر 2025-2050 | مواعيد العيد السنوية"
+    : "Eid Al-Fitr Dates 2025–2050 | All Years";
+  const description = isAr
+    ? "تصفح مواعيد عيد الفطر من 2025 إلى 2050 مع عدادات تنازلية لكل عام. اعرف متى عيد الفطر في أي سنة بالتاريخ الهجري والميلادي."
+    : "Browse Eid Al-Fitr dates from 2025 to 2050 with countdown timers for each year.";
+  const keywords = isAr
+    ? ["جميع سنوات عيد الفطر", "مواعيد عيد الفطر", "عيد الفطر 2025 2050"]
+    : ["eid al-fitr dates", "eid schedule", "when is eid"];
   return {
-    title: isAr
-      ? "جميع سنوات عيد الفطر 2025-2050 | مواعيد العيد السنوية"
-      : "Eid Al-Fitr Dates 2025–2050 | All Years",
-    description: isAr
-      ? "تصفح مواعيد عيد الفطر من 2025 إلى 2050 مع عدادات تنازلية لكل عام. اعرف متى عيد الفطر في أي سنة بالتاريخ الهجري والميلادي."
-      : "Browse Eid Al-Fitr dates from 2025 to 2050 with countdown timers for each year.",
-    keywords: isAr
-      ? ["جميع سنوات عيد الفطر", "مواعيد عيد الفطر", "عيد الفطر 2025 2050"]
-      : ["eid al-fitr dates", "eid schedule", "when is eid"],
-    alternates: { canonical: locale === "ar" ? "/countdowns/eid-fitr/years" : `/${locale}/countdowns/eid-fitr/years` },
+    title,
+    description,
+    keywords,
+    ...generatePageSEO(locale, "/countdowns/eid-fitr/years", { title, description, keywords }),
   };
 }
 

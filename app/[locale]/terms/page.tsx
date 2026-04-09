@@ -1,15 +1,18 @@
 import { unstable_setRequestLocale } from "next-intl/server";
 import type { Metadata } from "next";
 import Breadcrumb from "@/components/layout/Breadcrumb";
+import { generatePageSEO } from "@/lib/utils/metadata";
 
 export async function generateMetadata({ params: { locale } }: { params: { locale: string } }): Promise<Metadata> {
   const isAr = locale === "ar";
+  const title = isAr ? "شروط الاستخدام — حاسبة VIP" : "Terms of Use — Calculator VIP";
+  const description = isAr
+    ? "شروط استخدام موقع حاسبة VIP — تعرف على الشروط والأحكام المنظمة لاستخدام الموقع."
+    : "Terms of Use for Calculator VIP — Learn about the terms and conditions governing the use of our website.";
   return {
-    title: isAr ? "شروط الاستخدام — حاسبة VIP" : "Terms of Use — Calculator VIP",
-    description: isAr
-      ? "شروط استخدام موقع حاسبة VIP — تعرف على الشروط والأحكام المنظمة لاستخدام الموقع."
-      : "Terms of Use for Calculator VIP — Learn about the terms and conditions governing the use of our website.",
-    alternates: { canonical: locale === "ar" ? "/terms" : `/${locale}/terms` },
+    title,
+    description,
+    ...generatePageSEO(locale, "/terms", { title, description }),
   };
 }
 

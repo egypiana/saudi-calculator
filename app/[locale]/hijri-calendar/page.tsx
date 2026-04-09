@@ -6,15 +6,18 @@ import AdSlot from "@/components/ads/AdSlot";
 import Breadcrumb from "@/components/layout/Breadcrumb";
 import Link from "next/link";
 import { lp } from "@/lib/utils/locale";
+import { generatePageSEO } from "@/lib/utils/metadata";
 
 export async function generateMetadata({ params: { locale } }: { params: { locale: string } }): Promise<Metadata> {
   const isAr = locale === "ar";
+  const title = isAr ? "التقويم الهجري — تحويل التاريخ الميلادي إلى هجري" : "Hijri Calendar — Gregorian to Hijri Converter";
+  const description = isAr
+    ? "حول التاريخ الميلادي إلى هجري والعكس. اعرف التاريخ الهجري اليوم والأشهر الهجرية."
+    : "Convert Gregorian dates to Hijri and vice versa. Know today's Hijri date and Hijri months.";
   return {
-    title: isAr ? "التقويم الهجري — تحويل التاريخ الميلادي إلى هجري" : "Hijri Calendar — Gregorian to Hijri Converter",
-    description: isAr
-      ? "حول التاريخ الميلادي إلى هجري والعكس. اعرف التاريخ الهجري اليوم والأشهر الهجرية."
-      : "Convert Gregorian dates to Hijri and vice versa. Know today's Hijri date and Hijri months.",
-    alternates: { canonical: locale === "ar" ? "/hijri-calendar" : `/${locale}/hijri-calendar` },
+    title,
+    description,
+    ...generatePageSEO(locale, "/hijri-calendar", { title, description }),
   };
 }
 

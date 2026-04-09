@@ -6,15 +6,18 @@ import AdSlot from "@/components/ads/AdSlot";
 import Breadcrumb from "@/components/layout/Breadcrumb";
 import Link from "next/link";
 import { lp } from "@/lib/utils/locale";
+import { generatePageSEO } from "@/lib/utils/metadata";
 
 export async function generateMetadata({ params: { locale } }: { params: { locale: string } }): Promise<Metadata> {
   const isAr = locale === "ar";
+  const title = isAr ? "حاسبة التمويل العقاري — القسط الشهري" : "Mortgage Calculator — Monthly Payment";
+  const description = isAr
+    ? "احسب القسط الشهري للتمويل العقاري في السعودية. أدخل سعر العقار والدفعة الأولى ومعدل الربح."
+    : "Calculate your monthly mortgage payment in Saudi Arabia. Enter property price, down payment, and interest rate.";
   return {
-    title: isAr ? "حاسبة التمويل العقاري — القسط الشهري" : "Mortgage Calculator — Monthly Payment",
-    description: isAr
-      ? "احسب القسط الشهري للتمويل العقاري في السعودية. أدخل سعر العقار والدفعة الأولى ومعدل الربح."
-      : "Calculate your monthly mortgage payment in Saudi Arabia. Enter property price, down payment, and interest rate.",
-    alternates: { canonical: locale === "ar" ? "/calculators/mortgage" : `/${locale}/calculators/mortgage` },
+    title,
+    description,
+    ...generatePageSEO(locale, "/calculators/mortgage", { title, description }),
   };
 }
 

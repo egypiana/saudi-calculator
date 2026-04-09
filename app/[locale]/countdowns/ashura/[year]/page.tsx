@@ -1,5 +1,6 @@
 import { unstable_setRequestLocale } from "next-intl/server";
 import type { Metadata } from "next";
+import { generatePageSEO } from "@/lib/utils/metadata";
 import { ASHURA_DATA, ASHURA_YEARS } from "@/lib/data/ashuraData";
 import AshuraYearPage from "./AshuraYearPage";
 
@@ -19,11 +20,13 @@ export async function generateMetadata({
     return { title: "يوم عاشوراء — غير موجود" };
   }
 
+  const title = data.content.metaTitle;
+  const description = data.content.metaDescription;
   return {
-    title: data.content.metaTitle,
-    description: data.content.metaDescription,
+    title,
+    description,
     keywords: data.content.keywords,
-    alternates: { canonical: locale === "ar" ? `/countdowns/ashura/${year}` : `/${locale}/countdowns/ashura/${year}` },
+    ...generatePageSEO(locale, `/countdowns/ashura/${year}`, { title, description, keywords: data.content.keywords }),
   };
 }
 

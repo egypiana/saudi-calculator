@@ -1,5 +1,6 @@
 import { unstable_setRequestLocale } from "next-intl/server";
 import type { Metadata } from "next";
+import { generatePageSEO } from "@/lib/utils/metadata";
 import Breadcrumb from "@/components/layout/Breadcrumb";
 import RamadanYearsClient from "./RamadanYearsClient";
 import RamadanSidebar from "../components/RamadanSidebar";
@@ -10,17 +11,20 @@ export async function generateMetadata({
   params: { locale: string };
 }): Promise<Metadata> {
   const isAr = locale === "ar";
+  const title = isAr
+    ? "مواعيد رمضان من 2025 إلى 2050 | جميع السنوات"
+    : "Ramadan Dates 2025–2050 | All Years";
+  const description = isAr
+    ? "جدول شامل لمواعيد رمضان من 2025 إلى 2050 مع تواريخ البداية والنهاية وساعات الصيام والفصل وأيام الأسبوع. خطط مسبقاً لرمضان القادم."
+    : "Complete Ramadan dates from 2025 to 2050 with start/end dates, fasting hours, seasons, and more. Plan ahead for upcoming Ramadan.";
+  const keywords = isAr
+    ? ["مواعيد رمضان", "رمضان 2025 2050", "جدول رمضان", "تقويم رمضان", "متى رمضان"]
+    : ["ramadan dates", "ramadan schedule", "ramadan calendar", "when is ramadan"];
   return {
-    title: isAr
-      ? "مواعيد رمضان من 2025 إلى 2050 | جميع السنوات"
-      : "Ramadan Dates 2025–2050 | All Years",
-    description: isAr
-      ? "جدول شامل لمواعيد رمضان من 2025 إلى 2050 مع تواريخ البداية والنهاية وساعات الصيام والفصل وأيام الأسبوع. خطط مسبقاً لرمضان القادم."
-      : "Complete Ramadan dates from 2025 to 2050 with start/end dates, fasting hours, seasons, and more. Plan ahead for upcoming Ramadan.",
-    keywords: isAr
-      ? ["مواعيد رمضان", "رمضان 2025 2050", "جدول رمضان", "تقويم رمضان", "متى رمضان"]
-      : ["ramadan dates", "ramadan schedule", "ramadan calendar", "when is ramadan"],
-    alternates: { canonical: locale === "ar" ? "/countdowns/ramadan/years" : `/${locale}/countdowns/ramadan/years` },
+    title,
+    description,
+    keywords,
+    ...generatePageSEO(locale, "/countdowns/ramadan/years", { title, description, keywords }),
   };
 }
 

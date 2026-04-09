@@ -1,5 +1,6 @@
 import { unstable_setRequestLocale } from "next-intl/server";
 import type { Metadata } from "next";
+import { generatePageSEO } from "@/lib/utils/metadata";
 import Breadcrumb from "@/components/layout/Breadcrumb";
 import ArafahYearsClient from "./ArafahYearsClient";
 import ArafahSidebar from "../components/ArafahSidebar";
@@ -10,17 +11,20 @@ export async function generateMetadata({
   params: { locale: string };
 }): Promise<Metadata> {
   const isAr = locale === "ar";
+  const title = isAr
+    ? "جميع مواعيد يوم عرفة من 2025 إلى 2050 | كل السنوات"
+    : "Arafat Day Dates 2025\u20132050 | All Years";
+  const description = isAr
+    ? "جدول شامل لمواعيد يوم عرفة من 2025 إلى 2050 مع تواريخ عيد الأضحى وبداية الحج والفصل المناخي لكل سنة. خطط مسبقاً ليوم عرفة القادم."
+    : "Complete Arafat Day dates from 2025 to 2050 with Eid Al-Adha dates and Hajj start dates. Plan ahead for the Day of Arafah.";
+  const keywords = isAr
+    ? ["مواعيد يوم عرفة", "يوم عرفة 2025 2050", "جدول يوم عرفة", "تقويم يوم عرفة", "متى يوم عرفة"]
+    : ["arafat day dates", "day of arafah schedule", "arafah calendar", "when is arafat day"];
   return {
-    title: isAr
-      ? "جميع مواعيد يوم عرفة من 2025 إلى 2050 | كل السنوات"
-      : "Arafat Day Dates 2025\u20132050 | All Years",
-    description: isAr
-      ? "جدول شامل لمواعيد يوم عرفة من 2025 إلى 2050 مع تواريخ عيد الأضحى وبداية الحج والفصل المناخي لكل سنة. خطط مسبقاً ليوم عرفة القادم."
-      : "Complete Arafat Day dates from 2025 to 2050 with Eid Al-Adha dates and Hajj start dates. Plan ahead for the Day of Arafah.",
-    keywords: isAr
-      ? ["مواعيد يوم عرفة", "يوم عرفة 2025 2050", "جدول يوم عرفة", "تقويم يوم عرفة", "متى يوم عرفة"]
-      : ["arafat day dates", "day of arafah schedule", "arafah calendar", "when is arafat day"],
-    alternates: { canonical: locale === "ar" ? "/countdowns/arafah/years" : `/${locale}/countdowns/arafah/years` },
+    title,
+    description,
+    keywords,
+    ...generatePageSEO(locale, "/countdowns/arafah/years", { title, description, keywords }),
   };
 }
 

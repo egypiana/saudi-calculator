@@ -4,15 +4,18 @@ import Link from "next/link";
 import Breadcrumb from "@/components/layout/Breadcrumb";
 import { lp } from "@/lib/utils/locale";
 import { ALL_ARTICLES } from "@/lib/blog/articles";
+import { generatePageSEO } from "@/lib/utils/metadata";
 
 export async function generateMetadata({ params: { locale } }: { params: { locale: string } }): Promise<Metadata> {
   const isAr = locale === "ar";
+  const title = isAr ? "خريطة الموقع — حاسبة VIP" : "Sitemap — Calculator VIP";
+  const description = isAr
+    ? "تصفح جميع صفحات موقع حاسبة VIP — الحاسبات والعدادات والمقالات والمزيد."
+    : "Browse all pages on Calculator VIP — calculators, countdowns, articles, and more.";
   return {
-    title: isAr ? "خريطة الموقع — حاسبة VIP" : "Sitemap — Calculator VIP",
-    description: isAr
-      ? "تصفح جميع صفحات موقع حاسبة VIP — الحاسبات والعدادات والمقالات والمزيد."
-      : "Browse all pages on Calculator VIP — calculators, countdowns, articles, and more.",
-    alternates: { canonical: locale === "ar" ? "/sitemap" : `/${locale}/sitemap` },
+    title,
+    description,
+    ...generatePageSEO(locale, "/sitemap", { title, description }),
   };
 }
 

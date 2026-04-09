@@ -1,5 +1,6 @@
 import { unstable_setRequestLocale } from "next-intl/server";
 import type { Metadata } from "next";
+import { generatePageSEO } from "@/lib/utils/metadata";
 import { HIJRI_NEW_YEAR_DATA, HIJRI_NEW_YEAR_YEARS } from "@/lib/data/hijriNewYearData";
 import HijriNewYearYearPage from "./HijriNewYearYearPage";
 
@@ -19,11 +20,13 @@ export async function generateMetadata({
     return { title: "رأس السنة الهجرية — غير موجود" };
   }
 
+  const title = data.content.metaTitle;
+  const description = data.content.metaDescription;
   return {
-    title: data.content.metaTitle,
-    description: data.content.metaDescription,
+    title,
+    description,
     keywords: data.content.keywords,
-    alternates: { canonical: locale === "ar" ? `/countdowns/hijri-new-year/${year}` : `/${locale}/countdowns/hijri-new-year/${year}` },
+    ...generatePageSEO(locale, `/countdowns/hijri-new-year/${year}`, { title, description, keywords: data.content.keywords }),
   };
 }
 

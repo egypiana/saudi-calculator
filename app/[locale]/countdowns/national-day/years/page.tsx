@@ -1,5 +1,6 @@
 import { unstable_setRequestLocale } from "next-intl/server";
 import type { Metadata } from "next";
+import { generatePageSEO } from "@/lib/utils/metadata";
 import Breadcrumb from "@/components/layout/Breadcrumb";
 import NationalDayYearsClient from "./NationalDayYearsClient";
 import NationalDaySidebar from "../components/NationalDaySidebar";
@@ -10,17 +11,20 @@ export async function generateMetadata({
   params: { locale: string };
 }): Promise<Metadata> {
   const isAr = locale === "ar";
+  const title = isAr
+    ? "جميع أعوام اليوم الوطني السعودي 2025-2050 | مواعيد اليوم الوطني"
+    : "Saudi National Day Dates 2025–2050 | All Years";
+  const description = isAr
+    ? "تصفح مواعيد اليوم الوطني السعودي من 2025 إلى 2050 مع عدادات تنازلية لكل عام. اعرف رقم اليوم الوطني وتاريخه في أي سنة."
+    : "Browse Saudi National Day dates from 2025 to 2050 with countdown timers for each year.";
+  const keywords = isAr
+    ? ["جميع أعوام اليوم الوطني", "مواعيد اليوم الوطني", "اليوم الوطني 2025 2050"]
+    : ["national day dates", "saudi national day schedule"];
   return {
-    title: isAr
-      ? "جميع أعوام اليوم الوطني السعودي 2025-2050 | مواعيد اليوم الوطني"
-      : "Saudi National Day Dates 2025–2050 | All Years",
-    description: isAr
-      ? "تصفح مواعيد اليوم الوطني السعودي من 2025 إلى 2050 مع عدادات تنازلية لكل عام. اعرف رقم اليوم الوطني وتاريخه في أي سنة."
-      : "Browse Saudi National Day dates from 2025 to 2050 with countdown timers for each year.",
-    keywords: isAr
-      ? ["جميع أعوام اليوم الوطني", "مواعيد اليوم الوطني", "اليوم الوطني 2025 2050"]
-      : ["national day dates", "saudi national day schedule"],
-    alternates: { canonical: locale === "ar" ? "/countdowns/national-day/years" : `/${locale}/countdowns/national-day/years` },
+    title,
+    description,
+    keywords,
+    ...generatePageSEO(locale, "/countdowns/national-day/years", { title, description, keywords }),
   };
 }
 

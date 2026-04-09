@@ -1,5 +1,6 @@
 import { unstable_setRequestLocale } from "next-intl/server";
 import type { Metadata } from "next";
+import { generatePageSEO } from "@/lib/utils/metadata";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import Breadcrumb from "@/components/layout/Breadcrumb";
@@ -28,19 +29,20 @@ export async function generateMetadata({
   if (!article) return { title: "مقال غير موجود" };
 
   const isAr = locale === "ar";
+  const title = isAr ? article.titleAr : article.titleEn;
+  const description = isAr ? article.descriptionAr : article.descriptionEn;
   return {
-    title: isAr ? article.titleAr : article.titleEn,
-    description: isAr ? article.descriptionAr : article.descriptionEn,
+    title,
+    description,
     keywords: article.keywords,
-    alternates: { canonical: locale === "ar" ? "/blog/${slug}" : `/${locale}/blog/${slug}` },
-    openGraph: {
-      title: isAr ? article.titleAr : article.titleEn,
-      description: isAr ? article.descriptionAr : article.descriptionEn,
-      type: "article",
+    ...generatePageSEO(locale, `/blog/${slug}`, {
+      title,
+      description,
+      keywords: article.keywords,
+      ogType: "article",
       publishedTime: article.publishDate,
       modifiedTime: article.updatedDate || article.publishDate,
-      authors: ["CalculatorVIP"],
-    },
+    }),
   };
 }
 

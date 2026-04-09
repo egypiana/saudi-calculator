@@ -5,15 +5,18 @@ import AdSlot from "@/components/ads/AdSlot";
 import Link from "next/link";
 import { Calculator } from "lucide-react";
 import { lp } from "@/lib/utils/locale";
+import { generatePageSEO } from "@/lib/utils/metadata";
 
 export async function generateMetadata({ params: { locale } }: { params: { locale: string } }): Promise<Metadata> {
   const isAr = locale === "ar";
+  const title = isAr ? "الحاسبات — أدوات حسابية متنوعة" : "Calculators — Various Calculation Tools";
+  const description = isAr
+    ? "مجموعة شاملة من الحاسبات: الزكاة، الراتب، الضريبة، نهاية الخدمة، التمويل العقاري، BMI، المعدل التراكمي، والمزيد."
+    : "Comprehensive calculators: Zakat, Salary, VAT, End of Service, Mortgage, BMI, GPA, and more.";
   return {
-    title: isAr ? "الحاسبات — أدوات حسابية متنوعة" : "Calculators — Various Calculation Tools",
-    description: isAr
-      ? "مجموعة شاملة من الحاسبات: الزكاة، الراتب، الضريبة، نهاية الخدمة، التمويل العقاري، BMI، المعدل التراكمي، والمزيد."
-      : "Comprehensive calculators: Zakat, Salary, VAT, End of Service, Mortgage, BMI, GPA, and more.",
-    alternates: { canonical: locale === "ar" ? "/calculators" : `/${locale}/calculators` },
+    title,
+    description,
+    ...generatePageSEO(locale, "/calculators", { title, description }),
   };
 }
 

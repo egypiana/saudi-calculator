@@ -7,7 +7,7 @@ import { ThemeProvider } from "@/components/providers/ThemeProvider";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import "./globals.css";
-import { lp } from "@/lib/utils/locale";
+import { generateAlternates, generateOGMetadata, generateTwitterMetadata } from "@/lib/utils/metadata";
 
 const ibmPlexArabic = IBM_Plex_Sans_Arabic({
   subsets: ["arabic", "latin"],
@@ -28,27 +28,25 @@ export async function generateMetadata({
   params: { locale: string };
 }): Promise<Metadata> {
   const t = await getTranslations({ locale, namespace: "metadata" });
+  const siteName = t("siteName");
+  const siteDescription = t("siteDescription");
+
   return {
     title: {
-      default: t("siteName"),
-      template: `%s | ${t("siteName")}`,
+      default: siteName,
+      template: `%s | ${siteName}`,
     },
-    description: t("siteDescription"),
+    description: siteDescription,
     metadataBase: new URL("https://calculatorvip.com"),
-    alternates: {
-      canonical: locale === "ar" ? "/" : lp(locale, "/"),
-      languages: {
-        ar: "/",
-        en: "/en",
-        es: "/es",
-        pt: "/pt",
-      },
-    },
-    openGraph: {
-      type: "website",
-      locale: locale === "ar" ? "ar_SA" : locale,
-      siteName: t("siteName"),
-    },
+    alternates: generateAlternates(locale, "/"),
+    openGraph: generateOGMetadata(locale, "/", {
+      title: siteName,
+      description: siteDescription,
+    }),
+    twitter: generateTwitterMetadata({
+      title: siteName,
+      description: siteDescription,
+    }),
     robots: {
       index: true,
       follow: true,

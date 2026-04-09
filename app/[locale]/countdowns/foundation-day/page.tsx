@@ -2,13 +2,16 @@ import { unstable_setRequestLocale } from "next-intl/server";
 import type { Metadata } from "next";
 import CountdownPageTemplate from "@/components/countdown/CountdownPageTemplate";
 import { getNextNationalEventDate } from "@/lib/events/national-events";
+import { generatePageSEO } from "@/lib/utils/metadata";
 
 export async function generateMetadata({ params: { locale } }: { params: { locale: string } }): Promise<Metadata> {
   const isAr = locale === "ar";
+  const title = isAr ? "كم باقي على يوم التأسيس 2026؟" : "Saudi Foundation Day Countdown";
+  const description = isAr ? "عداد تنازلي ليوم التأسيس السعودي 22 فبراير." : "Countdown to Saudi Foundation Day, February 22.";
   return {
-    title: isAr ? "كم باقي على يوم التأسيس 2026؟" : "Saudi Foundation Day Countdown",
-    description: isAr ? "عداد تنازلي ليوم التأسيس السعودي 22 فبراير." : "Countdown to Saudi Foundation Day, February 22.",
-    alternates: { canonical: locale === "ar" ? "/countdowns/foundation-day" : `/${locale}/countdowns/foundation-day` },
+    title,
+    description,
+    ...generatePageSEO(locale, "/countdowns/foundation-day", { title, description }),
   };
 }
 

@@ -1,5 +1,6 @@
 import { unstable_setRequestLocale } from "next-intl/server";
 import type { Metadata } from "next";
+import { generatePageSEO } from "@/lib/utils/metadata";
 import Breadcrumb from "@/components/layout/Breadcrumb";
 import AshuraYearsClient from "./AshuraYearsClient";
 import AshuraSidebar from "../components/AshuraSidebar";
@@ -10,17 +11,20 @@ export async function generateMetadata({
   params: { locale: string };
 }): Promise<Metadata> {
   const isAr = locale === "ar";
+  const title = isAr
+    ? "جميع مواعيد يوم عاشوراء من 2025 إلى 2050 | كل السنوات"
+    : "Ashura Day Dates 2025\u20132050 | All Years";
+  const description = isAr
+    ? "جدول شامل لمواعيد يوم عاشوراء من 2025 إلى 2050 مع تواريخ تاسوعاء والحادي عشر من محرم والفصل المناخي لكل سنة. خطط مسبقاً ليوم عاشوراء القادم."
+    : "Complete Ashura Day dates from 2025 to 2050 with Tasua and 11th Muharram dates. Plan ahead for the Day of Ashura.";
+  const keywords = isAr
+    ? ["مواعيد يوم عاشوراء", "يوم عاشوراء 2025 2050", "جدول يوم عاشوراء", "تقويم يوم عاشوراء", "متى يوم عاشوراء"]
+    : ["ashura day dates", "day of ashura schedule", "ashura calendar", "when is ashura"];
   return {
-    title: isAr
-      ? "جميع مواعيد يوم عاشوراء من 2025 إلى 2050 | كل السنوات"
-      : "Ashura Day Dates 2025\u20132050 | All Years",
-    description: isAr
-      ? "جدول شامل لمواعيد يوم عاشوراء من 2025 إلى 2050 مع تواريخ تاسوعاء والحادي عشر من محرم والفصل المناخي لكل سنة. خطط مسبقاً ليوم عاشوراء القادم."
-      : "Complete Ashura Day dates from 2025 to 2050 with Tasua and 11th Muharram dates. Plan ahead for the Day of Ashura.",
-    keywords: isAr
-      ? ["مواعيد يوم عاشوراء", "يوم عاشوراء 2025 2050", "جدول يوم عاشوراء", "تقويم يوم عاشوراء", "متى يوم عاشوراء"]
-      : ["ashura day dates", "day of ashura schedule", "ashura calendar", "when is ashura"],
-    alternates: { canonical: locale === "ar" ? "/countdowns/ashura/years" : `/${locale}/countdowns/ashura/years` },
+    title,
+    description,
+    keywords,
+    ...generatePageSEO(locale, "/countdowns/ashura/years", { title, description, keywords }),
   };
 }
 
