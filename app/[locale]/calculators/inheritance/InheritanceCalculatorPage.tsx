@@ -11,6 +11,8 @@ import InheritanceSidebar from "./components/InheritanceSidebar";
 import InheritanceSEO from "./components/InheritanceSEO";
 import InheritanceFAQ from "./components/InheritanceFAQ";
 import ExampleScenarios from "./components/ExampleScenarios";
+import FamilyTreeVisual from "./components/FamilyTreeVisual";
+import PDFExport from "./components/PDFExport";
 
 const fmt = (n: number) => n.toLocaleString("ar-SA", { maximumFractionDigits: 0 });
 
@@ -89,9 +91,11 @@ export default function InheritanceCalculatorPage({ locale }: Props) {
     offers: { "@type": "Offer", price: "0", priceCurrency: "SAR" },
     featureList: [
       "17 نوع وارث",
+      "شجرة عائلة بصرية",
       "قواعد الحجب",
       "العول والرد",
       "المذهب الحنبلي",
+      "تصدير PDF",
       "أمثلة جاهزة",
       "رسم بياني",
       "خطوات الحساب التفصيلية",
@@ -116,10 +120,10 @@ export default function InheritanceCalculatorPage({ locale }: Props) {
             حاسبة المواريث الشرعية — تقسيم التركة
           </h1>
           <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
-            احسب أنصبة الورثة الشرعيين فورياً وفق أحكام الشريعة الإسلامية والمذهب الحنبلي — 17 نوع وارث، الحجب، العول والرد.
+            احسب أنصبة الورثة الشرعيين فورياً وفق أحكام الشريعة الإسلامية والمذهب الحنبلي — 17 نوع وارث، شجرة عائلة بصرية، العول والرد والحجب، تصدير PDF.
           </p>
           <div className="flex flex-wrap gap-2 mt-3">
-            {["17 نوع وارث", "حساب فوري", "العول والرد", "أمثلة جاهزة", "مجاني 100%"].map((badge) => (
+            {["17 نوع وارث", "شجرة عائلة بصرية", "العول والرد والحجب", "تصدير PDF", "أمثلة جاهزة", "مجاني 100%"].map((badge) => (
               <span key={badge} className="text-xs px-2.5 py-1 bg-green-100 dark:bg-green-900/20 text-green-700 dark:text-green-400 rounded-full font-medium">
                 ✓ {badge}
               </span>
@@ -262,6 +266,27 @@ export default function InheritanceCalculatorPage({ locale }: Props) {
                 </button>
               </div>
             </div>
+
+            {/* Family Tree Visual */}
+            {result && result.heirs.length > 0 && (
+              <div className="bg-white dark:bg-dark-surface rounded-2xl border border-gray-200 dark:border-gray-700 p-5 sm:p-6 shadow-sm">
+                <FamilyTreeVisual
+                  deceasedGender={deceasedGender}
+                  result={result}
+                  selectedHeirs={selectedHeirs}
+                />
+                {/* PDF Export Button */}
+                {result.heirs.filter(h => !h.isBlocked).length > 0 && (
+                  <div className="mt-6 flex justify-center">
+                    <PDFExport
+                      result={result}
+                      deceasedGender={deceasedGender}
+                      selectedHeirs={selectedHeirs}
+                    />
+                  </div>
+                )}
+              </div>
+            )}
 
             {/* Results */}
             {result && result.heirs.filter(h => !h.isBlocked).length > 0 && (
