@@ -2,6 +2,7 @@
 
 import { useMemo, useState, useEffect } from "react";
 import Link from "next/link";
+import { lp } from "@/lib/utils/locale";
 
 interface Props { locale: string; }
 
@@ -105,7 +106,7 @@ export default function TimeSidebar({ locale }: Props) {
         <h3 className="font-bold text-gray-800 dark:text-white mb-4 text-sm flex items-center gap-2"><span>🧮</span>حاسبات ذات صلة</h3>
         <div className="space-y-1">
           {RELATED_CALCULATORS.map((calc) => (
-            <Link key={calc.href} href={`/${locale}${calc.href}`} className="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors group">
+            <Link key={calc.href} href={lp(locale, calc.href)} className="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors group">
               <span className="text-xl flex-shrink-0">{calc.icon}</span>
               <div className="min-w-0"><div className="text-sm font-medium text-gray-700 dark:text-gray-300 group-hover:text-sky-600 dark:group-hover:text-sky-400 transition-colors">{calc.labelAr}</div><div className="text-[11px] text-gray-400 truncate">{calc.desc}</div></div>
               <span className="text-gray-300 dark:text-gray-600 mr-auto text-xs">←</span>
@@ -119,14 +120,14 @@ export default function TimeSidebar({ locale }: Props) {
         <h3 className="font-bold text-gray-800 dark:text-white mb-4 text-sm flex items-center gap-2"><span>📝</span>مقالات مميزة</h3>
         <div className="space-y-3">
           {randomArticles.map((article, i) => (
-            <Link key={i} href={`/${locale}${article.href}`} className="block group">
+            <Link key={i} href={lp(locale, article.href)} className="block group">
               <h4 className="text-sm font-medium text-gray-700 dark:text-gray-300 group-hover:text-sky-600 dark:group-hover:text-sky-400 transition-colors leading-snug mb-1.5">{article.titleAr}</h4>
               <div className="flex items-center gap-2"><span className={`text-[10px] font-medium px-2 py-0.5 rounded-full ${CATEGORY_COLORS[article.category] || ""}`}>{article.category}</span><span className="text-[11px] text-gray-400">{article.readTime} دقائق قراءة</span></div>
               {i < randomArticles.length - 1 && <div className="border-b border-gray-100 dark:border-gray-800 mt-3" />}
             </Link>
           ))}
         </div>
-        <Link href={`/${locale}/blog`} className="mt-4 block text-center text-sm font-medium text-sky-600 dark:text-sky-400 hover:text-sky-700 transition-colors">تصفح جميع المقالات &larr;</Link>
+        <Link href={lp(locale, "/blog")} className="mt-4 block text-center text-sm font-medium text-sky-600 dark:text-sky-400 hover:text-sky-700 transition-colors">تصفح جميع المقالات &larr;</Link>
       </div>
     </aside>
   );

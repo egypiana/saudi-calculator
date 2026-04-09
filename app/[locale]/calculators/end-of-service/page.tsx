@@ -32,7 +32,7 @@ export async function generateMetadata({
           "نظام العمل",
         ]
       : ["end of service calculator", "saudi labor law", "gratuity calculator", "resignation reward", "termination benefit", "article 84"],
-    alternates: { canonical: `/${locale}/calculators/end-of-service` },
+    alternates: { canonical: locale === "ar" ? "/calculators/end-of-service" : `/${locale}/calculators/end-of-service` },
   };
 }
 

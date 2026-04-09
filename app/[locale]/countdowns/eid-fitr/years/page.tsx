@@ -20,7 +20,7 @@ export async function generateMetadata({
     keywords: isAr
       ? ["جميع سنوات عيد الفطر", "مواعيد عيد الفطر", "عيد الفطر 2025 2050"]
       : ["eid al-fitr dates", "eid schedule", "when is eid"],
-    alternates: { canonical: `/${locale}/countdowns/eid-fitr/years` },
+    alternates: { canonical: locale === "ar" ? "/countdowns/eid-fitr/years" : `/${locale}/countdowns/eid-fitr/years` },
   };
 }
 

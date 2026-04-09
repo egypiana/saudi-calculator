@@ -8,6 +8,7 @@ import { BLOG_CATEGORIES, getCategoryBySlug } from "@/lib/blog/types";
 import { ALL_ARTICLES } from "@/lib/blog/articles";
 import ArticleCard from "../../components/ArticleCard";
 import BlogSidebar from "../../components/BlogSidebar";
+import { lp } from "@/lib/utils/locale";
 
 export async function generateStaticParams() {
   return BLOG_CATEGORIES.flatMap((cat) => [
@@ -34,7 +35,7 @@ export async function generateMetadata({
     description: isAr
       ? cat.descriptionAr
       : `Articles about ${cat.labelEn.toLowerCase()} topics.`,
-    alternates: { canonical: `/${locale}/blog/category/${category}` },
+    alternates: { canonical: locale === "ar" ? "/blog/category/${category}" : `/${locale}/blog/category/${category}` },
   };
 }
 
@@ -77,7 +78,7 @@ export default function CategoryPage({
             <span className="text-xs px-2.5 py-1 bg-green-100 dark:bg-green-900/20 text-green-700 dark:text-green-400 rounded-full font-medium">
               {articles.length} مقالات
             </span>
-            <Link href={`/${locale}/blog`} className="text-xs text-green-600 dark:text-green-400 hover:underline">
+            <Link href={lp(locale, "/blog")} className="text-xs text-green-600 dark:text-green-400 hover:underline">
               ← جميع المقالات
             </Link>
           </div>
@@ -86,7 +87,7 @@ export default function CategoryPage({
         {/* Category Pills */}
         <div className="flex flex-wrap gap-2 mb-8">
           <Link
-            href={`/${locale}/blog`}
+            href={lp(locale, "/blog")}
             className="text-sm px-4 py-2 rounded-full font-medium border border-gray-200 dark:border-gray-700 hover:border-green-500 transition-colors text-gray-600 dark:text-gray-400"
           >
             📋 الكل
@@ -98,7 +99,7 @@ export default function CategoryPage({
             return (
               <Link
                 key={c.slug}
-                href={`/${locale}/blog/category/${c.slug}`}
+                href={lp(locale, `/blog/category/${c.slug}`)}
                 className={`text-sm px-4 py-2 rounded-full font-medium transition-colors ${
                   isActive
                     ? "bg-green-600 text-white"
@@ -127,7 +128,7 @@ export default function CategoryPage({
               <div className="text-center py-16 bg-white dark:bg-dark-surface rounded-2xl border border-gray-200 dark:border-gray-700">
                 <p className="text-4xl mb-4">{cat.icon}</p>
                 <p className="text-gray-500 dark:text-gray-400 font-medium">لا توجد مقالات في هذا القسم بعد</p>
-                <Link href={`/${locale}/blog`} className="text-sm text-green-600 dark:text-green-400 hover:underline mt-2 inline-block">
+                <Link href={lp(locale, "/blog")} className="text-sm text-green-600 dark:text-green-400 hover:underline mt-2 inline-block">
                   تصفح جميع المقالات ←
                 </Link>
               </div>

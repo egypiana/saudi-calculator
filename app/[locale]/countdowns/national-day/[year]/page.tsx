@@ -30,7 +30,7 @@ export async function generateMetadata({
     keywords: isAr
       ? [`اليوم الوطني ${yearNum}`, `اليوم الوطني ${data.nationalDayNumber}`, `كم باقي على اليوم الوطني ${yearNum}`]
       : [`national day ${yearNum}`, `saudi national day ${data.nationalDayNumber}`],
-    alternates: { canonical: `/${locale}/countdowns/national-day/${year}` },
+    alternates: { canonical: locale === "ar" ? "/countdowns/national-day/${year}" : `/${locale}/countdowns/national-day/${year}` },
   };
 }
 

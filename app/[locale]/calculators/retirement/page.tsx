@@ -32,7 +32,7 @@ export async function generateMetadata({
           "سن التقاعد السعودية",
         ]
       : ["retirement calculator", "saudi pension", "GOSI calculator", "early retirement", "pension calculator", "civil pension", "military pension"],
-    alternates: { canonical: `/${locale}/calculators/retirement` },
+    alternates: { canonical: locale === "ar" ? "/calculators/retirement" : `/${locale}/calculators/retirement` },
   };
 }
 

@@ -7,7 +7,7 @@ export async function generateMetadata({ params: { locale } }: { params: { local
   return {
     title: isAr ? "كم باقي على الراتب؟ | مواعيد الرواتب الحكومية" : "Saudi Government Salary Dates",
     description: isAr ? "عداد تنازلي لموعد صرف الرواتب الحكومية. اعرف كم باقي على الراتب." : "Countdown to Saudi government salary payment dates.",
-    alternates: { canonical: `/${locale}/countdowns/salaries-dates` },
+    alternates: { canonical: locale === "ar" ? "/countdowns/salaries-dates" : `/${locale}/countdowns/salaries-dates` },
   };
 }
 

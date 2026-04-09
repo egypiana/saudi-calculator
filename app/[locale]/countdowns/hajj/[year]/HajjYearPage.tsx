@@ -7,6 +7,7 @@ import ShareButtons from "@/components/shared/ShareButtons";
 import AdSlot from "@/components/ads/AdSlot";
 import HajjSidebar from "../components/HajjSidebar";
 import { HAJJ_DATA, HAJJ_YEARS, formatDateAr, getTimeUntilHajj, type HajjYearData } from "@/lib/data/hajjData";
+import { lp } from "@/lib/utils/locale";
 
 function toAr(n: number): string {
   return n.toString().replace(/\d/g, (d) => "٠١٢٣٤٥٦٧٨٩"[parseInt(d)]);
@@ -93,7 +94,7 @@ export default function HajjYearPage({ year, locale }: Props) {
             <div className="flex items-center justify-between gap-4">
               {prevYear ? (
                 <Link
-                  href={`/${locale}/countdowns/hajj/${prevYear}`}
+                  href={lp(locale, `/countdowns/hajj/${prevYear}`)}
                   className="flex-1 flex items-center gap-2 bg-white dark:bg-dark-surface border border-gray-200 dark:border-gray-700 rounded-xl px-4 py-3 hover:bg-gray-50 dark:hover:bg-white/5 transition-colors"
                 >
                   <span className="text-lg">→</span>
@@ -105,7 +106,7 @@ export default function HajjYearPage({ year, locale }: Props) {
               ) : <div className="flex-1" />}
 
               <Link
-                href={`/${locale}/countdowns/hajj/years`}
+                href={lp(locale, "/countdowns/hajj/years")}
                 className="px-4 py-3 bg-emerald-600 text-white rounded-xl text-sm font-medium hover:bg-emerald-700 transition-colors text-center"
               >
                 جميع السنوات
@@ -113,7 +114,7 @@ export default function HajjYearPage({ year, locale }: Props) {
 
               {nextYear ? (
                 <Link
-                  href={`/${locale}/countdowns/hajj/${nextYear}`}
+                  href={lp(locale, `/countdowns/hajj/${nextYear}`)}
                   className="flex-1 flex items-center justify-end gap-2 bg-white dark:bg-dark-surface border border-gray-200 dark:border-gray-700 rounded-xl px-4 py-3 hover:bg-gray-50 dark:hover:bg-white/5 transition-colors"
                 >
                   <div className="text-left">

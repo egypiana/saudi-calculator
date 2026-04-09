@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import { lp } from "@/lib/utils/locale";
 
 interface CountdownMiniCardProps {
   id: string;
@@ -60,7 +61,7 @@ export default function CountdownMiniCard({
 
   return (
     <Link
-      href={`/${locale}${href}`}
+      href={lp(locale, href)}
       className="group block bg-white dark:bg-dark-surface rounded-2xl border border-gray-100 dark:border-gray-800 overflow-hidden hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200"
     >
       {/* Gradient top bar */}

@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { lp } from "@/lib/utils/locale";
 import { useLocale, useTranslations } from "next-intl";
 import {
   Search,
@@ -76,7 +77,7 @@ export default function HomePage() {
             onSubmit={(e) => {
               e.preventDefault();
               if (searchQuery.trim()) {
-                window.location.href = `/${locale}/search?q=${encodeURIComponent(searchQuery)}`;
+                window.location.href = lp(locale, `/search?q=${encodeURIComponent(searchQuery)}`);
               }
             }}
             className="max-w-2xl mx-auto mb-8"
@@ -96,13 +97,13 @@ export default function HomePage() {
           {/* أزرار CTA */}
           <div className="flex items-center justify-center gap-3 flex-wrap mb-10">
             <Link
-              href={`/${locale}/calculators`}
+              href={lp(locale, "/calculators")}
               className="px-6 py-3 bg-gold hover:bg-gold-600 text-white font-bold rounded-xl shadow-lg transition-all hover:shadow-xl"
             >
               {t("exploreCalculators")}
             </Link>
             <Link
-              href={`/${locale}/countdowns/salaries-dates`}
+              href={lp(locale, "/countdowns/salaries-dates")}
               className="px-6 py-3 bg-white/10 hover:bg-white/20 text-white font-bold rounded-xl border border-white/30 transition-all"
             >
               {t("salaryDates")}
@@ -184,7 +185,7 @@ export default function HomePage() {
             {categories.map((cat, i) => (
               <Link
                 key={i}
-                href={`/${locale}${cat.href}`}
+                href={lp(locale, cat.href)}
                 className="group bg-gray-50 dark:bg-dark-bg border border-gray-200 dark:border-gray-700 rounded-2xl p-6 text-center hover:border-primary-400 hover:shadow-lg transition-all duration-300 hover:-translate-y-1"
               >
                 <div className="w-14 h-14 mx-auto mb-3 bg-primary-50 dark:bg-primary-900/20 rounded-xl flex items-center justify-center group-hover:bg-primary-100 dark:group-hover:bg-primary-900/40 transition-colors">
@@ -213,7 +214,7 @@ export default function HomePage() {
             {featuredTools.map((tool, i) => (
               <Link
                 key={i}
-                href={`/${locale}${tool.href}`}
+                href={lp(locale, tool.href)}
                 className="flex-shrink-0 px-5 py-3 bg-white dark:bg-dark-surface border border-gray-200 dark:border-gray-700 rounded-xl hover:border-primary-400 hover:shadow-md transition-all text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400"
               >
                 {tool.label}

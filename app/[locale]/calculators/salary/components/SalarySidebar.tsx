@@ -3,6 +3,7 @@
 import { useMemo } from "react";
 import Link from "next/link";
 import { GOSI_RATES, GOSI_MAX_SALARY } from "@/lib/calculations/salary";
+import { lp } from "@/lib/utils/locale";
 
 interface Props {
   locale: string;
@@ -88,7 +89,7 @@ export default function SalarySidebar({ locale }: Props) {
         <h3 className="font-bold text-teal-800 dark:text-teal-300 mb-3 text-sm">📅 مواعيد الصرف</h3>
         <div className="space-y-2">
           {SALARY_DATES.map((item) => (
-            <Link key={item.href} href={`/${locale}${item.href}`} className="flex items-center justify-between group">
+            <Link key={item.href} href={lp(locale, item.href)} className="flex items-center justify-between group">
               <span className="text-xs text-teal-700 dark:text-teal-400 group-hover:text-teal-500 flex items-center gap-1.5">
                 <span>{item.icon}</span> {item.labelAr}
               </span>
@@ -117,7 +118,7 @@ export default function SalarySidebar({ locale }: Props) {
         </h3>
         <div className="space-y-1">
           {RELATED_CALCULATORS.map((calc) => (
-            <Link key={calc.href} href={`/${locale}${calc.href}`} className="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors group">
+            <Link key={calc.href} href={lp(locale, calc.href)} className="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors group">
               <span className="text-xl flex-shrink-0">{calc.icon}</span>
               <div className="min-w-0">
                 <div className="text-sm font-medium text-gray-700 dark:text-gray-300 group-hover:text-teal-600 dark:group-hover:text-teal-400 transition-colors">{calc.labelAr}</div>
@@ -136,7 +137,7 @@ export default function SalarySidebar({ locale }: Props) {
         </h3>
         <div className="space-y-3">
           {randomArticles.map((article, i) => (
-            <Link key={i} href={`/${locale}${article.href}`} className="block group">
+            <Link key={i} href={lp(locale, article.href)} className="block group">
               <h4 className="text-sm font-medium text-gray-700 dark:text-gray-300 group-hover:text-teal-600 dark:group-hover:text-teal-400 transition-colors leading-snug mb-1.5">
                 {article.titleAr}
               </h4>
@@ -150,7 +151,7 @@ export default function SalarySidebar({ locale }: Props) {
             </Link>
           ))}
         </div>
-        <Link href={`/${locale}/blog`} className="mt-4 block text-center text-sm font-medium text-teal-600 dark:text-teal-400 hover:text-teal-700 transition-colors">
+        <Link href={lp(locale, "/blog")} className="mt-4 block text-center text-sm font-medium text-teal-600 dark:text-teal-400 hover:text-teal-700 transition-colors">
           تصفح جميع المقالات &larr;
         </Link>
       </div>

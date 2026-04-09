@@ -8,7 +8,7 @@ export async function generateMetadata({ params: { locale } }: { params: { local
   return {
     title: isAr ? "كم باقي على يوم التأسيس 2026؟" : "Saudi Foundation Day Countdown",
     description: isAr ? "عداد تنازلي ليوم التأسيس السعودي 22 فبراير." : "Countdown to Saudi Foundation Day, February 22.",
-    alternates: { canonical: `/${locale}/countdowns/foundation-day` },
+    alternates: { canonical: locale === "ar" ? "/countdowns/foundation-day" : `/${locale}/countdowns/foundation-day` },
   };
 }
 

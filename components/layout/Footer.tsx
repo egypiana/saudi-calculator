@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { useLocale, useTranslations } from "next-intl";
+import { lp } from "@/lib/utils/locale";
 
 const countdownLinks = [
   { labelKey: "ramadan", href: "/countdowns/ramadan" },
@@ -62,7 +63,7 @@ export default function Footer() {
               {countdownLinks.map((link) => (
                 <li key={link.href}>
                   <Link
-                    href={`/${locale}${link.href}`}
+                    href={lp(locale, link.href)}
                     className="text-sm hover:text-white transition-colors flex items-center gap-1"
                   >
                     <span className="text-xs opacity-50">{locale === "ar" ? "←" : "→"}</span>
@@ -82,7 +83,7 @@ export default function Footer() {
               {calculatorLinks.map((link) => (
                 <li key={link.href}>
                   <Link
-                    href={`/${locale}${link.href}`}
+                    href={lp(locale, link.href)}
                     className="text-sm hover:text-white transition-colors flex items-center gap-1"
                   >
                     <span className="text-xs opacity-50">{locale === "ar" ? "←" : "→"}</span>
@@ -100,31 +101,31 @@ export default function Footer() {
             </h3>
             <ul className="space-y-2">
               <li>
-                <Link href={`/${locale}/about`} className="text-sm hover:text-white transition-colors flex items-center gap-1">
+                <Link href={lp(locale, "/about")} className="text-sm hover:text-white transition-colors flex items-center gap-1">
                   <span className="text-xs opacity-50">{locale === "ar" ? "←" : "→"}</span>
                   {tn("about")}
                 </Link>
               </li>
               <li>
-                <Link href={`/${locale}/contact`} className="text-sm hover:text-white transition-colors flex items-center gap-1">
+                <Link href={lp(locale, "/contact")} className="text-sm hover:text-white transition-colors flex items-center gap-1">
                   <span className="text-xs opacity-50">{locale === "ar" ? "←" : "→"}</span>
                   {tn("contact")}
                 </Link>
               </li>
               <li>
-                <Link href={`/${locale}/sitemap`} className="text-sm hover:text-white transition-colors flex items-center gap-1">
+                <Link href={lp(locale, "/sitemap")} className="text-sm hover:text-white transition-colors flex items-center gap-1">
                   <span className="text-xs opacity-50">{locale === "ar" ? "←" : "→"}</span>
                   {t("sitemap")}
                 </Link>
               </li>
               <li>
-                <Link href={`/${locale}/privacy-policy`} className="text-sm hover:text-white transition-colors flex items-center gap-1">
+                <Link href={lp(locale, "/privacy-policy")} className="text-sm hover:text-white transition-colors flex items-center gap-1">
                   <span className="text-xs opacity-50">{locale === "ar" ? "←" : "→"}</span>
                   {t("privacyPolicy")}
                 </Link>
               </li>
               <li>
-                <Link href={`/${locale}/terms`} className="text-sm hover:text-white transition-colors flex items-center gap-1">
+                <Link href={lp(locale, "/terms")} className="text-sm hover:text-white transition-colors flex items-center gap-1">
                   <span className="text-xs opacity-50">{locale === "ar" ? "←" : "→"}</span>
                   {t("terms")}
                 </Link>

@@ -20,7 +20,7 @@ export async function generateMetadata({
     keywords: isAr
       ? ["جميع سنوات عيد الأضحى", "مواعيد عيد الأضحى", "عيد الأضحى 2025 2050"]
       : ["eid al-adha dates", "eid al-adha schedule", "when is eid al-adha"],
-    alternates: { canonical: `/${locale}/countdowns/eid-adha/years` },
+    alternates: { canonical: locale === "ar" ? "/countdowns/eid-adha/years" : `/${locale}/countdowns/eid-adha/years` },
   };
 }
 

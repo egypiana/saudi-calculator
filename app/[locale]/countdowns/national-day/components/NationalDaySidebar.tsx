@@ -2,6 +2,7 @@
 
 import { useMemo } from "react";
 import Link from "next/link";
+import { lp } from "@/lib/utils/locale";
 
 interface NationalDaySidebarProps {
   locale: string;
@@ -81,7 +82,7 @@ export default function NationalDaySidebar({ locale }: NationalDaySidebarProps) 
             return (
               <Link
                 key={item.href}
-                href={`/${locale}${item.href}`}
+                href={lp(locale, item.href)}
                 className="flex items-center justify-between px-3 py-2.5 rounded-xl hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors group"
               >
                 <div className="flex items-center gap-2.5">
@@ -98,7 +99,7 @@ export default function NationalDaySidebar({ locale }: NationalDaySidebarProps) 
           })}
         </div>
         <Link
-          href={`/${locale}/countdowns`}
+          href={lp(locale, "/countdowns")}
           className="mt-3 block text-center text-xs font-medium text-green-600 dark:text-green-400 hover:text-green-700 transition-colors"
         >
           عرض جميع العدادات &larr;
@@ -114,7 +115,7 @@ export default function NationalDaySidebar({ locale }: NationalDaySidebarProps) 
           {RELATED_CALCULATORS.map((calc) => (
             <Link
               key={calc.href}
-              href={`/${locale}${calc.href}`}
+              href={lp(locale, calc.href)}
               className="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors group"
             >
               <span className="text-xl flex-shrink-0">{calc.icon}</span>
@@ -136,7 +137,7 @@ export default function NationalDaySidebar({ locale }: NationalDaySidebarProps) 
         </h3>
         <div className="space-y-3">
           {randomArticles.map((article, i) => (
-            <Link key={i} href={`/${locale}${article.href}`} className="block group">
+            <Link key={i} href={lp(locale, article.href)} className="block group">
               <h4 className="text-sm font-medium text-gray-700 dark:text-gray-300 group-hover:text-green-600 dark:group-hover:text-green-400 transition-colors leading-snug mb-1.5">
                 {article.title}
               </h4>

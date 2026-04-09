@@ -7,7 +7,7 @@ export async function generateMetadata({ params: { locale } }: { params: { local
   return {
     title: isAr ? "كم باقي على حساب المواطن؟ | موعد الصرف" : "Citizen Account Payment Countdown",
     description: isAr ? "عداد تنازلي لموعد صرف دعم حساب المواطن." : "Countdown to Citizen Account (Hafiz) payment.",
-    alternates: { canonical: `/${locale}/countdowns/citizen-account` },
+    alternates: { canonical: locale === "ar" ? "/countdowns/citizen-account" : `/${locale}/countdowns/citizen-account` },
   };
 }
 

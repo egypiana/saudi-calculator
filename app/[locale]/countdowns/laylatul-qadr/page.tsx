@@ -8,7 +8,7 @@ export async function generateMetadata({ params: { locale } }: { params: { local
   return {
     title: isAr ? "كم باقي على ليلة القدر 2026؟" : "Laylatul Qadr 2026 Countdown",
     description: isAr ? "عداد تنازلي لليلة القدر المباركة." : "Countdown to the blessed Night of Power.",
-    alternates: { canonical: `/${locale}/countdowns/laylatul-qadr` },
+    alternates: { canonical: locale === "ar" ? "/countdowns/laylatul-qadr" : `/${locale}/countdowns/laylatul-qadr` },
   };
 }
 

@@ -2,6 +2,7 @@
 
 import { useLocale } from "next-intl";
 import Link from "next/link";
+import { lp } from "@/lib/utils/locale";
 import CountdownTimer from "./CountdownTimer";
 import Breadcrumb from "@/components/layout/Breadcrumb";
 import FAQSection from "@/components/shared/FAQSection";
@@ -65,7 +66,7 @@ export default function CountdownPageTemplate({
     <div className="max-w-7xl mx-auto px-4 py-8">
       <Breadcrumb
         items={[
-          { label: isAr ? "العدادات" : "Countdowns", href: `/${locale}/countdowns` },
+          { label: isAr ? "العدادات" : "Countdowns", href: lp(locale, "/countdowns") },
           { label: isAr ? breadcrumbLabelAr : breadcrumbLabelEn },
         ]}
       />
@@ -115,7 +116,7 @@ export default function CountdownPageTemplate({
               {relatedItems.map((item) => (
                 <li key={item.href}>
                   <Link
-                    href={`/${locale}${item.href}`}
+                    href={lp(locale, item.href)}
                     className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors"
                   >
                     <span className="text-xs text-primary-500">{isAr ? "←" : "→"}</span>

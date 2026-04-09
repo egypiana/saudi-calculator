@@ -19,7 +19,7 @@ export async function generateMetadata({
     keywords: isAr
       ? ["عداد رمضان", "موعد الراتب", "عيد الفطر", "حساب المواطن", "العد التنازلي السعودي"]
       : ["ramadan countdown", "salary date", "eid al-fitr", "citizen account", "saudi countdown"],
-    alternates: { canonical: `/${locale}/countdowns` },
+    alternates: { canonical: locale === "ar" ? "/countdowns" : `/${locale}/countdowns` },
   };
 }
 

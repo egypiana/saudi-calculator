@@ -7,7 +7,7 @@ export async function generateMetadata({ params: { locale } }: { params: { local
   return {
     title: isAr ? "كم باقي على مكافأة الجامعة؟" : "University Stipend Countdown",
     description: isAr ? "عداد تنازلي لموعد صرف مكافأة الجامعة الشهرية." : "Countdown to university monthly stipend.",
-    alternates: { canonical: `/${locale}/countdowns/university-stipend` },
+    alternates: { canonical: locale === "ar" ? "/countdowns/university-stipend" : `/${locale}/countdowns/university-stipend` },
   };
 }
 

@@ -32,7 +32,7 @@ export async function generateMetadata({
           "مقارنة الضرائب",
         ]
       : ["vat calculator", "saudi vat", "add vat", "remove vat", "tax calculator", "15% vat", "gcc vat comparison"],
-    alternates: { canonical: `/${locale}/calculators/vat` },
+    alternates: { canonical: locale === "ar" ? "/calculators/vat" : `/${locale}/calculators/vat` },
   };
 }
 

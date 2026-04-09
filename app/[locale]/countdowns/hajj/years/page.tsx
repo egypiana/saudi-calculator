@@ -20,7 +20,7 @@ export async function generateMetadata({
     keywords: isAr
       ? ["جميع مواسم الحج", "مواعيد الحج", "الحج 2025 2050"]
       : ["hajj dates", "hajj schedule", "when is hajj"],
-    alternates: { canonical: `/${locale}/countdowns/hajj/years` },
+    alternates: { canonical: locale === "ar" ? "/countdowns/hajj/years" : `/${locale}/countdowns/hajj/years` },
   };
 }
 

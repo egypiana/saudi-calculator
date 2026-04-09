@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { getCategoryInfo } from "@/lib/blog/types";
 import type { BlogArticle } from "@/lib/blog/types";
+import { lp } from "@/lib/utils/locale";
 
 interface Props {
   article: BlogArticle;
@@ -14,7 +15,7 @@ export default function ArticleCard({ article, locale, featured = false }: Props
   if (featured) {
     return (
       <Link
-        href={`/${locale}/blog/${article.slug}`}
+        href={lp(locale, `/blog/${article.slug}`)}
         className="block bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-900/10 dark:to-emerald-900/10 rounded-2xl border-2 border-green-200 dark:border-green-800/40 p-6 hover:shadow-lg hover:-translate-y-1 transition-all group"
       >
         <div className="flex items-center gap-3 mb-3">
@@ -41,7 +42,7 @@ export default function ArticleCard({ article, locale, featured = false }: Props
 
   return (
     <Link
-      href={`/${locale}/blog/${article.slug}`}
+      href={lp(locale, `/blog/${article.slug}`)}
       className="block bg-white dark:bg-dark-surface rounded-xl border border-gray-200 dark:border-gray-700 p-5 hover:shadow-md hover:-translate-y-0.5 transition-all group"
     >
       <div className="flex items-start gap-4">

@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { Calculator, Banknote, Building2, Home, Scale, Coins } from "lucide-react";
+import { lp } from "@/lib/utils/locale";
 
 interface RelatedCalcSidebarProps {
   locale: string;
@@ -31,7 +32,7 @@ export default function RelatedCalcSidebar({ locale }: RelatedCalcSidebarProps) 
           return (
             <Link
               key={tool.href}
-              href={`/${locale}${tool.href}`}
+              href={lp(locale, tool.href)}
               className="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors group"
             >
               <div className={`w-8 h-8 rounded-lg ${tool.bg} flex items-center justify-center flex-shrink-0`}>

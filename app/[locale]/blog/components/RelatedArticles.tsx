@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { getCategoryInfo } from "@/lib/blog/types";
 import type { BlogArticle } from "@/lib/blog/types";
+import { lp } from "@/lib/utils/locale";
 
 interface Props {
   articles: BlogArticle[];
@@ -19,7 +20,7 @@ export default function RelatedArticles({ articles, locale }: Props) {
           return (
             <Link
               key={article.slug}
-              href={`/${locale}/blog/${article.slug}`}
+              href={lp(locale, `/blog/${article.slug}`)}
               className="bg-white dark:bg-dark-surface rounded-xl border border-gray-200 dark:border-gray-700 p-5 hover:shadow-md hover:-translate-y-0.5 transition-all group"
             >
               <div className="flex items-center gap-2 mb-3">

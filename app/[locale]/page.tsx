@@ -1,6 +1,7 @@
 import { getTranslations, unstable_setRequestLocale } from "next-intl/server";
 import type { Metadata } from "next";
 import HomePage from "@/components/home/HomePage";
+import { lp } from "@/lib/utils/locale";
 
 export async function generateMetadata({
   params: { locale },
@@ -12,7 +13,7 @@ export async function generateMetadata({
     title: t("siteName"),
     description: t("siteDescription"),
     alternates: {
-      canonical: `/${locale}`,
+      canonical: lp(locale, "/"),
     },
   };
 }

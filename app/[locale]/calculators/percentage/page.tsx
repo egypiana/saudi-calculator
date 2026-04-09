@@ -18,7 +18,7 @@ export async function generateMetadata({
     keywords: isAr
       ? ["حاسبة النسبة المئوية", "حساب النسبة من مبلغ", "حاسبة الخصم", "حاسبة القيمة المضافة 15", "حساب الزكاة", "حاسبة الإكرامية", "نسبة التغيير", "حساب نسبة مئوية"]
       : ["percentage calculator", "discount calculator", "vat calculator", "zakat calculator"],
-    alternates: { canonical: `/${locale}/calculators/percentage` },
+    alternates: { canonical: locale === "ar" ? "/calculators/percentage" : `/${locale}/calculators/percentage` },
   };
 }
 

@@ -32,7 +32,7 @@ export async function generateMetadata({
           "حاسبة تجارية",
         ]
       : ["profit margin calculator", "markup calculator", "gross margin", "net margin", "pricing calculator", "product comparison", "business calculator"],
-    alternates: { canonical: `/${locale}/calculators/profit-margin` },
+    alternates: { canonical: locale === "ar" ? "/calculators/profit-margin" : `/${locale}/calculators/profit-margin` },
   };
 }
 

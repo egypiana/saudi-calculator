@@ -32,7 +32,7 @@ export async function generateMetadata({
           "مرتبة الشرف",
         ]
       : ["gpa calculator", "saudi university gpa", "5.0 scale", "4.0 scale", "cumulative gpa", "semester gpa", "grade calculator"],
-    alternates: { canonical: `/${locale}/calculators/gpa` },
+    alternates: { canonical: locale === "ar" ? "/calculators/gpa" : `/${locale}/calculators/gpa` },
   };
 }
 

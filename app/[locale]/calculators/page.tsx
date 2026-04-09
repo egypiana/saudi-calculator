@@ -4,6 +4,7 @@ import Breadcrumb from "@/components/layout/Breadcrumb";
 import AdSlot from "@/components/ads/AdSlot";
 import Link from "next/link";
 import { Calculator } from "lucide-react";
+import { lp } from "@/lib/utils/locale";
 
 export async function generateMetadata({ params: { locale } }: { params: { locale: string } }): Promise<Metadata> {
   const isAr = locale === "ar";
@@ -12,7 +13,7 @@ export async function generateMetadata({ params: { locale } }: { params: { local
     description: isAr
       ? "مجموعة شاملة من الحاسبات: الزكاة، الراتب، الضريبة، نهاية الخدمة، التمويل العقاري، BMI، المعدل التراكمي، والمزيد."
       : "Comprehensive calculators: Zakat, Salary, VAT, End of Service, Mortgage, BMI, GPA, and more.",
-    alternates: { canonical: `/${locale}/calculators` },
+    alternates: { canonical: locale === "ar" ? "/calculators" : `/${locale}/calculators` },
   };
 }
 
@@ -93,7 +94,7 @@ function PageContent({ locale }: { locale: string }) {
             </h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
               {category.items.map((item) => (
-                <Link key={item.href} href={`/${locale}${item.href}`}
+                <Link key={item.href} href={lp(locale, item.href)}
                   className="group bg-white dark:bg-dark-surface rounded-2xl border border-gray-200 dark:border-gray-700 p-5 hover:shadow-lg hover:border-primary-300 dark:hover:border-primary-700 transition-all duration-200">
                   <div className="flex items-start gap-4">
                     <div className={`bg-gradient-to-br ${item.color} rounded-xl p-3 text-2xl flex-shrink-0`}>

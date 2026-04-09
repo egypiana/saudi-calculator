@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { EID_ADHA_DATA, EID_ADHA_YEARS, formatDateAr, type EidAdhaYearData } from "@/lib/data/eidAdhaData";
+import { lp } from "@/lib/utils/locale";
 
 type FilterTab = "all" | "past" | "upcoming";
 
@@ -101,7 +102,7 @@ export default function EidAdhaYearsClient({ locale }: { locale: string }) {
           return (
             <Link
               key={data.year + data.date}
-              href={`/${locale}/countdowns/eid-adha/${data.year}`}
+              href={lp(locale, `/countdowns/eid-adha/${data.year}`)}
               className={`block rounded-2xl border overflow-hidden transition-all hover:shadow-lg hover:-translate-y-0.5 ${style.border} ${style.bg} ${isPast ? "opacity-75 hover:opacity-100" : ""}`}
             >
               <div className="h-1 bg-gradient-to-l from-amber-400 to-orange-600" />

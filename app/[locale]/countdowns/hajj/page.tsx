@@ -18,7 +18,7 @@ export async function generateMetadata({
     keywords: isAr
       ? ["كم باقي على الحج", "موسم الحج 2026", "متى الحج", "عداد الحج", "مناسك الحج"]
       : ["hajj countdown", "hajj 2026", "when is hajj"],
-    alternates: { canonical: `/${locale}/countdowns/hajj` },
+    alternates: { canonical: locale === "ar" ? "/countdowns/hajj" : `/${locale}/countdowns/hajj` },
   };
 }
 

@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { BLOG_CATEGORIES, getCategoryInfo, type BlogCategory } from "@/lib/blog/types";
 import { ALL_ARTICLES } from "@/lib/blog/articles";
+import { lp } from "@/lib/utils/locale";
 
 interface Props {
   locale: string;
@@ -40,7 +41,7 @@ export default function BlogSidebar({ locale, currentSlug, currentCategory }: Pr
             return (
               <Link
                 key={cat.slug}
-                href={`/${locale}/blog/category/${cat.slug}`}
+                href={lp(locale, `/blog/category/${cat.slug}`)}
                 className={`flex items-center justify-between px-3 py-2.5 rounded-xl transition-colors ${
                   isActive
                     ? "bg-green-50 dark:bg-green-900/20 text-green-700 dark:text-green-400"
@@ -73,7 +74,7 @@ export default function BlogSidebar({ locale, currentSlug, currentCategory }: Pr
             {latestArticles.map((article, i) => {
               const catInfo = getCategoryInfo(article.category);
               return (
-                <Link key={article.slug} href={`/${locale}/blog/${article.slug}`} className="block group">
+                <Link key={article.slug} href={lp(locale, `/blog/${article.slug}`)} className="block group">
                   <h4 className="text-sm font-medium text-gray-700 dark:text-gray-300 group-hover:text-green-600 dark:group-hover:text-green-400 transition-colors leading-snug mb-1.5">
                     {article.titleAr}
                   </h4>
@@ -105,7 +106,7 @@ export default function BlogSidebar({ locale, currentSlug, currentCategory }: Pr
           {RELATED_CALCULATORS.map((calc) => (
             <Link
               key={calc.href}
-              href={`/${locale}${calc.href}`}
+              href={lp(locale, calc.href)}
               className="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors group"
             >
               <span className="text-xl flex-shrink-0">{calc.icon}</span>

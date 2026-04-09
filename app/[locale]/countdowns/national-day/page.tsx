@@ -18,7 +18,7 @@ export async function generateMetadata({
     keywords: isAr
       ? ["كم باقي على اليوم الوطني", "اليوم الوطني السعودي 96", "اليوم الوطني 2026", "عداد اليوم الوطني", "23 سبتمبر"]
       : ["saudi national day countdown", "national day 2026", "september 23"],
-    alternates: { canonical: `/${locale}/countdowns/national-day` },
+    alternates: { canonical: locale === "ar" ? "/countdowns/national-day" : `/${locale}/countdowns/national-day` },
   };
 }
 

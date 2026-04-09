@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { lp } from "@/lib/utils/locale";
 import { useLocale, useTranslations } from "next-intl";
 import CountdownTimer from "./CountdownTimer";
 
@@ -36,7 +37,7 @@ export default function CountdownCard({
         <p className="text-white/70 text-sm mb-4">{t(titleKey)}</p>
         <CountdownTimer targetDate={targetDate} size="sm" />
         <Link
-          href={`/${locale}${href}`}
+          href={lp(locale, href)}
           className="inline-block mt-4 text-sm text-white/90 hover:text-white bg-white/10 hover:bg-white/20 px-4 py-2 rounded-full transition-all"
         >
           {tc("moreDetails")}

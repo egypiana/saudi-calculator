@@ -21,7 +21,7 @@ export async function generateMetadata({ params: { locale } }: { params: { local
       title: isAr ? "حاسبة الميزانية والنفقات السعودية" : "Saudi Budget Calculator",
       description: isAr ? "وزّع راتبك بذكاء وابدأ الادخار اليوم" : "Distribute your salary smartly and start saving today",
     },
-    alternates: { canonical: `/${locale}/calculators/budget` },
+    alternates: { canonical: locale === "ar" ? "/calculators/budget" : `/${locale}/calculators/budget` },
   };
 }
 

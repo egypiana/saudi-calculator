@@ -2,6 +2,7 @@
 
 import { useMemo } from "react";
 import Link from "next/link";
+import { lp } from "@/lib/utils/locale";
 
 interface RamadanSidebarProps {
   locale: string;
@@ -70,7 +71,7 @@ export default function RamadanSidebar({ locale }: RamadanSidebarProps) {
           {RELATED_CALCULATORS.map((calc) => (
             <Link
               key={calc.href}
-              href={`/${locale}${calc.href}`}
+              href={lp(locale, calc.href)}
               className="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors group"
             >
               <span className="text-xl flex-shrink-0">{calc.icon}</span>
@@ -98,7 +99,7 @@ export default function RamadanSidebar({ locale }: RamadanSidebarProps) {
           {randomArticles.map((article, i) => (
             <Link
               key={i}
-              href={`/${locale}${article.href}`}
+              href={lp(locale, article.href)}
               className="block group"
             >
               <h4 className="text-sm font-medium text-gray-700 dark:text-gray-300 group-hover:text-green-600 dark:group-hover:text-green-400 transition-colors leading-snug mb-1.5">
@@ -120,7 +121,7 @@ export default function RamadanSidebar({ locale }: RamadanSidebarProps) {
         </div>
 
         <Link
-          href={`/${locale}/blog`}
+          href={lp(locale, "/blog")}
           className="mt-4 block text-center text-sm font-medium text-green-600 dark:text-green-400 hover:text-green-700 dark:hover:text-green-300 transition-colors"
         >
           تصفح جميع المقالات &larr;

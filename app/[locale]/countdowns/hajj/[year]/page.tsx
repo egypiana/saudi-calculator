@@ -19,7 +19,7 @@ export async function generateMetadata({
     title: data.content.metaTitle,
     description: data.content.metaDescription,
     keywords: data.content.keywords,
-    alternates: { canonical: `/${locale}/countdowns/hajj/${year}` },
+    alternates: { canonical: locale === "ar" ? "/countdowns/hajj/${year}" : `/${locale}/countdowns/hajj/${year}` },
   };
 }
 

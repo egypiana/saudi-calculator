@@ -32,7 +32,7 @@ export async function generateMetadata({
           "زكاة التمور",
         ]
       : ["zakat calculator", "gold zakat", "nisab calculator", "islamic zakat", "comprehensive zakat"],
-    alternates: { canonical: `/${locale}/calculators/zakat` },
+    alternates: { canonical: locale === "ar" ? "/calculators/zakat" : `/${locale}/calculators/zakat` },
   };
 }
 

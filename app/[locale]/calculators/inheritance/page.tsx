@@ -38,7 +38,7 @@ export async function generateMetadata({
           "faraid calculator",
           "islamic law inheritance",
         ],
-    alternates: { canonical: `/${locale}/calculators/inheritance` },
+    alternates: { canonical: locale === "ar" ? "/calculators/inheritance" : `/${locale}/calculators/inheritance` },
   };
 }
 

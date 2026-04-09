@@ -18,7 +18,7 @@ export async function generateMetadata({
     keywords: isAr
       ? ["كم باقي على عيد الفطر", "عيد الفطر 2026", "متى عيد الفطر", "عداد عيد الفطر", "عيد الفطر المبارك"]
       : ["eid al-fitr countdown", "eid 2026", "when is eid al-fitr"],
-    alternates: { canonical: `/${locale}/countdowns/eid-fitr` },
+    alternates: { canonical: locale === "ar" ? "/countdowns/eid-fitr" : `/${locale}/countdowns/eid-fitr` },
   };
 }
 

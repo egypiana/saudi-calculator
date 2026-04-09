@@ -12,6 +12,7 @@ import {
   ChevronDown,
 } from "lucide-react";
 import { useTheme } from "@/components/providers/ThemeProvider";
+import { lp } from "@/lib/utils/locale";
 
 const locales = [
   { code: "ar", label: "العربية" },
@@ -31,31 +32,33 @@ export default function Header() {
   const tc = useTranslations("common");
 
   const navLinks = [
-    { label: t("home"), href: `/${locale}` },
-    { label: t("countdowns"), href: `/${locale}/countdowns` },
-    { label: t("calculators"), href: `/${locale}/calculators` },
-    { label: t("blog"), href: `/${locale}/blog` },
+    { label: t("home"), href: lp(locale, "/") },
+    { label: t("countdowns"), href: lp(locale, "/countdowns") },
+    { label: t("calculators"), href: lp(locale, "/calculators") },
+    { label: t("blog"), href: lp(locale, "/blog") },
   ];
 
   const trendingLinks = [
-    { label: locale === "ar" ? "عداد رمضان" : "Ramadan", href: `/${locale}/countdowns/ramadan` },
-    { label: locale === "ar" ? "حاسبة الزكاة" : "Zakat", href: `/${locale}/calculators/zakat` },
-    { label: locale === "ar" ? "الراتب" : "Salary", href: `/${locale}/countdowns/salaries-dates` },
-    { label: locale === "ar" ? "القيمة المضافة" : "VAT", href: `/${locale}/calculators/vat` },
-    { label: locale === "ar" ? "نهاية الخدمة" : "End of Service", href: `/${locale}/calculators/end-of-service` },
-    { label: locale === "ar" ? "اليوم الوطني" : "National Day", href: `/${locale}/countdowns/national-day` },
+    { label: locale === "ar" ? "عداد رمضان" : "Ramadan", href: lp(locale, "/countdowns/ramadan") },
+    { label: locale === "ar" ? "حاسبة الزكاة" : "Zakat", href: lp(locale, "/calculators/zakat") },
+    { label: locale === "ar" ? "الراتب" : "Salary", href: lp(locale, "/countdowns/salaries-dates") },
+    { label: locale === "ar" ? "القيمة المضافة" : "VAT", href: lp(locale, "/calculators/vat") },
+    { label: locale === "ar" ? "نهاية الخدمة" : "End of Service", href: lp(locale, "/calculators/end-of-service") },
+    { label: locale === "ar" ? "اليوم الوطني" : "National Day", href: lp(locale, "/countdowns/national-day") },
   ];
 
   useEffect(() => {
     setCurrentPath(window.location.pathname);
   }, []);
 
-  const isActive = (href: string) =>
-    href === `/${locale}` ? currentPath === `/${locale}` : currentPath.startsWith(href);
+  const isActive = (href: string) => {
+    const homePath = lp(locale, "/");
+    return href === homePath ? currentPath === homePath || currentPath === "/" : currentPath.startsWith(href);
+  };
 
   const switchLocale = (newLocale: string) => {
     const pathWithoutLocale = currentPath.replace(/^\/(ar|en|es|pt)/, "");
-    window.location.href = `/${newLocale}${pathWithoutLocale || ""}`;
+    window.location.href = lp(newLocale, pathWithoutLocale || "/");
   };
 
   return (
@@ -66,7 +69,7 @@ export default function Header() {
           <div className="h-16 flex items-center justify-between">
             {/* اللوجو */}
             <Link
-              href={`/${locale}`}
+              href={lp(locale, "/")}
               className="flex items-center gap-2.5 hover:opacity-90 transition-opacity"
             >
               <div className="bg-white/15 rounded-xl p-1.5 flex-shrink-0">
@@ -168,7 +171,7 @@ export default function Header() {
                 onSubmit={(e) => {
                   e.preventDefault();
                   if (searchQuery.trim()) {
-                    window.location.href = `/${locale}/search?q=${encodeURIComponent(searchQuery)}`;
+                    window.location.href = `${lp(locale, "/search")}?q=${encodeURIComponent(searchQuery)}`;
                   }
                 }}
                 className="flex gap-2"

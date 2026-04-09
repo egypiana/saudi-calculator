@@ -5,6 +5,7 @@ import FAQSection from "@/components/shared/FAQSection";
 import AdSlot from "@/components/ads/AdSlot";
 import Breadcrumb from "@/components/layout/Breadcrumb";
 import Link from "next/link";
+import { lp } from "@/lib/utils/locale";
 
 export async function generateMetadata({ params: { locale } }: { params: { locale: string } }): Promise<Metadata> {
   const isAr = locale === "ar";
@@ -13,7 +14,7 @@ export async function generateMetadata({ params: { locale } }: { params: { local
     description: isAr
       ? "احسب القسط الشهري للتمويل العقاري في السعودية. أدخل سعر العقار والدفعة الأولى ومعدل الربح."
       : "Calculate your monthly mortgage payment in Saudi Arabia. Enter property price, down payment, and interest rate.",
-    alternates: { canonical: `/${locale}/calculators/mortgage` },
+    alternates: { canonical: locale === "ar" ? "/calculators/mortgage" : `/${locale}/calculators/mortgage` },
   };
 }
 
@@ -57,7 +58,7 @@ function PageContent({ locale }: { locale: string }) {
               <h3 className="font-bold text-gray-800 dark:text-white mb-4">{isAr ? "أدوات ذات صلة" : "Related Tools"}</h3>
               <div className="space-y-2">
                 {relatedTools.map((item) => (
-                  <Link key={item.href} href={`/${locale}${item.href}`}
+                  <Link key={item.href} href={lp(locale, item.href)}
                     className="block px-4 py-3 rounded-xl bg-gray-50 dark:bg-dark-bg hover:bg-primary-50 dark:hover:bg-primary-900/10 text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 font-medium text-sm transition-colors">
                     {isAr ? item.labelAr : item.labelEn}
                   </Link>

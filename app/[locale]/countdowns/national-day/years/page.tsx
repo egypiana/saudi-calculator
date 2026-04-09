@@ -20,7 +20,7 @@ export async function generateMetadata({
     keywords: isAr
       ? ["جميع أعوام اليوم الوطني", "مواعيد اليوم الوطني", "اليوم الوطني 2025 2050"]
       : ["national day dates", "saudi national day schedule"],
-    alternates: { canonical: `/${locale}/countdowns/national-day/years` },
+    alternates: { canonical: locale === "ar" ? "/countdowns/national-day/years" : `/${locale}/countdowns/national-day/years` },
   };
 }
 

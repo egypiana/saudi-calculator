@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { HAJJ_DATA, HAJJ_YEARS, formatDateAr } from "@/lib/data/hajjData";
+import { lp } from "@/lib/utils/locale";
 
 function toAr(n: number): string {
   return n.toString().replace(/\d/g, (d) => "٠١٢٣٤٥٦٧٨٩"[parseInt(d)]);
@@ -43,7 +44,7 @@ export default function UpcomingHajj({ locale }: { locale: string }) {
           return (
             <Link
               key={year}
-              href={`/${locale}/countdowns/hajj/${year}`}
+              href={lp(locale, `/countdowns/hajj/${year}`)}
               className={`flex items-center justify-between px-4 py-3.5 rounded-xl border transition-all hover:shadow-md hover:-translate-y-0.5 group ${
                 isNext
                   ? "bg-emerald-50 dark:bg-emerald-900/10 border-emerald-200 dark:border-emerald-800/40"

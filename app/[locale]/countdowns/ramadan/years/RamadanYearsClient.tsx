@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { RAMADAN_DATA, AVAILABLE_YEARS, formatDateAr, type RamadanYearData } from "@/lib/data/ramadanData";
+import { lp } from "@/lib/utils/locale";
 
 type FilterTab = "all" | "past" | "upcoming" | "future";
 
@@ -170,7 +171,7 @@ function YearCard({ data, locale }: { data: RamadanYearData; locale: string }) {
 
   return (
     <Link
-      href={`/${locale}/countdowns/ramadan/${data.year}`}
+      href={lp(locale, `/countdowns/ramadan/${data.year}`)}
       className={`group block bg-white dark:bg-dark-surface rounded-2xl border overflow-hidden hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200 ${
         isCurrent
           ? "border-green-300 dark:border-green-700 ring-2 ring-green-200 dark:ring-green-800/50"

@@ -7,6 +7,7 @@ import { BLOG_CATEGORIES } from "@/lib/blog/types";
 import { ALL_ARTICLES } from "@/lib/blog/articles";
 import ArticleCard from "./components/ArticleCard";
 import BlogSidebar from "./components/BlogSidebar";
+import { lp } from "@/lib/utils/locale";
 
 export async function generateMetadata({
   params: { locale },
@@ -24,7 +25,7 @@ export async function generateMetadata({
     keywords: isAr
       ? ["مدونة حاسبات", "مقالات مالية", "حساب الميراث", "نهاية الخدمة", "التمويل العقاري"]
       : ["calculator blog", "financial articles", "islamic inheritance"],
-    alternates: { canonical: `/${locale}/blog` },
+    alternates: { canonical: locale === "ar" ? "/blog" : `/${locale}/blog` },
   };
 }
 
@@ -58,7 +59,7 @@ export default function BlogPage({
         {/* Category Pills */}
         <div className="flex flex-wrap gap-2 mb-8">
           <Link
-            href={`/${locale}/blog`}
+            href={lp(locale, "/blog")}
             className="text-sm px-4 py-2 rounded-full bg-green-600 text-white font-medium"
           >
             📋 جميع المقالات ({ALL_ARTICLES.length})
@@ -69,7 +70,7 @@ export default function BlogPage({
             return (
               <Link
                 key={cat.slug}
-                href={`/${locale}/blog/category/${cat.slug}`}
+                href={lp(locale, `/blog/category/${cat.slug}`)}
                 className={`text-sm px-4 py-2 rounded-full font-medium border border-gray-200 dark:border-gray-700 hover:border-green-500 transition-colors ${cat.bgColor} ${cat.color}`}
               >
                 {cat.icon} {cat.labelAr} ({count})
@@ -118,7 +119,7 @@ export default function BlogPage({
               return (
                 <Link
                   key={cat.slug}
-                  href={`/${locale}/blog/category/${cat.slug}`}
+                  href={lp(locale, `/blog/category/${cat.slug}`)}
                   className="bg-white dark:bg-dark-surface rounded-2xl border border-gray-200 dark:border-gray-700 p-6 hover:shadow-md hover:-translate-y-0.5 transition-all group"
                 >
                   <div className="flex items-center gap-3 mb-3">

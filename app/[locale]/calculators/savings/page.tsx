@@ -32,7 +32,7 @@ export async function generateMetadata({
           "تحقيق الأهداف المالية",
         ]
       : ["savings calculator", "compound interest", "investment calculator", "financial planning", "saudi investment", "retirement calculator", "goal planning"],
-    alternates: { canonical: `/${locale}/calculators/savings` },
+    alternates: { canonical: locale === "ar" ? "/calculators/savings" : `/${locale}/calculators/savings` },
   };
 }
 

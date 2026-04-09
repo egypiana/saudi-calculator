@@ -5,6 +5,7 @@ import FAQSection from "@/components/shared/FAQSection";
 import AdSlot from "@/components/ads/AdSlot";
 import Breadcrumb from "@/components/layout/Breadcrumb";
 import Link from "next/link";
+import { lp } from "@/lib/utils/locale";
 
 export async function generateMetadata({ params: { locale } }: { params: { locale: string } }): Promise<Metadata> {
   const isAr = locale === "ar";
@@ -13,7 +14,7 @@ export async function generateMetadata({ params: { locale } }: { params: { local
     description: isAr
       ? "احسب مؤشر كتلة الجسم BMI لمعرفة إذا كان وزنك طبيعي أو زائد. حاسبة سريعة ودقيقة."
       : "Calculate your Body Mass Index (BMI) to check if your weight is healthy. Fast and accurate calculator.",
-    alternates: { canonical: `/${locale}/calculators/bmi` },
+    alternates: { canonical: locale === "ar" ? "/calculators/bmi" : `/${locale}/calculators/bmi` },
   };
 }
 
@@ -56,7 +57,7 @@ function PageContent({ locale }: { locale: string }) {
               <h3 className="font-bold text-gray-800 dark:text-white mb-4">{isAr ? "أدوات ذات صلة" : "Related Tools"}</h3>
               <div className="space-y-2">
                 {relatedTools.map((item) => (
-                  <Link key={item.href} href={`/${locale}${item.href}`}
+                  <Link key={item.href} href={lp(locale, item.href)}
                     className="block px-4 py-3 rounded-xl bg-gray-50 dark:bg-dark-bg hover:bg-primary-50 dark:hover:bg-primary-900/10 text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 font-medium text-sm transition-colors">
                     {isAr ? item.labelAr : item.labelEn}
                   </Link>

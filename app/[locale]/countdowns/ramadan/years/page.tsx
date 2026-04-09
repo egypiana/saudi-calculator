@@ -20,7 +20,7 @@ export async function generateMetadata({
     keywords: isAr
       ? ["مواعيد رمضان", "رمضان 2025 2050", "جدول رمضان", "تقويم رمضان", "متى رمضان"]
       : ["ramadan dates", "ramadan schedule", "ramadan calendar", "when is ramadan"],
-    alternates: { canonical: `/${locale}/countdowns/ramadan/years` },
+    alternates: { canonical: locale === "ar" ? "/countdowns/ramadan/years" : `/${locale}/countdowns/ramadan/years` },
   };
 }
 

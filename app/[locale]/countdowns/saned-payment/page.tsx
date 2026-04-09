@@ -7,7 +7,7 @@ export async function generateMetadata({ params: { locale } }: { params: { local
   return {
     title: isAr ? "كم باقي على دعم ساند؟" : "SANED Payment Countdown",
     description: isAr ? "عداد تنازلي لموعد صرف دعم ساند للتعطل عن العمل." : "Countdown to SANED unemployment support payment.",
-    alternates: { canonical: `/${locale}/countdowns/saned-payment` },
+    alternates: { canonical: locale === "ar" ? "/countdowns/saned-payment" : `/${locale}/countdowns/saned-payment` },
   };
 }
 

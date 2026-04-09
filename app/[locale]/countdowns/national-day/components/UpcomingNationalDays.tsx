@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { NATIONAL_DAY_DATA, NATIONAL_DAY_YEARS, formatDateAr } from "@/lib/data/nationalDayData";
+import { lp } from "@/lib/utils/locale";
 
 function toAr(n: number): string {
   return n.toString().replace(/\d/g, (d) => "٠١٢٣٤٥٦٧٨٩"[parseInt(d)]);
@@ -42,7 +43,7 @@ export default function UpcomingNationalDays({ locale }: { locale: string }) {
           return (
             <Link
               key={year}
-              href={`/${locale}/countdowns/national-day/${year}`}
+              href={lp(locale, `/countdowns/national-day/${year}`)}
               className={`flex items-center justify-between px-4 py-3.5 rounded-xl border transition-all hover:shadow-md hover:-translate-y-0.5 group ${
                 isNext
                   ? "bg-green-50 dark:bg-green-900/10 border-green-200 dark:border-green-800/40"

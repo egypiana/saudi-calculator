@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { NATIONAL_DAY_DATA, NATIONAL_DAY_YEARS, formatDateAr, type NationalDayYearData } from "@/lib/data/nationalDayData";
+import { lp } from "@/lib/utils/locale";
 
 type FilterTab = "all" | "past" | "upcoming";
 
@@ -101,7 +102,7 @@ export default function NationalDayYearsClient({ locale }: { locale: string }) {
           return (
             <Link
               key={data.year}
-              href={`/${locale}/countdowns/national-day/${data.year}`}
+              href={lp(locale, `/countdowns/national-day/${data.year}`)}
               className={`block rounded-2xl border overflow-hidden transition-all hover:shadow-lg hover:-translate-y-0.5 ${style.border} ${style.bg} ${isPast ? "opacity-75 hover:opacity-100" : ""}`}
             >
               <div className="h-1 bg-gradient-to-l from-green-500 to-emerald-500" />

@@ -8,7 +8,7 @@ export async function generateMetadata({ params: { locale } }: { params: { local
   return {
     title: isAr ? "كم باقي على يوم العلم السعودي 2026؟" : "Saudi Flag Day Countdown",
     description: isAr ? "عداد تنازلي ليوم العلم 11 مارس." : "Countdown to Saudi Flag Day, March 11.",
-    alternates: { canonical: `/${locale}/countdowns/flag-day` },
+    alternates: { canonical: locale === "ar" ? "/countdowns/flag-day" : `/${locale}/countdowns/flag-day` },
   };
 }
 

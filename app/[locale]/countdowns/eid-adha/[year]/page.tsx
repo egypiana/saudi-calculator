@@ -19,7 +19,7 @@ export async function generateMetadata({
     title: data.content.metaTitle,
     description: data.content.metaDescription,
     keywords: data.content.keywords,
-    alternates: { canonical: `/${locale}/countdowns/eid-adha/${year}` },
+    alternates: { canonical: locale === "ar" ? "/countdowns/eid-adha/${year}" : `/${locale}/countdowns/eid-adha/${year}` },
   };
 }
 

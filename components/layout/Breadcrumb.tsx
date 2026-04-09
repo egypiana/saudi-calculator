@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useLocale, useTranslations } from "next-intl";
 import { ChevronLeft, ChevronRight, Home } from "lucide-react";
+import { lp } from "@/lib/utils/locale";
 
 interface BreadcrumbItem {
   label?: string;
@@ -23,11 +24,11 @@ export default function Breadcrumb({ items }: BreadcrumbProps) {
 
   const resolvedItems = items.map((item) => ({
     label: item.label || (isRTL ? item.labelAr : item.labelEn) || "",
-    href: item.href ? (item.href.startsWith("/") && !item.href.startsWith(`/${locale}`) ? `/${locale}${item.href}` : item.href) : undefined,
+    href: item.href ? (item.href.startsWith("/") && !item.href.startsWith(lp(locale, "/")) ? lp(locale, item.href) : item.href) : undefined,
   }));
 
   const allItems = [
-    { label: t("home"), href: `/${locale}` },
+    { label: t("home"), href: lp(locale, "/") },
     ...resolvedItems,
   ];
 

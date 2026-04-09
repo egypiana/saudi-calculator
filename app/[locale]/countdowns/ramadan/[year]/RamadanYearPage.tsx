@@ -7,6 +7,7 @@ import ShareButtons from "@/components/shared/ShareButtons";
 import AdSlot from "@/components/ads/AdSlot";
 import { RAMADAN_DATA, AVAILABLE_YEARS, formatDateAr, getTimeUntilRamadan, type RamadanYearData } from "@/lib/data/ramadanData";
 import RamadanSidebar from "../components/RamadanSidebar";
+import { lp } from "@/lib/utils/locale";
 
 function toArabicDigits(num: number): string {
   return num.toString().replace(/\d/g, (d) => "٠١٢٣٤٥٦٧٨٩"[parseInt(d)]);
@@ -95,7 +96,7 @@ export default function RamadanYearPage({ year, locale }: Props) {
             <div className="flex items-center justify-between gap-4">
               {prevYear ? (
                 <Link
-                  href={`/${locale}/countdowns/ramadan/${prevYear}`}
+                  href={lp(locale, `/countdowns/ramadan/${prevYear}`)}
                   className="flex-1 flex items-center gap-2 bg-white dark:bg-dark-surface border border-gray-200 dark:border-gray-700 rounded-xl px-4 py-3 hover:bg-gray-50 dark:hover:bg-white/5 transition-colors"
                 >
                   <span className="text-lg">→</span>
@@ -107,7 +108,7 @@ export default function RamadanYearPage({ year, locale }: Props) {
               ) : <div className="flex-1" />}
 
               <Link
-                href={`/${locale}/countdowns/ramadan/years`}
+                href={lp(locale, "/countdowns/ramadan/years")}
                 className="px-4 py-3 bg-green-600 text-white rounded-xl text-sm font-medium hover:bg-green-700 transition-colors text-center"
               >
                 جميع السنوات
@@ -115,7 +116,7 @@ export default function RamadanYearPage({ year, locale }: Props) {
 
               {nextYear ? (
                 <Link
-                  href={`/${locale}/countdowns/ramadan/${nextYear}`}
+                  href={lp(locale, `/countdowns/ramadan/${nextYear}`)}
                   className="flex-1 flex items-center justify-end gap-2 bg-white dark:bg-dark-surface border border-gray-200 dark:border-gray-700 rounded-xl px-4 py-3 hover:bg-gray-50 dark:hover:bg-white/5 transition-colors"
                 >
                   <div className="text-left">

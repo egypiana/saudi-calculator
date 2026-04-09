@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { EID_FITR_DATA, EID_YEARS, formatDateAr } from "@/lib/data/eidFitrData";
+import { lp } from "@/lib/utils/locale";
 
 function toAr(n: number): string {
   return n.toString().replace(/\d/g, (d) => "٠١٢٣٤٥٦٧٨٩"[parseInt(d)]);
@@ -39,7 +40,7 @@ export default function AllEidYears({ locale }: { locale: string }) {
           return (
             <Link
               key={year}
-              href={`/${locale}/countdowns/eid-fitr/${year}`}
+              href={lp(locale, `/countdowns/eid-fitr/${year}`)}
               className={`block bg-white dark:bg-dark-surface rounded-xl border p-3.5 transition-all hover:shadow-md hover:-translate-y-0.5 ${
                 isPast ? "border-gray-200 dark:border-gray-700 opacity-70 hover:opacity-100" : "border-gray-200 dark:border-gray-700"
               }`}
@@ -64,7 +65,7 @@ export default function AllEidYears({ locale }: { locale: string }) {
 
       <div className="mt-5 text-center">
         <Link
-          href={`/${locale}/countdowns/eid-fitr/years`}
+          href={lp(locale, "/countdowns/eid-fitr/years")}
           className="inline-flex items-center gap-2 px-8 py-3.5 bg-green-700 text-white rounded-xl font-bold text-sm hover:bg-green-800 transition-all shadow-lg"
         >
           عرض جميع السنوات حتى 2050 &larr;

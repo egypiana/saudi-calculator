@@ -18,7 +18,7 @@ export async function generateMetadata({
     keywords: isAr
       ? ["كم باقي على عيد الأضحى", "عيد الأضحى 2026", "متى عيد الأضحى", "عداد عيد الأضحى", "عيد الأضحى المبارك", "الأضحية", "يوم عرفة"]
       : ["eid al-adha countdown", "eid al-adha 2026", "when is eid al-adha"],
-    alternates: { canonical: `/${locale}/countdowns/eid-adha` },
+    alternates: { canonical: locale === "ar" ? "/countdowns/eid-adha" : `/${locale}/countdowns/eid-adha` },
   };
 }
 

@@ -7,6 +7,7 @@ import { ThemeProvider } from "@/components/providers/ThemeProvider";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import "./globals.css";
+import { lp } from "@/lib/utils/locale";
 
 const ibmPlexArabic = IBM_Plex_Sans_Arabic({
   subsets: ["arabic", "latin"],
@@ -35,9 +36,9 @@ export async function generateMetadata({
     description: t("siteDescription"),
     metadataBase: new URL("https://calculatorvip.com"),
     alternates: {
-      canonical: `/${locale}`,
+      canonical: locale === "ar" ? "/" : lp(locale, "/"),
       languages: {
-        ar: "/ar",
+        ar: "/",
         en: "/en",
         es: "/es",
         pt: "/pt",

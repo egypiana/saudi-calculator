@@ -7,7 +7,7 @@ export async function generateMetadata({ params: { locale } }: { params: { local
   return {
     title: isAr ? "كم باقي على راتب التقاعد؟" : "Pension Salary Countdown",
     description: isAr ? "عداد تنازلي لموعد صرف رواتب المتقاعدين." : "Countdown to pension salary payment.",
-    alternates: { canonical: `/${locale}/countdowns/pension-salaries` },
+    alternates: { canonical: locale === "ar" ? "/countdowns/pension-salaries" : `/${locale}/countdowns/pension-salaries` },
   };
 }
 

@@ -32,7 +32,7 @@ export async function generateMetadata({
           "ساند",
         ]
       : ["salary calculator", "saudi salary", "gosi deduction", "net salary", "saudi labor law", "employee gosi", "employer cost"],
-    alternates: { canonical: `/${locale}/calculators/salary` },
+    alternates: { canonical: locale === "ar" ? "/calculators/salary" : `/${locale}/calculators/salary` },
   };
 }
 

@@ -13,6 +13,7 @@ import PercentChange from "./modes/PercentChange";
 import VATMode from "./modes/VATMode";
 import ZakatMode from "./modes/ZakatMode";
 import DiscountMode from "./modes/DiscountMode";
+import { lp } from "@/lib/utils/locale";
 
 const MODE_COMPONENTS: Record<ModeId, React.FC> = {
   "percent-of": PercentOfAmount,
@@ -155,7 +156,7 @@ export default function PercentageCalculator({ locale }: Props) {
             {RELATED.map((tool) => (
               <Link
                 key={tool.href}
-                href={`/${locale}${tool.href}`}
+                href={lp(locale, tool.href)}
                 className="bg-white dark:bg-dark-surface rounded-xl border border-gray-200 dark:border-gray-700 p-4 text-center hover:shadow-md hover:-translate-y-0.5 transition-all"
               >
                 <span className="text-2xl block mb-2">{tool.icon}</span>

@@ -8,6 +8,7 @@ import ShareButtons from "@/components/shared/ShareButtons";
 import AdSlot from "@/components/ads/AdSlot";
 import { getNextEventDate } from "@/lib/events/islamic-events";
 import Link from "next/link";
+import { lp } from "@/lib/utils/locale";
 
 const ramadanFaqsAr = [
   {
@@ -60,10 +61,10 @@ export default function RamadanCountdown() {
   const faqs = isAr ? ramadanFaqsAr : ramadanFaqsEn;
 
   const relatedCountdowns = [
-    { label: isAr ? "عداد عيد الفطر" : "Eid Al-Fitr", href: `/${locale}/countdowns/eid-fitr` },
-    { label: isAr ? "عداد عيد الأضحى" : "Eid Al-Adha", href: `/${locale}/countdowns/eid-adha` },
-    { label: isAr ? "ليلة القدر" : "Laylatul Qadr", href: `/${locale}/countdowns/laylatul-qadr` },
-    { label: isAr ? "عداد الحج" : "Hajj", href: `/${locale}/countdowns/hajj` },
+    { label: isAr ? "عداد عيد الفطر" : "Eid Al-Fitr", href: lp(locale, "/countdowns/eid-fitr") },
+    { label: isAr ? "عداد عيد الأضحى" : "Eid Al-Adha", href: lp(locale, "/countdowns/eid-adha") },
+    { label: isAr ? "ليلة القدر" : "Laylatul Qadr", href: lp(locale, "/countdowns/laylatul-qadr") },
+    { label: isAr ? "عداد الحج" : "Hajj", href: lp(locale, "/countdowns/hajj") },
   ];
 
   const structuredData = {
@@ -88,7 +89,7 @@ export default function RamadanCountdown() {
       <div className="max-w-7xl mx-auto px-4 py-8">
         <Breadcrumb
           items={[
-            { label: isAr ? "العدادات" : "Countdowns", href: `/${locale}/countdowns` },
+            { label: isAr ? "العدادات" : "Countdowns", href: lp(locale, "/countdowns") },
             { label: isAr ? "عداد رمضان" : "Ramadan Countdown" },
           ]}
         />

@@ -7,7 +7,7 @@ export async function generateMetadata({ params: { locale } }: { params: { local
   return {
     title: isAr ? "كم باقي على الضمان الاجتماعي؟" : "Social Security Payment Countdown",
     description: isAr ? "عداد تنازلي لموعد صرف الضمان الاجتماعي المطور." : "Countdown to Social Security payment.",
-    alternates: { canonical: `/${locale}/countdowns/social-security` },
+    alternates: { canonical: locale === "ar" ? "/countdowns/social-security" : `/${locale}/countdowns/social-security` },
   };
 }
 

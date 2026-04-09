@@ -18,7 +18,7 @@ export async function generateMetadata({
     keywords: isAr
       ? ["كم باقي على رمضان", "عداد رمضان 2027", "متى رمضان 2027", "موعد رمضان", "رمضان 2027 السعودية", "العد التنازلي لرمضان"]
       : ["ramadan countdown", "ramadan 2027", "when is ramadan 2027", "ramadan countdown timer"],
-    alternates: { canonical: `/${locale}/countdowns/ramadan` },
+    alternates: { canonical: locale === "ar" ? "/countdowns/ramadan" : `/${locale}/countdowns/ramadan` },
   };
 }
 

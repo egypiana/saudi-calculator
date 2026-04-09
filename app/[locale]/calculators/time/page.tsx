@@ -32,7 +32,7 @@ export async function generateMetadata({
           "ساعات العمل السعودية",
         ]
       : ["time calculator", "time difference", "date difference", "work hours calculator", "add hours", "time converter", "duration calculator"],
-    alternates: { canonical: `/${locale}/calculators/time` },
+    alternates: { canonical: locale === "ar" ? "/calculators/time" : `/${locale}/calculators/time` },
   };
 }
 

@@ -8,6 +8,7 @@ import { getCategoryInfo } from "@/lib/blog/types";
 import { getArticleBySlug, getRelatedArticles, getAllSlugs } from "@/lib/blog/articles";
 import BlogSidebar from "../components/BlogSidebar";
 import RelatedArticles from "../components/RelatedArticles";
+import { lp } from "@/lib/utils/locale";
 
 export async function generateStaticParams() {
   return getAllSlugs().flatMap((slug) => [
@@ -31,7 +32,7 @@ export async function generateMetadata({
     title: isAr ? article.titleAr : article.titleEn,
     description: isAr ? article.descriptionAr : article.descriptionEn,
     keywords: article.keywords,
-    alternates: { canonical: `/${locale}/blog/${slug}` },
+    alternates: { canonical: locale === "ar" ? "/blog/${slug}" : `/${locale}/blog/${slug}` },
     openGraph: {
       title: isAr ? article.titleAr : article.titleEn,
       description: isAr ? article.descriptionAr : article.descriptionEn,
@@ -90,7 +91,7 @@ export default function ArticlePage({
               <div className="bg-gradient-to-l from-green-600 to-emerald-700 px-6 sm:px-8 py-8">
                 <div className="flex items-center gap-2 mb-4">
                   <Link
-                    href={`/${locale}/blog/category/${catInfo.slug}`}
+                    href={lp(locale, `/blog/category/${catInfo.slug}`)}
                     className="text-xs font-medium px-3 py-1 rounded-full bg-white/20 text-white hover:bg-white/30 transition-colors"
                   >
                     {catInfo.icon} {catInfo.labelAr}
@@ -117,7 +118,7 @@ export default function ArticlePage({
               {article.relatedCalculator && (
                 <div className="px-6 sm:px-8 py-3 bg-green-50 dark:bg-green-900/10 border-b border-green-200 dark:border-green-800/40">
                   <Link
-                    href={`/${locale}${article.relatedCalculator.href}`}
+                    href={lp(locale, article.relatedCalculator.href)}
                     className="flex items-center justify-between text-sm"
                   >
                     <span className="text-green-700 dark:text-green-400 font-medium">
