@@ -54,7 +54,7 @@ export default function ZakatCalculatorPage({ locale }: Props) {
     description: "حاسبة الزكاة الإلكترونية: 15 نوع زكاة — المال، الذهب بأسعار لحظية، أسهم تداول، العملات الرقمية، العقارات، الزروع، الأنعام",
     applicationCategory: "UtilitiesApplication",
     operatingSystem: "Web Browser",
-    inLanguage: ["ar", "en"],
+    inLanguage: ["ar"],
     offers: { "@type": "Offer", price: "0", priceCurrency: "SAR" },
     featureList: ZAKAT_CATEGORIES.map((c) => c.labelAr),
   };

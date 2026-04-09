@@ -71,7 +71,7 @@ export default function MortgageCalculatorPage({ locale }: Props) {
     description: "أشمل حاسبة تمويل عقاري سعودية: مرابحة وإجارة وتورّق، مقارنة 8 بنوك، دعم صندوق التنمية العقارية REDF، جدول سداد سنوي، ضوابط ساما",
     applicationCategory: "FinanceApplication",
     operatingSystem: "Web Browser",
-    inLanguage: ["ar", "en"],
+    inLanguage: ["ar"],
     offers: { "@type": "Offer", price: "0", priceCurrency: "SAR" },
     featureList: [
       "3 أنواع تمويل: مرابحة، إجارة، تورّق",

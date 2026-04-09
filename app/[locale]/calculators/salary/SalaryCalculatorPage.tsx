@@ -65,7 +65,7 @@ export default function SalaryCalculatorPage({ locale }: Props) {
     description: "حاسبة الراتب الشاملة: سلالم رواتب حكومية (عام، معلمين، صحي، عسكري)، صافي الراتب، التأمينات الاجتماعية، مقارنة قطاعات",
     applicationCategory: "UtilitiesApplication",
     operatingSystem: "Web Browser",
-    inLanguage: ["ar", "en"],
+    inLanguage: ["ar"],
     offers: { "@type": "Offer", price: "0", priceCurrency: "SAR" },
     featureList: [
       "سلم رواتب الموظفين العام (15 مرتبة)",

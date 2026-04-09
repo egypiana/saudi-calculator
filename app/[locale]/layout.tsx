@@ -16,7 +16,7 @@ const ibmPlexArabic = IBM_Plex_Sans_Arabic({
   variable: "--font-ibm-plex-arabic",
 });
 
-const locales = ["ar", "en", "es", "pt"];
+const locales = ["ar"];
 
 export function generateStaticParams() {
   return locales.map((locale) => ({ locale }));
@@ -63,7 +63,7 @@ export default async function LocaleLayout({
 }) {
   unstable_setRequestLocale(locale);
   const messages = await getMessages();
-  const dir = locale === "ar" ? "rtl" : "ltr";
+  const dir = "rtl";
 
   return (
     <html lang={locale} dir={dir} suppressHydrationWarning className={ibmPlexArabic.variable}>

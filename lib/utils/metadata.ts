@@ -8,15 +8,11 @@ const DEFAULT_OG_IMAGE = "/og-default.png";
  * Ensures every page has proper hreflang tags for international SEO.
  */
 export function generateAlternates(locale: string, path: string) {
-  const cleanPath = path === "/" ? "" : path;
   return {
-    canonical: locale === "ar" ? (path || "/") : `/${locale}${cleanPath || ""}`,
+    canonical: path || "/",
     languages: {
-      ar: cleanPath || "/",
-      en: `/en${cleanPath}`,
-      es: `/es${cleanPath}`,
-      pt: `/pt${cleanPath}`,
-      "x-default": cleanPath || "/",
+      ar: path || "/",
+      "x-default": path || "/",
     },
   };
 }

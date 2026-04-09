@@ -87,7 +87,7 @@ export default function InheritanceCalculatorPage({ locale }: Props) {
     description: "حاسبة تقسيم التركة والميراث وفق أحكام الشريعة الإسلامية — 17 نوع وارث، العول والرد، المذهب الحنبلي",
     applicationCategory: "UtilitiesApplication",
     operatingSystem: "Web Browser",
-    inLanguage: ["ar", "en"],
+    inLanguage: ["ar"],
     offers: { "@type": "Offer", price: "0", priceCurrency: "SAR" },
     featureList: [
       "17 نوع وارث",

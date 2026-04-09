@@ -10,17 +10,9 @@ import {
   Search,
   Moon,
   Sun,
-  ChevronDown,
 } from "lucide-react";
 import { useTheme } from "@/components/providers/ThemeProvider";
 import { lp } from "@/lib/utils/locale";
-
-const locales = [
-  { code: "ar", label: "العربية" },
-  { code: "en", label: "EN" },
-  { code: "es", label: "ES" },
-  { code: "pt", label: "PT" },
-];
 
 export default function Header() {
   const { theme, toggleTheme } = useTheme();
@@ -54,10 +46,6 @@ export default function Header() {
     return pathname.startsWith(href);
   };
 
-  const switchLocale = (newLocale: string) => {
-    const pathWithoutLocale = pathname.replace(/^\/(ar|en|es|pt)/, "");
-    window.location.href = lp(newLocale, pathWithoutLocale || "/");
-  };
 
   return (
     <>
@@ -110,29 +98,6 @@ export default function Header() {
 
             {/* الأزرار */}
             <div className="flex items-center gap-1">
-              {/* اختيار اللغة */}
-              <div className="relative group">
-                <button className="flex items-center gap-1 px-2 py-1.5 text-white hover:bg-white/20 rounded-lg transition-colors text-sm font-bold">
-                  {locale.toUpperCase()}
-                  <ChevronDown className="h-3 w-3" />
-                </button>
-                <div className="absolute end-0 top-full mt-1 bg-white dark:bg-dark-surface rounded-lg shadow-xl py-1 min-w-[120px] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50">
-                  {locales.map((l) => (
-                    <button
-                      key={l.code}
-                      onClick={() => switchLocale(l.code)}
-                      className={`w-full text-start px-4 py-2 text-sm hover:bg-primary-50 dark:hover:bg-white/10 transition-colors ${
-                        locale === l.code
-                          ? "text-primary-600 font-bold"
-                          : "text-gray-700 dark:text-gray-300"
-                      }`}
-                    >
-                      {l.label}
-                    </button>
-                  ))}
-                </div>
-              </div>
-
               {/* البحث */}
               <button
                 onClick={() => setSearchOpen(!searchOpen)}

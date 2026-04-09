@@ -58,7 +58,7 @@ export default function EndOfServicePage({ locale }: Props) {
     description: "حاسبة مكافأة نهاية الخدمة محدّثة وفق تعديلات نظام العمل السعودي فبراير 2025 — 10 أسباب انتهاء، استقالة رسمية، إفلاس، فترة إشعار",
     applicationCategory: "UtilitiesApplication",
     operatingSystem: "Web Browser",
-    inLanguage: ["ar", "en"],
+    inLanguage: ["ar"],
     offers: { "@type": "Offer", price: "0", priceCurrency: "SAR" },
     featureList: [
       "10 أسباب انتهاء خدمة",

@@ -56,7 +56,7 @@ export default function PercentageCalculator({ locale }: Props) {
     description: "احسب أي نسبة مئوية — خصم، VAT، زكاة، إكرامية، تغيير السعر",
     applicationCategory: "UtilitiesApplication",
     operatingSystem: "Web Browser",
-    inLanguage: ["ar", "en"],
+    inLanguage: ["ar"],
     offers: { "@type": "Offer", price: "0", priceCurrency: "SAR" },
     featureList: ["نسبة من مبلغ", "إضافة وطرح النسبة", "حساب نسبة مجهولة", "نسبة التغيير", "القيمة المضافة 15%", "الزكاة 2.5%", "حاسبة الخصم"],
   };

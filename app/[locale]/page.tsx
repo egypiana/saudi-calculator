@@ -34,7 +34,7 @@ function HomeJsonLd({ locale }: { locale: string }) {
         description: isAr
           ? "مركزك الشامل للحاسبات المالية والإسلامية والعدادات التنازلية في المملكة العربية السعودية"
           : "Your comprehensive hub for financial and Islamic calculators and countdowns in Saudi Arabia",
-        inLanguage: ["ar", "en", "es", "pt"],
+        inLanguage: ["ar"],
         potentialAction: {
           "@type": "SearchAction",
           target: {

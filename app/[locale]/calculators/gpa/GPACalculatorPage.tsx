@@ -68,7 +68,7 @@ export default function GPACalculatorPage({ locale }: Props) {
     description: "حاسبة المعدل التراكمي للجامعات السعودية — نظام 5 نقاط و4 نقاط مع حساب تراكمي ورسم بياني",
     applicationCategory: "UtilitiesApplication",
     operatingSystem: "Web Browser",
-    inLanguage: ["ar", "en"],
+    inLanguage: ["ar"],
     offers: { "@type": "Offer", price: "0", priceCurrency: "SAR" },
     featureList: ["حساب المعدل الفصلي", "حساب المعدل التراكمي", "نظام 5 نقاط", "نظام 4 نقاط", "رسم بياني", "جدول التقديرات"],
   };

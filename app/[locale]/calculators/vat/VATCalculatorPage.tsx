@@ -71,7 +71,7 @@ export default function VATCalculatorPage({ locale }: Props) {
     description: "حاسبة ضريبة القيمة المضافة لـ 12+ دولة — إضافة واستخراج الضريبة مع جدول مقارنة",
     applicationCategory: "UtilitiesApplication",
     operatingSystem: "Web Browser",
-    inLanguage: ["ar", "en"],
+    inLanguage: ["ar"],
     offers: { "@type": "Offer", price: "0", priceCurrency: "SAR" },
     featureList: ["إضافة الضريبة", "استخراج الضريبة", "12 دولة", "نسبة مخصصة", "جدول مقارنة", "رسم بياني"],
   };

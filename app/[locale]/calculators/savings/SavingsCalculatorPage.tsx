@@ -47,7 +47,7 @@ export default function SavingsCalculatorPage({ locale }: Props) {
     return items;
   }, [hasValue, result]);
 
-  const structuredData = { "@context": "https://schema.org", "@type": "WebApplication", name: "حاسبة الادخار", description: "حاسبة الادخار والاستثمار مع الفائدة المركبة وتخطيط الأهداف المالية", applicationCategory: "UtilitiesApplication", operatingSystem: "Web Browser", inLanguage: ["ar", "en"], offers: { "@type": "Offer", price: "0", priceCurrency: "SAR" } };
+  const structuredData = { "@context": "https://schema.org", "@type": "WebApplication", name: "حاسبة الادخار", description: "حاسبة الادخار والاستثمار مع الفائدة المركبة وتخطيط الأهداف المالية", applicationCategory: "UtilitiesApplication", operatingSystem: "Web Browser", inLanguage: ["ar"], offers: { "@type": "Offer", price: "0", priceCurrency: "SAR" } };
 
   return (
     <main className="min-h-screen bg-gray-50 dark:bg-dark-bg">

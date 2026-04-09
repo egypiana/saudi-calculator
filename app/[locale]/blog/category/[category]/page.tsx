@@ -12,12 +12,7 @@ import BlogSidebar from "../../components/BlogSidebar";
 import { lp } from "@/lib/utils/locale";
 
 export async function generateStaticParams() {
-  return BLOG_CATEGORIES.flatMap((cat) => [
-    { locale: "ar", category: cat.slug },
-    { locale: "en", category: cat.slug },
-    { locale: "es", category: cat.slug },
-    { locale: "pt", category: cat.slug },
-  ]);
+  return BLOG_CATEGORIES.map((cat) => ({ locale: "ar", category: cat.slug }));
 }
 
 export async function generateMetadata({

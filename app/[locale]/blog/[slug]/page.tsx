@@ -12,12 +12,7 @@ import RelatedArticles from "../components/RelatedArticles";
 import { lp } from "@/lib/utils/locale";
 
 export async function generateStaticParams() {
-  return getAllSlugs().flatMap((slug) => [
-    { locale: "ar", slug },
-    { locale: "en", slug },
-    { locale: "es", slug },
-    { locale: "pt", slug },
-  ]);
+  return getAllSlugs().map((slug) => ({ locale: "ar", slug }));
 }
 
 export async function generateMetadata({

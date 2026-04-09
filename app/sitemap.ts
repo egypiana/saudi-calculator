@@ -11,26 +11,22 @@ import { ASHURA_YEARS } from "@/lib/data/ashuraData";
 import { MAWLID_YEARS } from "@/lib/data/mawlidData";
 
 const BASE_URL = "https://calculatorvip.com";
-const LOCALES = ["ar", "en", "es", "pt"];
-
 function localizedUrls(path: string, priority: number, changeFrequency: MetadataRoute.Sitemap[0]["changeFrequency"] = "monthly") {
-  return LOCALES.map((locale) => ({
-    url: locale === "ar" ? `${BASE_URL}${path}` : `${BASE_URL}/${locale}${path}`,
+  return [{
+    url: `${BASE_URL}${path}`,
     lastModified: new Date(),
     changeFrequency,
     priority,
-  }));
+  }];
 }
 
 function yearUrls(basePath: string, years: number[], priority: number) {
-  return years.flatMap((year) =>
-    LOCALES.map((locale) => ({
-      url: locale === "ar" ? `${BASE_URL}${basePath}/${year}` : `${BASE_URL}/${locale}${basePath}/${year}`,
-      lastModified: new Date(),
-      changeFrequency: "yearly" as const,
-      priority,
-    }))
-  );
+  return years.map((year) => ({
+    url: `${BASE_URL}${basePath}/${year}`,
+    lastModified: new Date(),
+    changeFrequency: "yearly" as const,
+    priority,
+  }));
 }
 
 export default function sitemap(): MetadataRoute.Sitemap {
