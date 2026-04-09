@@ -70,16 +70,24 @@ export default function EndOfServiceSidebar({ locale }: Props) {
         </div>
       </div>
 
+      {/* 2025 Update Badge */}
+      <div className="bg-gradient-to-br from-amber-100 to-orange-100 dark:from-amber-900/20 dark:to-orange-900/20 rounded-2xl border border-amber-300 dark:border-amber-800/40 p-4 text-center">
+        <span className="bg-amber-600 text-white text-[10px] font-bold px-2.5 py-1 rounded-full">محدّث</span>
+        <p className="text-xs font-bold text-amber-800 dark:text-amber-300 mt-2">تعديلات نظام العمل 2025</p>
+        <p className="text-[10px] text-amber-600 dark:text-amber-400 mt-1">سارية من 19 فبراير 2025</p>
+      </div>
+
       {/* Key Articles */}
       <div className="bg-gradient-to-br from-orange-50 to-amber-50 dark:from-orange-900/10 dark:to-amber-900/10 rounded-2xl border border-orange-200 dark:border-orange-800/40 p-5">
         <h3 className="font-bold text-orange-800 dark:text-orange-300 mb-3 text-sm">⚖️ مواد النظام</h3>
         <div className="space-y-2 text-xs">
-          <div className="flex justify-between"><span className="text-orange-700 dark:text-orange-400">مادة 84</span><span className="text-orange-600 dark:text-orange-400">الاستحقاق (فصل/انتهاء)</span></div>
-          <div className="flex justify-between"><span className="text-orange-700 dark:text-orange-400">مادة 85</span><span className="text-orange-600 dark:text-orange-400">حالات الاستقالة</span></div>
-          <div className="flex justify-between"><span className="text-orange-700 dark:text-orange-400">مادة 86</span><span className="text-orange-600 dark:text-orange-400">استقالة المرأة</span></div>
-          <div className="flex justify-between"><span className="text-orange-700 dark:text-orange-400">مادة 87</span><span className="text-orange-600 dark:text-orange-400">حساب الأجر</span></div>
+          <div className="flex justify-between"><span className="text-orange-700 dark:text-orange-400">مادة 74</span><span className="text-orange-600 dark:text-orange-400">أسباب الإنهاء (+ إفلاس)</span></div>
+          <div className="flex justify-between"><span className="text-orange-700 dark:text-orange-400">مادة 75</span><span className="text-orange-600 dark:text-orange-400">الإشعار (30/60 يوماً)</span></div>
           <div className="flex justify-between"><span className="text-orange-700 dark:text-orange-400">مادة 80</span><span className="text-orange-600 dark:text-orange-400">حرمان من المكافأة</span></div>
           <div className="flex justify-between"><span className="text-orange-700 dark:text-orange-400">مادة 81</span><span className="text-orange-600 dark:text-orange-400">ترك بسبب مخالفة</span></div>
+          <div className="flex justify-between"><span className="text-orange-700 dark:text-orange-400">مادة 84</span><span className="text-orange-600 dark:text-orange-400">الاستحقاق (فصل/انتهاء)</span></div>
+          <div className="flex justify-between"><span className="text-orange-700 dark:text-orange-400">مادة 85</span><span className="text-orange-600 dark:text-orange-400">حالات الاستقالة</span></div>
+          <div className="flex justify-between"><span className="text-orange-700 dark:text-orange-400">مادة 87</span><span className="text-orange-600 dark:text-orange-400">استقالة المرأة (زواج/ولادة)</span></div>
         </div>
       </div>
 
@@ -88,9 +96,11 @@ export default function EndOfServiceSidebar({ locale }: Props) {
         <h3 className="font-bold text-amber-800 dark:text-amber-300 mb-3 text-sm">💡 ملاحظات مهمة</h3>
         <ul className="space-y-2 text-xs text-amber-700 dark:text-amber-400 leading-relaxed">
           <li>• المكافأة تُحسب على آخر أجر شامل (أساسي + بدلات)</li>
-          <li>• استقالة المرأة خلال 6 أشهر من الزواج أو 3 أشهر من الولادة: مكافأة كاملة</li>
-          <li>• الفصل بموجب مادة 80 (مخالفة جسيمة): لا مكافأة</li>
-          <li>• يجب صرف المكافأة خلال أسبوع من انتهاء العلاقة</li>
+          <li>• الاستقالة تُقبل تلقائياً بعد 30 يوماً (تعديل 2025)</li>
+          <li>• يحق سحب الاستقالة خلال 7 أيام</li>
+          <li>• استقالة المرأة بعد الزواج/الولادة: مكافأة كاملة</li>
+          <li>• فترة التجربة 180 يوماً (تعديل 2025)</li>
+          <li>• الفصل بموجب مادة 80: لا مكافأة</li>
         </ul>
       </div>
 

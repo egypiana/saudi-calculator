@@ -4,13 +4,13 @@ export default function EndOfServiceSEO() {
   return (
     <div className="bg-white dark:bg-dark-surface rounded-2xl border border-gray-200 dark:border-gray-700 p-6 sm:p-8">
       <h2 className="text-xl font-bold text-gray-800 dark:text-white mb-6">
-        📘 دليلك الشامل لمكافأة نهاية الخدمة في نظام العمل السعودي 2026
+        📘 دليلك الشامل لمكافأة نهاية الخدمة في نظام العمل السعودي — تعديلات 2025
       </h2>
 
       <div className="prose dark:prose-invert max-w-none text-gray-600 dark:text-gray-300 space-y-5 text-sm leading-relaxed">
         <h3 className="text-lg font-bold text-gray-800 dark:text-white">ما هي مكافأة نهاية الخدمة؟</h3>
         <p>
-          مكافأة نهاية الخدمة هي حق مالي يكفله <strong>نظام العمل السعودي</strong> لكل عامل عند انتهاء علاقته العمالية. تُعدّ من أهم حقوق العامل وتُحسب على أساس آخر أجر تقاضاه شاملاً الراتب الأساسي وجميع البدلات الثابتة. نظّمها النظام في المواد من 84 إلى 88.
+          مكافأة نهاية الخدمة هي حق مالي يكفله <strong>نظام العمل السعودي</strong> لكل عامل عند انتهاء علاقته العمالية. تُعدّ من أهم حقوق العامل وتُحسب على أساس آخر أجر تقاضاه شاملاً الراتب الأساسي وجميع البدلات الثابتة. نظّمها النظام في المواد من 84 إلى 88. وقد شهد النظام تعديلات جوهرية دخلت حيز التنفيذ في <strong>19 فبراير 2025</strong> شملت 38 مادة مع إضافة مادتين جديدتين.
         </p>
 
         <h3 className="text-lg font-bold text-gray-800 dark:text-white">طريقة حساب المكافأة (المادة 84)</h3>
@@ -75,6 +75,29 @@ export default function EndOfServiceSEO() {
           <li>ثبوت استغلال المنصب للحصول على مكاسب شخصية غير مشروعة</li>
           <li>إفشاء أسرار صناعية أو تجارية</li>
         </ul>
+
+        <h3 className="text-lg font-bold text-gray-800 dark:text-white">تعديلات نظام العمل 2025 — ما الجديد؟</h3>
+        <div className="bg-amber-50 dark:bg-amber-900/10 border border-amber-200 dark:border-amber-800/30 rounded-xl p-4 not-prose">
+          <p className="text-sm text-amber-800 dark:text-amber-300 font-bold mb-3">⚡ أبرز التعديلات السارية من 19 فبراير 2025:</p>
+          <ul className="space-y-2 text-xs text-amber-700 dark:text-amber-400 leading-relaxed">
+            <li>• <strong>الاستقالة أصبحت رسمية:</strong> الاستقالة معترف بها صراحةً كسبب لإنهاء العقد في نظام العمل. تُقبل تلقائياً بعد 30 يوماً إذا لم يرد صاحب العمل.</li>
+            <li>• <strong>سحب الاستقالة:</strong> يحق للموظف سحب استقالته خلال 7 أيام من تقديمها ما لم تُقبل.</li>
+            <li>• <strong>الإفلاس سبب مشروع:</strong> إفلاس صاحب العمل أصبح سبباً قانونياً لإنهاء العقد مع استحقاق المكافأة كاملة.</li>
+            <li>• <strong>فترة الإشعار:</strong> 30 يوماً للموظف و60 يوماً لصاحب العمل في العقود غير محددة المدة (المادة 75 المعدّلة).</li>
+            <li>• <strong>فترة التجربة:</strong> تمديد من 90 إلى 180 يوماً، مع إمكانية تمديدها باتفاق الطرفين.</li>
+            <li>• <strong>العقود الرقمية:</strong> توثيق العقود عبر منصة قوى (Qiwa) أصبح إلزامياً، والعقود الموثقة تُعتبر سندات تنفيذية.</li>
+            <li>• <strong>إجازة أمومة:</strong> 12 أسبوعاً مدفوعة بالكامل (6 أسابيع بعد الولادة إلزامية) + إجازة أبوة 3 أيام مدفوعة.</li>
+            <li>• <strong>العمالة البحرية:</strong> عمال البحر على السفن بجميع أحجامها أصبحوا تحت مظلة نظام العمل.</li>
+          </ul>
+          <p className="text-[11px] text-amber-600 dark:text-amber-400 mt-3 font-bold">
+            ⚠️ ملاحظة: معادلة حساب مكافأة نهاية الخدمة نفسها (نصف شهر لأول 5 سنوات + شهر كامل بعدها) لم تتغير.
+          </p>
+        </div>
+
+        <h3 className="text-lg font-bold text-gray-800 dark:text-white">عقود غير السعوديين — تعديل 2025</h3>
+        <p>
+          وفق التعديلات الجديدة، يجب أن تكون عقود العمل لغير السعوديين <strong>محددة المدة كتابةً</strong>. إذا لم يُحدد العقد مدة معينة، يُعتبر تلقائياً بمدة <strong>سنة واحدة</strong> من تاريخ مباشرة العمل، ويتجدد تلقائياً لفترات مماثلة. عند انتهاء العقد بدون تجديد يستحق العامل المكافأة كاملة.
+        </p>
 
         <h3 className="text-lg font-bold text-gray-800 dark:text-white">حقوق أخرى عند انتهاء الخدمة</h3>
         <ul className="list-disc pr-6 space-y-1">

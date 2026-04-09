@@ -10,28 +10,31 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const isAr = locale === "ar";
   const title = isAr
-    ? "حاسبة مكافأة نهاية الخدمة 2026 — نظام العمل السعودي (مواد 84-87)"
-    : "End of Service Calculator 2026 — Saudi Labor Law (Articles 84-87)";
+    ? "حاسبة مكافأة نهاية الخدمة 2026 — تعديلات نظام العمل 2025 (10 أسباب انتهاء)"
+    : "End of Service Calculator 2026 — Saudi Labor Law 2025 Amendments (10 Termination Types)";
   const description = isAr
-    ? "أشمل حاسبة مكافأة نهاية الخدمة: استقالة، فصل، تقاعد، انتهاء عقد، قوة قاهرة. خطوات الحساب التفصيلية، حالات الاستقالة الأربعة، مواد النظام. حساب فوري ومجاني."
-    : "Most comprehensive end of service calculator: resignation, termination, retirement, contract end. Step-by-step calculation, Saudi Labor Law articles 84-87. Instant & free.";
+    ? "أشمل حاسبة مكافأة نهاية الخدمة محدّثة وفق تعديلات نظام العمل فبراير 2025: 10 أسباب انتهاء، استقالة رسمية، إفلاس صاحب العمل، فترة إشعار 30/60 يوماً، استقالة المرأة، فترة تجربة 180 يوماً. حساب فوري ومجاني."
+    : "Most comprehensive end of service calculator updated with Feb 2025 Saudi Labor Law amendments: 10 termination types, formal resignation, bankruptcy, 30/60 day notice, woman's special rights. Instant & free.";
   const keywords = isAr
     ? [
         "حاسبة نهاية الخدمة",
         "مكافأة نهاية الخدمة",
         "حاسبة مكافأة نهاية الخدمة",
         "نظام العمل السعودي",
+        "تعديلات نظام العمل 2025",
         "مادة 84",
         "مادة 85",
         "حساب نهاية الخدمة",
         "مكافأة الاستقالة",
         "مكافأة الفصل",
         "مكافأة التقاعد",
+        "إفلاس صاحب العمل",
+        "فترة الإشعار",
+        "استقالة المرأة",
         "حقوق الموظف",
-        "تسوية نهاية الخدمة",
-        "نظام العمل",
+        "نظام العمل الجديد",
       ]
-    : ["end of service calculator", "saudi labor law", "gratuity calculator", "resignation reward", "termination benefit", "article 84"];
+    : ["end of service calculator", "saudi labor law 2025", "gratuity calculator", "resignation reward", "termination benefit", "article 84", "labor law amendments"];
   return {
     title,
     description,

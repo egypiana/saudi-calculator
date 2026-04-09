@@ -5,6 +5,7 @@ import { RotateCcw, Briefcase, Calendar, ChevronDown } from "lucide-react";
 import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip } from "recharts";
 import {
   calculateEndOfService, fmt, QUICK_SALARIES, TERMINATION_REASONS, RESIGNATION_RULES, EXAMPLE_SCENARIOS,
+  AMENDMENT_2025_HIGHLIGHTS, NOTICE_PERIOD_RULES,
   type ContractType, type EndOfServiceInput,
 } from "@/lib/calculations/end-of-service";
 import Breadcrumb from "@/components/layout/Breadcrumb";
@@ -53,12 +54,22 @@ export default function EndOfServicePage({ locale }: Props) {
   const structuredData = {
     "@context": "https://schema.org",
     "@type": "WebApplication",
-    name: "حاسبة مكافأة نهاية الخدمة",
-    description: "حاسبة مكافأة نهاية الخدمة حسب نظام العمل السعودي — استقالة، فصل، تقاعد، انتهاء عقد",
+    name: "حاسبة مكافأة نهاية الخدمة — تعديلات 2025",
+    description: "حاسبة مكافأة نهاية الخدمة محدّثة وفق تعديلات نظام العمل السعودي فبراير 2025 — 10 أسباب انتهاء، استقالة رسمية، إفلاس، فترة إشعار",
     applicationCategory: "UtilitiesApplication",
     operatingSystem: "Web Browser",
     inLanguage: ["ar", "en"],
     offers: { "@type": "Offer", price: "0", priceCurrency: "SAR" },
+    featureList: [
+      "10 أسباب انتهاء خدمة",
+      "تعديلات 2025 الجديدة",
+      "إفلاس صاحب العمل",
+      "استقالة رسمية",
+      "فترة إشعار 30/60 يوماً",
+      "استقالة المرأة (زواج/ولادة)",
+      "خطوات الحساب التفصيلية",
+      "فترة تجربة 180 يوماً",
+    ],
   };
 
   return (
@@ -71,12 +82,12 @@ export default function EndOfServicePage({ locale }: Props) {
         ]} />
 
         <div className="mt-5 mb-6">
-          <h1 className="text-3xl font-bold text-gray-800 dark:text-white mb-2">🏢 حاسبة مكافأة نهاية الخدمة</h1>
+          <h1 className="text-3xl font-bold text-gray-800 dark:text-white mb-2">🏢 حاسبة مكافأة نهاية الخدمة — تعديلات 2025</h1>
           <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
-            احسب مكافأة نهاية الخدمة بدقة حسب نظام العمل السعودي (مواد 84-87) — استقالة، فصل، تقاعد، انتهاء عقد، قوة قاهرة. مع خطوات الحساب التفصيلية.
+            احسب مكافأة نهاية الخدمة بدقة حسب نظام العمل السعودي المحدّث (تعديلات فبراير 2025) — 10 أسباب انتهاء، استقالة رسمية، إفلاس، فترة إشعار 30/60 يوماً، استقالة المرأة، مع خطوات الحساب التفصيلية.
           </p>
           <div className="flex flex-wrap gap-2 mt-3">
-            {["7 أسباب انتهاء", "خطوات الحساب", "مواد النظام", "حالات الاستقالة", "حساب فوري", "مجاني 100%"].map((b) => (
+            {["محدّث 2025", "10 أسباب انتهاء", "إشعار 30/60 يوماً", "إفلاس صاحب العمل", "استقالة المرأة", "حساب فوري", "مجاني 100%"].map((b) => (
               <span key={b} className="text-xs px-2.5 py-1 bg-orange-100 dark:bg-orange-900/20 text-orange-700 dark:text-orange-400 rounded-full font-medium">✓ {b}</span>
             ))}
           </div>
@@ -96,7 +107,7 @@ export default function EndOfServicePage({ locale }: Props) {
                   <RotateCcw className="h-3.5 w-3.5" /> إعادة ضبط
                 </button>
               </div>
-              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2">
+              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-2">
                 {TERMINATION_REASONS.map((r) => {
                   const isActive = input.reason === r.value;
                   return (
@@ -133,6 +144,40 @@ export default function EndOfServicePage({ locale }: Props) {
                     {ct === "unlimited" ? "غير محدد المدة" : "محدد المدة"}
                   </button>
                 ))}
+              </div>
+            </div>
+
+            {/* 2025 Amendments Banner */}
+            <div className="bg-gradient-to-l from-amber-50 to-orange-50 dark:from-amber-900/10 dark:to-orange-900/10 rounded-2xl border border-amber-200 dark:border-amber-800/40 p-5 shadow-sm">
+              <div className="flex items-center gap-2 mb-3">
+                <span className="bg-amber-600 text-white text-[10px] font-bold px-2 py-0.5 rounded-full">جديد 2025</span>
+                <h3 className="font-bold text-amber-800 dark:text-amber-300 text-sm">أبرز تعديلات نظام العمل — سارية من 19 فبراير 2025</h3>
+              </div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                {AMENDMENT_2025_HIGHLIGHTS.slice(0, 6).map((item, i) => (
+                  <div key={i} className="flex items-start gap-2 bg-white/70 dark:bg-dark-bg/50 rounded-lg px-3 py-2">
+                    <span className="text-base flex-shrink-0 mt-0.5">{item.icon}</span>
+                    <div>
+                      <p className="text-xs font-bold text-amber-800 dark:text-amber-300">{item.titleAr}</p>
+                      <p className="text-[11px] text-amber-600 dark:text-amber-400 leading-relaxed">{item.descAr}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              {/* Notice Period Table */}
+              <div className="mt-3 bg-white/70 dark:bg-dark-bg/50 rounded-lg overflow-hidden">
+                <div className="px-3 py-2 bg-amber-100/50 dark:bg-amber-900/20">
+                  <p className="text-xs font-bold text-amber-800 dark:text-amber-300">⏰ فترات الإشعار المحدّثة (المادة 75)</p>
+                </div>
+                <div className="divide-y divide-amber-100 dark:divide-amber-900/20">
+                  {NOTICE_PERIOD_RULES.map((rule, i) => (
+                    <div key={i} className="flex items-center justify-between px-3 py-2 text-xs">
+                      <span className="text-amber-700 dark:text-amber-400">{rule.partyAr}</span>
+                      <span className="font-bold text-amber-800 dark:text-amber-300 bg-amber-100 dark:bg-amber-900/30 px-2 py-0.5 rounded-full">{rule.daysRequired} يوماً</span>
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
 

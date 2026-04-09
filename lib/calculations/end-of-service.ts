@@ -1,6 +1,7 @@
 /**
  * End of Service Reward Calculator
  * Saudi Labor Law — Articles 84, 85, 86, 87
+ * محدّث وفق تعديلات نظام العمل فبراير 2025
  */
 
 export type TerminationReason =
@@ -10,7 +11,10 @@ export type TerminationReason =
   | "retirement"             // تقاعد
   | "force-majeure"          // قوة قاهرة (مادة 83)
   | "article-81"             // استقالة بسبب مخالفة صاحب العمل (مادة 81)
-  | "death-disability";      // وفاة أو عجز
+  | "death-disability"       // وفاة أو عجز
+  | "bankruptcy"             // إفلاس صاحب العمل (تعديل 2025)
+  | "woman-marriage"         // استقالة المرأة بعد الزواج (مادة 87)
+  | "woman-childbirth";      // استقالة المرأة بعد الولادة (مادة 87)
 
 export type ContractType = "limited" | "unlimited";
 
@@ -52,6 +56,9 @@ export const TERMINATION_REASONS: { value: TerminationReason; labelAr: string; d
   { value: "article-81", labelAr: "استقالة (مادة 81)", descAr: "بسبب مخالفة صاحب العمل", icon: "⚖️" },
   { value: "force-majeure", labelAr: "قوة قاهرة", descAr: "ظرف خارج عن الإرادة", icon: "🌊" },
   { value: "death-disability", labelAr: "وفاة أو عجز", descAr: "وفاة الموظف أو عجز كلي", icon: "🕊️" },
+  { value: "bankruptcy", labelAr: "إفلاس صاحب العمل", descAr: "إغلاق المنشأة بسبب إفلاس", icon: "📉" },
+  { value: "woman-marriage", labelAr: "استقالة بعد الزواج", descAr: "خلال 6 أشهر من الزواج (مادة 87)", icon: "💍" },
+  { value: "woman-childbirth", labelAr: "استقالة بعد الولادة", descAr: "خلال 3 أشهر من الولادة (مادة 87)", icon: "👶" },
 ];
 
 export function calculateEndOfService(input: EndOfServiceInput): EndOfServiceResult {
@@ -150,6 +157,21 @@ export function calculateEndOfService(input: EndOfServiceInput): EndOfServiceRes
       ruleAr = "المكافأة كاملة — وفاة أو عجز كلي";
       articleAr = "مادة 84";
       break;
+
+    case "bankruptcy":
+      ruleAr = "المكافأة كاملة — إفلاس صاحب العمل (تعديل 2025)";
+      articleAr = "مادة 74 + 84";
+      break;
+
+    case "woman-marriage":
+      ruleAr = "المكافأة كاملة — استقالة المرأة خلال 6 أشهر من الزواج";
+      articleAr = "مادة 87";
+      break;
+
+    case "woman-childbirth":
+      ruleAr = "المكافأة كاملة — استقالة المرأة خلال 3 أشهر من الولادة";
+      articleAr = "مادة 87";
+      break;
   }
 
   const totalReward = baseReward * multiplier;
@@ -190,10 +212,31 @@ export const RESIGNATION_RULES = [
   { range: "10 سنوات فأكثر", multiplier: "المكافأة كاملة", fraction: 1, color: "bg-emerald-500" },
 ];
 
+// Notice period rules (2025 amendment)
+export const NOTICE_PERIOD_RULES = [
+  { partyAr: "الموظف (عقد غير محدد)", daysRequired: 30, noteAr: "إشعار كتابي قبل 30 يوماً" },
+  { partyAr: "صاحب العمل (عقد غير محدد)", daysRequired: 60, noteAr: "إشعار كتابي قبل 60 يوماً" },
+  { partyAr: "الموظف (أجر غير شهري)", daysRequired: 30, noteAr: "إشعار كتابي قبل 30 يوماً" },
+];
+
+// 2025 Amendment highlights
+export const AMENDMENT_2025_HIGHLIGHTS = [
+  { icon: "📝", titleAr: "الاستقالة أصبحت رسمية", descAr: "الاستقالة معترف بها صراحةً كسبب لإنهاء العقد — تُقبل تلقائياً بعد 30 يوماً" },
+  { icon: "⏰", titleAr: "فترة الإشعار", descAr: "30 يوماً للموظف و60 يوماً لصاحب العمل في العقود غير محددة المدة" },
+  { icon: "↩️", titleAr: "سحب الاستقالة", descAr: "يحق للموظف سحب استقالته خلال 7 أيام من تقديمها ما لم تُقبل" },
+  { icon: "📉", titleAr: "الإفلاس سبب مشروع", descAr: "إفلاس صاحب العمل أصبح سبباً قانونياً لإنهاء العقد مع استحقاق المكافأة" },
+  { icon: "📱", titleAr: "العقود الرقمية إلزامية", descAr: "يجب توثيق جميع العقود عبر منصة قوى (Qiwa) لتكون نافذة" },
+  { icon: "🔄", titleAr: "فترة التجربة 180 يوماً", descAr: "تمديد فترة التجربة من 90 إلى 180 يوماً قابلة للتمديد باتفاق الطرفين" },
+  { icon: "🤱", titleAr: "إجازة أمومة 12 أسبوعاً", descAr: "إجازة أمومة مدفوعة بالكامل لمدة 12 أسبوعاً + إجازة أبوة 3 أيام" },
+  { icon: "⚖️", titleAr: "مدة المطالبة 12 شهراً", descAr: "يجب المطالبة بمستحقات نهاية الخدمة خلال 12 شهراً من انتهاء العلاقة" },
+];
+
 // Example scenarios
 export const EXAMPLE_SCENARIOS = [
   { labelAr: "استقالة بعد 3 سنوات", salary: 10000, years: 3, months: 0, days: 0, reason: "resignation" as TerminationReason },
   { labelAr: "فصل بعد 8 سنوات", salary: 15000, years: 8, months: 0, days: 0, reason: "employer-termination" as TerminationReason },
   { labelAr: "تقاعد بعد 25 سنة", salary: 20000, years: 25, months: 0, days: 0, reason: "retirement" as TerminationReason },
   { labelAr: "انتهاء عقد سنتين", salary: 8000, years: 2, months: 0, days: 0, reason: "contract-end" as TerminationReason },
+  { labelAr: "إفلاس بعد 5 سنوات", salary: 12000, years: 5, months: 0, days: 0, reason: "bankruptcy" as TerminationReason },
+  { labelAr: "استقالة بعد الزواج", salary: 9000, years: 1, months: 6, days: 0, reason: "woman-marriage" as TerminationReason },
 ];
