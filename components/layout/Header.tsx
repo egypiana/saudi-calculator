@@ -4,7 +4,6 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { useLocale, useTranslations } from "next-intl";
 import {
-  Calculator,
   Menu,
   X,
   Search,
@@ -68,14 +67,25 @@ export default function Header() {
             {/* اللوجو */}
             <Link
               href={`/${locale}`}
-              className="flex items-center gap-2 hover:opacity-90 transition-opacity"
+              className="flex items-center gap-2.5 hover:opacity-90 transition-opacity"
             >
-              <div className="bg-white/20 rounded-xl p-2 flex-shrink-0">
-                <Calculator className="h-6 w-6 text-white" />
+              <div className="bg-white/15 rounded-xl p-1.5 flex-shrink-0">
+                <svg width="32" height="32" viewBox="0 0 44 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect x="2" y="4" width="40" height="40" rx="10" fill="white" fillOpacity="0.2"/>
+                  <rect x="8" y="9" width="28" height="10" rx="3" fill="white" fillOpacity="0.9"/>
+                  <rect x="9" y="25" width="7" height="5" rx="1.5" fill="white" fillOpacity="0.7"/>
+                  <rect x="19" y="25" width="7" height="5" rx="1.5" fill="white" fillOpacity="0.7"/>
+                  <rect x="29" y="25" width="7" height="5" rx="1.5" fill="#c9a84c"/>
+                  <rect x="9" y="33" width="7" height="5" rx="1.5" fill="white" fillOpacity="0.7"/>
+                  <rect x="19" y="33" width="7" height="5" rx="1.5" fill="white" fillOpacity="0.7"/>
+                  <rect x="29" y="33" width="7" height="5" rx="1.5" fill="#c9a84c"/>
+                  <rect x="32" y="0" width="16" height="12" rx="4" fill="#c9a84c"/>
+                  <text x="40" y="9" fontFamily="Arial,sans-serif" fontSize="7" fontWeight="bold" fill="white" textAnchor="middle">VIP</text>
+                </svg>
               </div>
               <div className="hidden sm:flex flex-col leading-tight">
                 <span className="text-white font-bold text-lg whitespace-nowrap">
-                  {locale === "ar" ? "حاسبة السعودية" : "Saudi Calculator"}
+                  {locale === "ar" ? "حاسبة VIP" : "Calculator VIP"}
                 </span>
               </div>
             </Link>
@@ -213,11 +223,22 @@ export default function Header() {
             {/* رأس القائمة */}
             <div className="flex items-center justify-between px-5 py-4 border-b border-white/15 flex-shrink-0">
               <div className="flex items-center gap-2.5">
-                <div className="bg-white/20 rounded-lg p-1.5">
-                  <Calculator className="h-5 w-5 text-white" />
+                <div className="bg-white/15 rounded-lg p-1">
+                  <svg width="26" height="26" viewBox="0 0 44 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="2" y="4" width="40" height="40" rx="10" fill="white" fillOpacity="0.2"/>
+                    <rect x="8" y="9" width="28" height="10" rx="3" fill="white" fillOpacity="0.9"/>
+                    <rect x="9" y="25" width="7" height="5" rx="1.5" fill="white" fillOpacity="0.7"/>
+                    <rect x="19" y="25" width="7" height="5" rx="1.5" fill="white" fillOpacity="0.7"/>
+                    <rect x="29" y="25" width="7" height="5" rx="1.5" fill="#c9a84c"/>
+                    <rect x="9" y="33" width="7" height="5" rx="1.5" fill="white" fillOpacity="0.7"/>
+                    <rect x="19" y="33" width="7" height="5" rx="1.5" fill="white" fillOpacity="0.7"/>
+                    <rect x="29" y="33" width="7" height="5" rx="1.5" fill="#c9a84c"/>
+                    <rect x="32" y="0" width="16" height="12" rx="4" fill="#c9a84c"/>
+                    <text x="40" y="9" fontFamily="Arial,sans-serif" fontSize="7" fontWeight="bold" fill="white" textAnchor="middle">VIP</text>
+                  </svg>
                 </div>
                 <span className="text-white font-bold text-base">
-                  {locale === "ar" ? "حاسبة السعودية" : "Saudi Calculator"}
+                  {locale === "ar" ? "حاسبة VIP" : "Calculator VIP"}
                 </span>
               </div>
               <button

@@ -33,7 +33,7 @@ export async function generateMetadata({
       template: `%s | ${t("siteName")}`,
     },
     description: t("siteDescription"),
-    metadataBase: new URL("https://saudicalculator.com"),
+    metadataBase: new URL("https://calculatorvip.com"),
     alternates: {
       canonical: `/${locale}`,
       languages: {

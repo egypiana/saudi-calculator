@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "siteName": "Saudi Calculator",
+    "siteName": "Calculator VIP",
     "siteDescription": "Your comprehensive hub for financial, Islamic calculators and countdowns in Saudi Arabia"
   },
   "nav": {
@@ -93,13 +93,13 @@
     "followUs": "Follow Us"
   },
   "footer": {
-    "aboutSite": "Saudi Calculator — A comprehensive platform with 60+ calculators and countdowns serving the Saudi community.",
+    "aboutSite": "Calculator VIP — A comprehensive platform with 60+ calculators and countdowns serving the Saudi and Arab community.",
     "countdownsTitle": "Countdowns",
     "calculatorsTitle": "Calculators",
     "usefulLinks": "Useful Links",
     "privacyPolicy": "Privacy Policy",
     "terms": "Terms of Use",
     "sitemap": "Sitemap",
-    "copyright": "© 2026 Saudi Calculator • All Rights Reserved"
+    "copyright": "© 2026 Calculator VIP • All Rights Reserved"
   }
 }
