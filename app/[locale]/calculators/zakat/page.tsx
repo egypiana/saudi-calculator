@@ -10,28 +10,30 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const isAr = locale === "ar";
   const title = isAr
-    ? "حاسبة الزكاة الشاملة 2026 — المال، الذهب، الأسهم، العقارات، الزروع، الأنعام"
-    : "Comprehensive Zakat Calculator 2026 — Cash, Gold, Stocks, Real Estate, Crops, Livestock";
+    ? "حاسبة الزكاة الشاملة 2026 — المال، الذهب، الأسهم، العملات الرقمية، الزروع، الأنعام | أسعار لحظية"
+    : "Comprehensive Zakat Calculator 2026 — Cash, Gold, Stocks, Crypto, Crops | Live Prices";
   const description = isAr
-    ? "أشمل حاسبة زكاة عربية: 14 نوع زكاة — المال، الذهب، الفضة، الأسهم، العقارات، عروض التجارة، الأحجار الكريمة، الزروع، التمور، الأنعام، الشركات. حساب فوري للنصاب مع رسم بياني وتقرير مفصّل."
-    : "Most comprehensive Arabic Zakat calculator: 14 types — cash, gold, silver, stocks, real estate, trade goods, crops, livestock. Instant nisab calculation with charts and detailed report.";
+    ? "أشمل حاسبة زكاة عربية: 15 نوع زكاة — المال، الذهب بأسعار لحظية، أسهم تداول، العملات الرقمية (بيتكوين، إيثريوم)، العقارات، الزروع (القمح، الشعير، الأرز)، التمور، الأنعام. حساب فوري للنصاب مع رسم بياني."
+    : "Most comprehensive Arabic Zakat calculator: 15 types — cash, gold with live prices, Tadawul stocks, cryptocurrency (Bitcoin, Ethereum), real estate, crops, livestock. Instant nisab calculation.";
   const keywords = isAr
     ? [
         "حاسبة الزكاة",
         "حساب زكاة المال",
         "زكاة الذهب",
-        "زكاة الفضة",
         "زكاة الأسهم",
-        "زكاة العقارات",
-        "زكاة عروض التجارة",
+        "زكاة العملات الرقمية",
+        "زكاة البيتكوين",
+        "زكاة الإيثريوم",
+        "أسهم تداول زكاة",
         "نصاب الزكاة",
         "زكاة الأنعام",
         "زكاة الزروع",
+        "زكاة القمح",
+        "سعر الذهب اليوم",
         "حاسبة زكاة شاملة",
         "زكاة الشركات",
-        "زكاة التمور",
       ]
-    : ["zakat calculator", "gold zakat", "nisab calculator", "islamic zakat", "comprehensive zakat"];
+    : ["zakat calculator", "gold zakat", "nisab calculator", "crypto zakat", "bitcoin zakat", "tadawul stocks zakat"];
   return {
     title,
     description,

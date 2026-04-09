@@ -10,6 +10,7 @@ import ZakatResults from "./components/ZakatResults";
 import ZakatSidebar from "./components/ZakatSidebar";
 import ZakatSEO from "./components/ZakatSEO";
 import ZakatFAQ from "./components/ZakatFAQ";
+import LivePricesPanel from "./components/LivePricesPanel";
 
 interface Props {
   locale: string;
@@ -50,7 +51,7 @@ export default function ZakatCalculatorPage({ locale }: Props) {
     "@context": "https://schema.org",
     "@type": "WebApplication",
     name: "حاسبة الزكاة الشاملة",
-    description: "حاسبة الزكاة الإلكترونية: 14 نوع زكاة — المال، الذهب، الفضة، الأسهم، العقارات، الزروع، الأنعام، والمزيد",
+    description: "حاسبة الزكاة الإلكترونية: 15 نوع زكاة — المال، الذهب بأسعار لحظية، أسهم تداول، العملات الرقمية، العقارات، الزروع، الأنعام",
     applicationCategory: "UtilitiesApplication",
     operatingSystem: "Web Browser",
     inLanguage: ["ar", "en"],
@@ -74,10 +75,10 @@ export default function ZakatCalculatorPage({ locale }: Props) {
             🌙 حاسبة الزكاة الشاملة
           </h1>
           <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
-            احسب زكاة أموالك بدقة وفق أحكام الشريعة الإسلامية — 14 نوع زكاة، حساب فوري للنصاب، رسم بياني، وتقرير مفصّل.
+            احسب زكاة أموالك بدقة وفق أحكام الشريعة الإسلامية — 15 نوع زكاة شاملة مع أسعار ذهب لحظية، أسهم تداول، عملات رقمية، وزكاة الزروع المفصّلة.
           </p>
           <div className="flex flex-wrap gap-2 mt-3">
-            {["14 نوع زكاة", "حساب فوري", "رسم بياني", "النصاب التلقائي", "مجاني 100%"].map((badge) => (
+            {["15 نوع زكاة", "أسعار لحظية", "أسهم تداول", "عملات رقمية", "زكاة الزروع", "مجاني 100%"].map((badge) => (
               <span key={badge} className="text-xs px-2.5 py-1 bg-green-100 dark:bg-green-900/20 text-green-700 dark:text-green-400 rounded-full font-medium">
                 ✓ {badge}
               </span>
@@ -89,52 +90,25 @@ export default function ZakatCalculatorPage({ locale }: Props) {
         <div className="grid grid-cols-1 lg:grid-cols-[3fr_1fr] gap-6">
           <div className="space-y-6">
 
-            {/* Gold/Silver Prices + Summary Bar */}
-            <div className="bg-white dark:bg-dark-surface rounded-2xl border border-gray-200 dark:border-gray-700 p-5 shadow-sm">
-              <div className="flex items-center justify-between mb-4">
-                <h2 className="font-bold text-gray-800 dark:text-white text-sm">⚙️ إعدادات الأسعار</h2>
-                <button
-                  onClick={reset}
-                  className="flex items-center gap-1.5 px-3 py-1.5 bg-gray-100 dark:bg-dark-bg hover:bg-gray-200 dark:hover:bg-gray-700 text-gray-500 rounded-lg transition-colors text-xs"
-                >
-                  <RotateCcw className="h-3.5 w-3.5" />
-                  إعادة ضبط الكل
-                </button>
-              </div>
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-                <div>
-                  <label className="block text-xs font-medium text-gray-500 dark:text-gray-400 mb-1">سعر غرام الذهب (24)</label>
-                  <div className="relative">
-                    <input
-                      type="number"
-                      value={goldPrice || ""}
-                      onChange={(e) => setGoldPrice(Number(e.target.value))}
-                      className="w-full h-10 px-3 rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-dark-bg text-gray-800 dark:text-white text-sm focus:ring-2 focus:ring-green-500 outline-none tabular-nums"
-                    />
-                    <span className="absolute left-2 top-1/2 -translate-y-1/2 text-[10px] text-gray-400">ريال</span>
-                  </div>
-                </div>
-                <div>
-                  <label className="block text-xs font-medium text-gray-500 dark:text-gray-400 mb-1">سعر غرام الفضة</label>
-                  <div className="relative">
-                    <input
-                      type="number"
-                      value={silverPrice || ""}
-                      onChange={(e) => setSilverPrice(Number(e.target.value))}
-                      className="w-full h-10 px-3 rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-dark-bg text-gray-800 dark:text-white text-sm focus:ring-2 focus:ring-green-500 outline-none tabular-nums"
-                    />
-                    <span className="absolute left-2 top-1/2 -translate-y-1/2 text-[10px] text-gray-400">ريال</span>
-                  </div>
-                </div>
-                <div className="flex flex-col justify-center bg-green-50 dark:bg-green-900/10 rounded-lg px-3 py-2">
-                  <span className="text-[10px] text-green-600 dark:text-green-400">نصاب الذهب</span>
-                  <span className="font-bold text-sm text-green-700 dark:text-green-300 tabular-nums">{fmt(goldPrice * 85)} ريال</span>
-                </div>
-                <div className="flex flex-col justify-center bg-gray-50 dark:bg-gray-800 rounded-lg px-3 py-2">
-                  <span className="text-[10px] text-gray-500 dark:text-gray-400">نصاب الفضة</span>
-                  <span className="font-bold text-sm text-gray-700 dark:text-gray-300 tabular-nums">{fmt(silverPrice * 595)} ريال</span>
-                </div>
-              </div>
+            {/* Live Prices Panel - Gold, Stocks, Crypto */}
+            <LivePricesPanel
+              goldPrice={goldPrice}
+              silverPrice={silverPrice}
+              onGoldPriceChange={setGoldPrice}
+              onSilverPriceChange={setSilverPrice}
+              onStockValueAdd={(value) => handleChange("stocks_tadawul", (values["stocks_tadawul"] || 0) + value)}
+              onCryptoValueSet={handleChange}
+            />
+
+            {/* Quick Reset */}
+            <div className="flex justify-end">
+              <button
+                onClick={reset}
+                className="flex items-center gap-1.5 px-4 py-2 bg-gray-100 dark:bg-dark-surface hover:bg-gray-200 dark:hover:bg-gray-700 text-gray-500 rounded-lg transition-colors text-xs border border-gray-200 dark:border-gray-700"
+              >
+                <RotateCcw className="h-3.5 w-3.5" />
+                إعادة ضبط الكل
+              </button>
             </div>
 
             {/* Live Summary Bar */}

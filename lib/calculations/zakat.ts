@@ -78,15 +78,35 @@ export const ZAKAT_CATEGORIES: ZakatCategory[] = [
   },
   {
     id: "stocks",
-    labelAr: "زكاة الأسهم",
+    labelAr: "زكاة الأسهم (تداول)",
     icon: "📈",
     color: "#2563eb",
     nisabType: "gold",
     rate: 0.025,
-    description: "الأسهم في السوق المالية",
+    description: "الأسهم في السوق المالية السعودية (تداول) والأسواق العالمية",
     fields: [
-      { id: "stocks_value", labelAr: "القيمة السوقية للأسهم", type: "currency", unit: "ريال", helpText: "قيمة أسهمك بسعر اليوم" },
+      { id: "stocks_tadawul", labelAr: "أسهم تداول (السوق السعودي)", type: "currency", unit: "ريال", helpText: "القيمة السوقية لأسهمك في تداول — استخدم أداة البحث أدناه" },
+      { id: "stocks_international", labelAr: "أسهم أسواق عالمية", type: "currency", unit: "ريال", helpText: "قيمة أسهمك في الأسواق العالمية بالريال" },
+      { id: "stocks_etf", labelAr: "صناديق المؤشرات (ETFs)", type: "currency", unit: "ريال" },
+      { id: "stocks_ipo", labelAr: "اكتتابات محجوزة", type: "currency", unit: "ريال" },
       { id: "stocks_dividends", labelAr: "أرباح الأسهم غير المقبوضة", type: "currency", unit: "ريال" },
+    ],
+  },
+  {
+    id: "crypto",
+    labelAr: "زكاة العملات الرقمية",
+    icon: "🪙",
+    color: "#f59e0b",
+    nisabType: "gold",
+    rate: 0.025,
+    description: "بيتكوين، إيثريوم، وغيرها من العملات المشفرة",
+    fields: [
+      { id: "crypto_btc_value", labelAr: "بيتكوين (BTC)", type: "currency", unit: "ريال", helpText: "القيمة بالريال — استخدم أداة حساب القيمة أدناه" },
+      { id: "crypto_eth_value", labelAr: "إيثريوم (ETH)", type: "currency", unit: "ريال" },
+      { id: "crypto_usdt_value", labelAr: "تيثر (USDT)", type: "currency", unit: "ريال" },
+      { id: "crypto_bnb_value", labelAr: "بي إن بي (BNB)", type: "currency", unit: "ريال" },
+      { id: "crypto_sol_value", labelAr: "سولانا (SOL)", type: "currency", unit: "ريال" },
+      { id: "crypto_other_value", labelAr: "عملات رقمية أخرى", type: "currency", unit: "ريال", helpText: "إجمالي قيمة العملات الرقمية الأخرى بالريال" },
     ],
   },
   {
@@ -149,18 +169,22 @@ export const ZAKAT_CATEGORIES: ZakatCategory[] = [
     color: "#65a30d",
     nisabType: "custom",
     rate: 0.10,
-    description: "الحبوب والثمار عند الحصاد",
+    description: "القمح، الشعير، الأرز، الذرة، والحبوب — تجب عند الحصاد",
     fields: [
-      { id: "crop_weight", labelAr: "وزن المحصول", type: "weight", unit: "كيلوغرام", helpText: "نصاب الزروع 653 كغ (5 أوسق)" },
-      { id: "crop_price", labelAr: "سعر الكيلوغرام", type: "currency", unit: "ريال/كغ" },
+      { id: "crop_wheat", labelAr: "القمح (بُر)", type: "weight", unit: "كيلوغرام", helpText: "نصاب كل نوع 653 كغ (5 أوسق)" },
+      { id: "crop_barley", labelAr: "الشعير", type: "weight", unit: "كيلوغرام" },
+      { id: "crop_rice", labelAr: "الأرز", type: "weight", unit: "كيلوغرام" },
+      { id: "crop_corn", labelAr: "الذرة", type: "weight", unit: "كيلوغرام" },
+      { id: "crop_other", labelAr: "حبوب وثمار أخرى", type: "weight", unit: "كيلوغرام" },
+      { id: "crop_price", labelAr: "متوسط سعر الكيلوغرام", type: "currency", unit: "ريال/كغ", helpText: "السعر المتوسط لحساب القيمة النقدية" },
       {
         id: "irrigation",
         labelAr: "طريقة الري",
         type: "select",
         options: [
-          { value: "rain", label: "مطر / عيون طبيعية (10%)" },
-          { value: "machine", label: "ري صناعي / آلات (5%)" },
-          { value: "mixed", label: "مختلط (7.5%)" },
+          { value: "rain", label: "مطر / عيون / أنهار طبيعية — العُشر (10%)" },
+          { value: "machine", label: "ري صناعي / آبار عميقة / آلات — نصف العُشر (5%)" },
+          { value: "mixed", label: "مختلط (طبيعي + صناعي) — (7.5%)" },
         ],
       },
     ],
@@ -392,11 +416,18 @@ export function calculateZakat(
     }
 
     if (cat.id === "crops" || cat.id === "dates") {
-      const weightKey = cat.id === "crops" ? "crop_weight" : "dates_weight";
       const priceKey = cat.id === "crops" ? "crop_price" : "dates_price";
       const irrigKey = cat.id === "crops" ? "irrigation" : "dates_irrigation";
 
-      const weight = values[weightKey] || 0;
+      // Sum all weight fields for crops (wheat, barley, rice, corn, other)
+      let weight = 0;
+      if (cat.id === "crops") {
+        weight = (values["crop_wheat"] || 0) + (values["crop_barley"] || 0) +
+          (values["crop_rice"] || 0) + (values["crop_corn"] || 0) + (values["crop_other"] || 0);
+      } else {
+        weight = values["dates_weight"] || 0;
+      }
+
       const price = values[priceKey] || 0;
       const irrigVal = values[irrigKey] || 0;
 
