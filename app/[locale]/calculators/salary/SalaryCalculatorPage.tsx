@@ -12,6 +12,8 @@ import AdSlot from "@/components/ads/AdSlot";
 import SalarySidebar from "./components/SalarySidebar";
 import SalarySEO from "./components/SalarySEO";
 import SalaryFAQ from "./components/SalaryFAQ";
+import GovSalaryScales from "./components/GovSalaryScales";
+import SectorComparison from "./components/SectorComparison";
 
 interface Props {
   locale: string;
@@ -59,12 +61,22 @@ export default function SalaryCalculatorPage({ locale }: Props) {
   const structuredData = {
     "@context": "https://schema.org",
     "@type": "WebApplication",
-    name: "حاسبة الراتب السعودية",
-    description: "حاسبة الراتب الشاملة: صافي الراتب، التأمينات الاجتماعية، تكلفة صاحب العمل، سعودي وغير سعودي",
+    name: "حاسبة الراتب السعودية — سلالم الرواتب الحكومية",
+    description: "حاسبة الراتب الشاملة: سلالم رواتب حكومية (عام، معلمين، صحي، عسكري)، صافي الراتب، التأمينات الاجتماعية، مقارنة قطاعات",
     applicationCategory: "UtilitiesApplication",
     operatingSystem: "Web Browser",
     inLanguage: ["ar", "en"],
     offers: { "@type": "Offer", price: "0", priceCurrency: "SAR" },
+    featureList: [
+      "سلم رواتب الموظفين العام (15 مرتبة)",
+      "سلم رواتب المعلمين (4 فئات)",
+      "سلم رواتب القطاع الصحي",
+      "سلم رواتب العسكريين (ضباط وأفراد)",
+      "مقارنة رواتب القطاعات",
+      "التأمينات الاجتماعية GOSI",
+      "تكلفة صاحب العمل",
+      "الأوقات الإضافية",
+    ],
   };
 
   return (
@@ -80,13 +92,13 @@ export default function SalaryCalculatorPage({ locale }: Props) {
         {/* Header */}
         <div className="mt-5 mb-6">
           <h1 className="text-3xl font-bold text-gray-800 dark:text-white mb-2">
-            💵 حاسبة الراتب الشاملة
+            💵 حاسبة الراتب الشاملة — سلالم الرواتب الحكومية
           </h1>
           <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
-            احسب صافي راتبك بدقة — خصم التأمينات الاجتماعية (GOSI)، حصة الموظف وصاحب العمل، سعودي وغير سعودي، البدلات، الأوقات الإضافية، وتحويل الراتب (شهري/سنوي/يومي/ساعي).
+            احسب صافي راتبك بدقة + سلالم رواتب حكومية تفاعلية (عام، معلمين، صحي، عسكري) بالمرتبة والدرجة — التأمينات الاجتماعية (GOSI)، مقارنة قطاعات، البدلات، الأوقات الإضافية.
           </p>
           <div className="flex flex-wrap gap-2 mt-3">
-            {["سعودي / غير سعودي", "GOSI كامل", "تكلفة صاحب العمل", "أوقات إضافية", "حساب فوري", "مجاني 100%"].map((badge) => (
+            {["سلالم رواتب حكومية", "مقارنة قطاعات", "المرتبة والدرجة", "GOSI كامل", "سعودي / غير سعودي", "حساب فوري", "مجاني 100%"].map((badge) => (
               <span key={badge} className="text-xs px-2.5 py-1 bg-teal-100 dark:bg-teal-900/20 text-teal-700 dark:text-teal-400 rounded-full font-medium">
                 ✓ {badge}
               </span>
@@ -509,7 +521,14 @@ export default function SalaryCalculatorPage({ locale }: Props) {
               </div>
             )}
 
+            {/* Government Salary Scales */}
+            <GovSalaryScales />
+
             <AdSlot id="salary-mid" size="leaderboard" />
+
+            {/* Sector Comparison */}
+            <SectorComparison />
+
             <SalarySEO />
             <AdSlot id="salary-btm" size="rectangle" />
             <SalaryFAQ />
