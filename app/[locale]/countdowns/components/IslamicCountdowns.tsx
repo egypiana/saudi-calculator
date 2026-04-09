@@ -96,7 +96,7 @@ const islamicEvents = [
     icon: "🕌",
     color: "#0d9488",
     href: "/countdowns/mawlid",
-    targetDate: "2027-09-20",
+    targetDate: "2027-08-14",
   },
 ];
 
