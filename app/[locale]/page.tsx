@@ -1,23 +1,47 @@
-import { getTranslations, unstable_setRequestLocale } from "next-intl/server";
+import { unstable_setRequestLocale } from "next-intl/server";
 import type { Metadata } from "next";
 import HomePage from "@/components/home/HomePage";
-import { generateAlternates, generateOGMetadata, generateTwitterMetadata } from "@/lib/utils/metadata";
+import { generatePageSEO } from "@/lib/utils/metadata";
 
 export async function generateMetadata({
   params: { locale },
 }: {
   params: { locale: string };
 }): Promise<Metadata> {
-  const t = await getTranslations({ locale, namespace: "metadata" });
-  const title = t("siteName");
-  const description = t("siteDescription");
+  const title = "حاسبة VIP — حاسبات مالية وشرعية وعدادات تنازلية | calculatorvip.com";
+  const description =
+    "أكثر من 22 حاسبة دقيقة ومجانية للزكاة، الراتب، نهاية الخدمة، التمويل العقاري، حساب المواطن، رسوم المرافقين والمقابل المالي، مع عدادات تنازلية لرمضان والعيد والحج ومواعيد الرواتب الحكومية في السعودية.";
 
   return {
     title,
     description,
-    alternates: generateAlternates(locale, "/"),
-    openGraph: generateOGMetadata(locale, "/", { title, description }),
-    twitter: generateTwitterMetadata({ title, description }),
+    ...generatePageSEO(locale, "/", {
+      title,
+      description,
+      keywords: [
+        "حاسبة",
+        "حاسبات",
+        "حاسبة VIP",
+        "calculatorvip",
+        "حاسبة الزكاة",
+        "حاسبة الراتب",
+        "حاسبة نهاية الخدمة",
+        "حاسبة التمويل العقاري",
+        "حساب المواطن",
+        "رسوم المرافقين",
+        "المقابل المالي",
+        "ضريبة القيمة المضافة",
+        "كم باقي على رمضان",
+        "كم باقي على العيد",
+        "موعد الراتب",
+        "مواعيد الرواتب السعودية",
+        "عداد تنازلي",
+        "حاسبة العمر",
+        "التقويم الهجري",
+        "حاسبة BMI",
+        "السعودية",
+      ],
+    }),
   };
 }
 
@@ -71,6 +95,60 @@ function HomeJsonLd({ locale }: { locale: string }) {
         description: isAr
           ? "حاسبات الزكاة، الراتب، نهاية الخدمة، القرض العقاري، والمزيد. عدادات تنازلية لرمضان، العيد، الحج، الرواتب."
           : "Zakat, salary, end-of-service, mortgage calculators and more. Countdowns for Ramadan, Eid, Hajj, salaries.",
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://calculatorvip.com/#faq",
+        mainEntity: [
+          {
+            "@type": "Question",
+            name: "ما هو موقع حاسبة VIP وما الذي يقدمه؟",
+            acceptedAnswer: {
+              "@type": "Answer",
+              text: "حاسبة VIP (calculatorvip.com) هي المنصة السعودية الشاملة التي تقدم أكثر من 22 حاسبة مالية وشرعية وصحية بدقة عالية، بالإضافة إلى عدادات تنازلية لأهم المناسبات الإسلامية والوطنية ومواعيد الرواتب الحكومية. جميع الخدمات مجانية تماماً ومتوفرة باللغة العربية.",
+            },
+          },
+          {
+            "@type": "Question",
+            name: "هل استخدام الحاسبات مجاني بالكامل؟",
+            acceptedAnswer: {
+              "@type": "Answer",
+              text: "نعم، جميع الحاسبات والعدادات على موقعنا مجانية 100% ولا تحتاج إلى تسجيل أو اشتراك. يمكنك استخدامها بلا حدود من الجوال أو الحاسوب في أي وقت.",
+            },
+          },
+          {
+            "@type": "Question",
+            name: "ما مدى دقة نتائج الحاسبات؟",
+            acceptedAnswer: {
+              "@type": "Answer",
+              text: "نحرص على أن تكون كل النتائج دقيقة ومطابقة للأنظمة المعتمدة في المملكة العربية السعودية. حاسبة الزكاة تعتمد على الأحكام الشرعية، وحاسبة الراتب على نظام العمل السعودي، وحاسبة التمويل العقاري على أنظمة البنوك المحلية.",
+            },
+          },
+          {
+            "@type": "Question",
+            name: "هل يمكنني معرفة كم باقي على رمضان أو عيد الفطر؟",
+            acceptedAnswer: {
+              "@type": "Answer",
+              text: "نعم، نوفر عدادات تنازلية دقيقة لكل المناسبات الإسلامية الكبرى: رمضان، عيد الفطر، عيد الأضحى، الحج، ليلة القدر، المولد النبوي، رأس السنة الهجرية، وغيرها.",
+            },
+          },
+          {
+            "@type": "Question",
+            name: "هل توفرون حاسبات للرسوم الحكومية السعودية؟",
+            acceptedAnswer: {
+              "@type": "Answer",
+              text: "بالتأكيد. نقدم حاسبات متخصصة لحساب رسوم المرافقين (400 ريال شهرياً)، المقابل المالي للعمالة الوافدة (700 أو 800 ريال)، فاتورة الكهرباء، ضريبة القيمة المضافة 15%، ومكافأة نهاية الخدمة، وبرنامج حساب المواطن.",
+            },
+          },
+          {
+            "@type": "Question",
+            name: "هل الموقع متاح على الهاتف الجوال؟",
+            acceptedAnswer: {
+              "@type": "Answer",
+              text: "نعم، الموقع مصمم بأسلوب Mobile-First ويعمل بسلاسة على جميع الأجهزة: الهواتف الذكية، الأجهزة اللوحية، والحواسيب. الواجهة سريعة ومتجاوبة وتدعم اللغة العربية بشكل كامل.",
+            },
+          },
+        ],
       },
     ],
   };
