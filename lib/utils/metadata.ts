@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 const BASE_URL = "https://calculatorvip.com";
-const DEFAULT_OG_IMAGE = "/og-default.png";
+const DEFAULT_OG_IMAGE = "/opengraph-image";
 
 /**
  * Generate alternates with hreflang for all locales.

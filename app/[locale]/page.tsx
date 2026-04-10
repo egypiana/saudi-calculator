@@ -75,7 +75,7 @@ function HomeJsonLd({ locale }: { locale: string }) {
         url: "https://calculatorvip.com",
         logo: {
           "@type": "ImageObject",
-          url: "https://calculatorvip.com/og-default.png",
+          url: "https://calculatorvip.com/opengraph-image",
           width: 1200,
           height: 630,
         },

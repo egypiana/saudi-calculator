@@ -19,8 +19,10 @@ import howToKnowMyAge from "./how-to-know-my-age";
 import ageHijriGregorianDifference from "./age-hijri-gregorian-difference";
 import ageCalculatorBirthday from "./age-calculator-birthday";
 import ageHijriCalculation from "./age-hijri-calculation";
+import zakatGuide from "./zakat-guide";
 
 export const ALL_ARTICLES: BlogArticle[] = [
+  zakatGuide,
   ageCalculatorBirthday,
   ageHijriCalculation,
   ageHijriGregorianDifference,
