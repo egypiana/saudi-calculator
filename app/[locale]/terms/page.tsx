@@ -98,7 +98,7 @@ export default function TermsPage({ params: { locale } }: { params: { locale: st
             إذا كانت لديكم أي أسئلة أو استفسارات حول شروط الاستخدام هذه، يمكنكم التواصل معنا عبر البريد الإلكتروني:
           </p>
           <p className="text-gray-600 dark:text-gray-400 mb-4 leading-relaxed font-semibold" dir="ltr">
-            contact@calculatorvip.com
+            info@calculatorvip.com
           </p>
         </article>
       </div>
