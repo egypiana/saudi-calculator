@@ -6,6 +6,8 @@ import { unstable_setRequestLocale } from "next-intl/server";
 import { ThemeProvider } from "@/components/providers/ThemeProvider";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
+import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import "./globals.css";
 import { generateAlternates, generateOGMetadata, generateTwitterMetadata } from "@/lib/utils/metadata";
 
@@ -75,6 +77,8 @@ export default async function LocaleLayout({
             <Footer />
           </ThemeProvider>
         </NextIntlClientProvider>
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );
