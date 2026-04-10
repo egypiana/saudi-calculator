@@ -9,7 +9,7 @@ import { Resend } from "resend";
 
 export const runtime = "nodejs";
 
-const TO_EMAIL = "info@calculatorvip.com";
+const TO_EMAIL = process.env.CONTACT_TO_EMAIL || "info@calculatorvip.com";
 const FROM_EMAIL = process.env.CONTACT_FROM_EMAIL || "Calculator VIP <onboarding@resend.dev>";
 
 // Rate limiting بسيط في الذاكرة (لكل IP)
@@ -190,12 +190,24 @@ ${message}
     });
 
     if (error) {
-      console.error("[contact] Resend error:", error);
+      console.error("[contact] Resend error:", JSON.stringify(error));
+      const errMsg = (error as { message?: string })?.message || "";
+      const errName = (error as { name?: string })?.name || "";
+
+      // كشف قيود دومين الاختبار في Resend
+      const isTestDomainLimit =
+        /can only send testing emails/i.test(errMsg) ||
+        /verify a domain/i.test(errMsg) ||
+        /validation_error/i.test(errName);
+
       return NextResponse.json(
         {
           ok: false,
           error: "send_failed",
-          message: "تعذّر إرسال الرسالة حالياً. الرجاء المحاولة لاحقاً أو مراسلتنا على info@calculatorvip.com",
+          message: isTestDomainLimit
+            ? "خدمة الإرسال تعمل في الوضع التجريبي. الرجاء مراسلتنا مباشرة على info@calculatorvip.com"
+            : `تعذّر الإرسال: ${errMsg || "خطأ غير معروف"}`,
+          debug: { name: errName, message: errMsg },
         },
         { status: 502 }
       );
