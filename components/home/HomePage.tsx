@@ -19,7 +19,7 @@ import {
   Zap,
   Award,
 } from "lucide-react";
-import CountdownCard from "@/components/countdown/CountdownCard";
+import HomeCountdownCard from "@/components/home/HomeCountdownCard";
 import AdSlot from "@/components/ads/AdSlot";
 import { getNextEventDate } from "@/lib/events/islamic-events";
 import { getNextMonthlyDate } from "@/lib/events/salary-events";
@@ -382,41 +382,37 @@ export default function HomePage() {
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6">
-            <CountdownCard
-              eventId="ramadan"
+            <HomeCountdownCard
               icon="🌙"
-              titleKey="ramadan"
-              questionKey="ramadanQuestion"
+              title="كم باقي على رمضان؟"
+              subtitle="شهر الصيام والقيام"
               targetDate={ramadanDate}
-              gradient="from-purple-600 via-indigo-700 to-purple-900"
               href="/countdowns/ramadan"
+              accentColor="purple"
             />
-            <CountdownCard
-              eventId="eid-fitr"
+            <HomeCountdownCard
               icon="🎉"
-              titleKey="eidFitr"
-              questionKey="eidFitrQuestion"
+              title="كم باقي على عيد الفطر؟"
+              subtitle="فرحة المسلمين"
               targetDate={eidFitrDate}
-              gradient="from-emerald-500 via-teal-600 to-emerald-800"
               href="/countdowns/eid-fitr"
+              accentColor="emerald"
             />
-            <CountdownCard
-              eventId="hajj"
+            <HomeCountdownCard
               icon="🕋"
-              titleKey="hajj"
-              questionKey="hajjQuestion"
+              title="كم باقي على الحج؟"
+              subtitle="أعظم الشعائر"
               targetDate={hajjDate}
-              gradient="from-amber-500 via-orange-600 to-red-700"
               href="/countdowns/hajj"
+              accentColor="amber"
             />
-            <CountdownCard
-              eventId="salary"
+            <HomeCountdownCard
               icon="💵"
-              titleKey="nextSalary"
-              questionKey="nextSalaryQuestion"
+              title="كم باقي على الراتب؟"
+              subtitle="موعد الراتب القادم"
               targetDate={salaryDate}
-              gradient="from-green-500 via-emerald-600 to-teal-700"
               href="/countdowns/salaries-dates"
+              accentColor="rose"
             />
           </div>
         </div>
