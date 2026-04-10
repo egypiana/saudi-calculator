@@ -66,6 +66,7 @@ const categories: { titleAr: string; titleEn: string; items: CalcItem[] }[] = [
       { icon: "⚡", titleAr: "حاسبة الكهرباء", titleEn: "Electricity Calculator", descAr: "فاتورة الكهرباء واستهلاك الأجهزة", descEn: "Electricity bill & appliance consumption", href: "/calculators/electricity", color: "from-yellow-500 to-amber-700" },
       { icon: "👥", titleAr: "حاسبة رسوم المرافقين", titleEn: "Dependents Fee Calculator", descAr: "رسوم المرافقين والتابعين الشهرية", descEn: "Monthly dependents & companions fee", href: "/calculators/dependents-fee", color: "from-purple-500 to-purple-700" },
       { icon: "💼", titleAr: "حاسبة المقابل المالي", titleEn: "Labor Fee Calculator", descAr: "رسوم العمالة الوافدة ورخص العمل", descEn: "Expat labor levy & work permits", href: "/calculators/labor-fee", color: "from-orange-500 to-orange-700" },
+      { icon: "🏦", titleAr: "حاسبة حساب المواطن", titleEn: "Citizen Account Calculator", descAr: "الأهلية والمبلغ التقديري", descEn: "Eligibility & estimated support", href: "/calculators/citizen-account", color: "from-emerald-500 to-emerald-700" },
     ],
   },
 ];
