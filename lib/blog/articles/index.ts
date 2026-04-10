@@ -14,8 +14,18 @@ import ramadanStartDate2026 from "./ramadan-start-date-2026";
 import ramadanDates20252050 from "./ramadan-dates-2025-2050";
 import ramadanMoonSighting from "./ramadan-moon-sighting";
 import ramadanSeasons from "./ramadan-seasons";
+import ageCalculatorGuide from "./age-calculator-guide";
+import howToKnowMyAge from "./how-to-know-my-age";
+import ageHijriGregorianDifference from "./age-hijri-gregorian-difference";
+import ageCalculatorBirthday from "./age-calculator-birthday";
+import ageHijriCalculation from "./age-hijri-calculation";
 
 export const ALL_ARTICLES: BlogArticle[] = [
+  ageCalculatorBirthday,
+  ageHijriCalculation,
+  ageHijriGregorianDifference,
+  howToKnowMyAge,
+  ageCalculatorGuide,
   ramadanCountdown2026,
   ramadanStartDate2026,
   ramadanDates20252050,
