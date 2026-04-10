@@ -44,6 +44,7 @@ const categories: { titleAr: string; titleEn: string; items: CalcItem[] }[] = [
       { icon: "🛡️", titleAr: "حاسبة التقاعد", titleEn: "Retirement Calculator", descAr: "المعاش التقاعدي وتحليل الجاهزية", descEn: "Pension calculation & readiness analysis", href: "/calculators/retirement", color: "from-teal-500 to-teal-700" },
       { icon: "💹", titleAr: "حاسبة نسبة الربح", titleEn: "Profit Margin Calculator", descAr: "هامش الربح و Markup ومقارنة المنتجات", descEn: "Margin, Markup & product comparison", href: "/calculators/profit-margin", color: "from-green-500 to-emerald-700" },
       { icon: "📊", titleAr: "حاسبة الميزانية", titleEn: "Budget Calculator", descAr: "خطط لميزانيتك الشهرية", descEn: "Plan your monthly budget", href: "/calculators/budget", color: "from-cyan-500 to-cyan-700" },
+      { icon: "💱", titleAr: "حاسبة تحويل العملات", titleEn: "Currency Converter", descAr: "تحويل 35+ عملة مقابل الريال", descEn: "Convert 35+ currencies vs SAR", href: "/calculators/currency", color: "from-emerald-500 to-teal-700" },
     ],
   },
   {
