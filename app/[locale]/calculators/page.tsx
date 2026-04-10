@@ -64,6 +64,7 @@ const categories: { titleAr: string; titleEn: string; items: CalcItem[] }[] = [
       { icon: "🎓", titleAr: "حاسبة المعدل التراكمي", titleEn: "GPA Calculator", descAr: "المعدل بنظام 5 نقاط", descEn: "GPA on 5.0 scale", href: "/calculators/gpa", color: "from-violet-500 to-violet-700" },
       { icon: "🕐", titleAr: "حاسبة الوقت", titleEn: "Time Calculator", descAr: "فرق الوقت وساعات العمل والتحويل", descEn: "Time difference, work hours & converter", href: "/calculators/time", color: "from-sky-500 to-blue-700" },
       { icon: "⚡", titleAr: "حاسبة الكهرباء", titleEn: "Electricity Calculator", descAr: "فاتورة الكهرباء واستهلاك الأجهزة", descEn: "Electricity bill & appliance consumption", href: "/calculators/electricity", color: "from-yellow-500 to-amber-700" },
+      { icon: "👥", titleAr: "حاسبة رسوم المرافقين", titleEn: "Dependents Fee Calculator", descAr: "رسوم المرافقين والتابعين الشهرية", descEn: "Monthly dependents & companions fee", href: "/calculators/dependents-fee", color: "from-purple-500 to-purple-700" },
     ],
   },
 ];
