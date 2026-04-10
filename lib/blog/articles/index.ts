@@ -20,8 +20,10 @@ import ageHijriGregorianDifference from "./age-hijri-gregorian-difference";
 import ageCalculatorBirthday from "./age-calculator-birthday";
 import ageHijriCalculation from "./age-hijri-calculation";
 import zakatGuide from "./zakat-guide";
+import bmrCalculation from "./bmr-calculation";
 
 export const ALL_ARTICLES: BlogArticle[] = [
+  bmrCalculation,
   zakatGuide,
   ageCalculatorBirthday,
   ageHijriCalculation,
