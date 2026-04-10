@@ -47,7 +47,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const calculators = [
     "zakat", "salary", "vat", "end-of-service", "mortgage",
     "inheritance", "age", "budget", "bmi", "percentage", "real-estate-finance",
-    "currency", "pregnancy",
+    "currency", "pregnancy", "electricity",
   ].flatMap((slug) => localizedUrls(`/calculators/${slug}`, 0.8));
 
   // Countdowns main pages
