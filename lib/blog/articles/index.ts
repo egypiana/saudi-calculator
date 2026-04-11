@@ -21,8 +21,12 @@ import ageCalculatorBirthday from "./age-calculator-birthday";
 import ageHijriCalculation from "./age-hijri-calculation";
 import zakatGuide from "./zakat-guide";
 import bmrCalculation from "./bmr-calculation";
+import eidAdhaCountdown2026 from "./eid-adha-countdown-2026";
+import eidAdhaPreparationGuide from "./eid-adha-preparation-guide";
 
 export const ALL_ARTICLES: BlogArticle[] = [
+  eidAdhaCountdown2026,
+  eidAdhaPreparationGuide,
   bmrCalculation,
   zakatGuide,
   ageCalculatorBirthday,
