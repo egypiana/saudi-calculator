@@ -23,8 +23,12 @@ import zakatGuide from "./zakat-guide";
 import bmrCalculation from "./bmr-calculation";
 import eidAdhaCountdown2026 from "./eid-adha-countdown-2026";
 import eidAdhaPreparationGuide from "./eid-adha-preparation-guide";
+import zakatSalary from "./zakat-salary";
+import zakatStocksCrypto from "./zakat-stocks-crypto";
 
 export const ALL_ARTICLES: BlogArticle[] = [
+  zakatSalary,
+  zakatStocksCrypto,
   eidAdhaCountdown2026,
   eidAdhaPreparationGuide,
   bmrCalculation,
